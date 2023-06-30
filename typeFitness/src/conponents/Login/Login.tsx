@@ -48,18 +48,23 @@ const Login = () => {
             }
         }
     }
+    const handleKeyDown = (event: any) => {
+        if (event.key === "Enter") {
+            onLogin()
+        }
+    };
     return (
-        <AbsoluteCenter>
+        <AbsoluteCenter onKeyDown={handleKeyDown}>
             <Center>
                 <Text fontSize={40}>
                     Log In
                 </Text>
                 <br />
             </Center>
-                <VStack mt={'20px'}>
-                    <Input w={250}  placeholder='Username' onChange={updateForm('handle')} />
-                    <Input w={250}  type='password' placeholder='Password' onChange={updateForm('password')} />
-                </VStack>
+            <VStack mt={'20px'}>
+                <Input w={250} placeholder='Username' onChange={updateForm('handle')} />
+                <Input w={250} type='password' placeholder='Password' onChange={updateForm('password')} />
+            </VStack>
             <Center>
                 {error && (
                     <Text color="red" mr="6px"><strong>{error}</strong> </Text>
@@ -67,7 +72,7 @@ const Login = () => {
             </Center>
             <br />
             <Center>
-                <Button colorScheme='blue' onClick={onLogin}>Log in</Button> <br />
+                <Button colorScheme={"purple"} onClick={onLogin} >Log in</Button> <br />
             </Center>
             <Center>
                 <Text mr="6px">Don't have an account?</Text>

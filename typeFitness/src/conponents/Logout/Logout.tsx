@@ -20,9 +20,7 @@ const Logout = () => {
     }
     return (
         <Button
-            backgroundColor={"gray.400"}
-            variant={"ghost"}
-            display={"inline"}
+            colorScheme={"purple"}
             onClick={onLogout}
         >
             Log out

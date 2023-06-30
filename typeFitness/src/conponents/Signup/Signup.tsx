@@ -114,14 +114,14 @@ const Signup = () => {
             </Center>
             <br />
             <Center>
-                <Button colorScheme='blue' onClick={onRegister}>Sign up</Button> <br />
+                <Button colorScheme={"purple"} onClick={onRegister}>Sign up</Button> <br />
             </Center>
             <Center>
                 <Text mr="6px">Already have an account?</Text>
                 <Link
                     as={RouterLink}
                     to="/log-in"
-                    color="blue.400">
+                    color="pruple.500">
                     Log In
                 </Link>
             </Center>
