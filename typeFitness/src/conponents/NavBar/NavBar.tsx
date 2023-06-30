@@ -1,21 +1,23 @@
-import { Box, List, Text } from "@chakra-ui/react"
-import { NavLink } from "react-router-dom"
+import { AbsoluteCenter, Center, Flex, List, Box, Spacer } from "@chakra-ui/react"
+import { BiHomeAlt } from "react-icons/bi"
+import { CiDumbbell } from "react-icons/ci"
+import { GiChickenLeg } from "react-icons/gi"
+import { CgProfile } from "react-icons/cg"
+import ListItems from "./ListItems"
+
 const NavBar = () => {
     return (
-        <List color='white' fontSize={'1.2em'} bgColor={'purple.300'}>
-                <NavLink to="/home">
-                    <Text>Home</Text>
-                </NavLink>
-                <NavLink to="/workouts">
-                    <Text>Workouts</Text>
-                </NavLink>
-                <NavLink to="/nutrition"
-                ><Text>Nutrition</Text>
-                </NavLink>
-                <NavLink to="/profile">
-                    <Text>Profile</Text>
-                </NavLink>
-        </List>
+        <Flex >
+
+            <Box>
+                <List color='white' spacing={'40px'} mt="30px">
+                    <ListItems pathTo="/" icon={BiHomeAlt} text="Home" />
+                    <ListItems pathTo="/workouts" icon={CiDumbbell} text="Workouts" />
+                    <ListItems pathTo="/nutrition" icon={GiChickenLeg} text="Nutrition" />
+                    <ListItems pathTo="/profile" icon={CgProfile} text="Profile" />
+                </List>
+            </Box>
+        </Flex>
     )
 }
 export default NavBar
