@@ -1,6 +1,12 @@
 import MakeNewWorkout from "./MakeNewWorkout"
 import ListWorkouts from "./ListWorkouts"
-import { Grid, GridItem } from "@chakra-ui/react"
+import {
+  Box,
+  SimpleGrid,
+} from '@chakra-ui/react';
+
+
+
 
 const testData: Array<Workout> = [
   {
@@ -14,33 +20,29 @@ const testData: Array<Workout> = [
   {
     name: 'Friday',
     data: ['aasdsa', 'asdlikjasd', 'asjkhdakjshd']
+  },
+  {
+    name: 'Monday',
+    data: ['aasdsa', 'asdlikjasd', 'asjkhdakjshd']
   }
 ];
 
-export interface Workout {
+interface Workout {
   name: string;
   data: string[];
 }
 
-export default function Workouts() {
+export default function BasicStatistics() {
   return (
-    <Grid
-      h={'100vh'}
-      templateRows='repeat(2, 1fr)'
-      templateColumns='repeat(3, 1fr)'
-      w='full'
-    >
-      <GridItem colSpan={3} h='44vh'>
-        <MakeNewWorkout />
-      </GridItem>
-      {testData.map((workout: Workout) => (
-
-        <GridItem colSpan={1} h='45vh' p={10} >
+    <Box width={'100%'}>
+      <MakeNewWorkout />
+      <SimpleGrid columns={{ base: 1, md: 3 }} p={5} spacing={5} >
+        {testData.map((workout: Workout) => (
           <ListWorkouts workout={workout} />
-        </GridItem>
-      ))}
-
-    </Grid>
-
-  )
+        ))}
+      </SimpleGrid>
+    </Box>
+  );
 }
+
+
