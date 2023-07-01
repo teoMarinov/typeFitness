@@ -60,7 +60,8 @@ function App() {
               colSpan={1}
               bgColor={'purple.500'}
               minHeight={'100vh'}
-              boxShadow="2px 0 2px rgba(0, 0, 0, 0.5)"
+              boxShadow="3px 0 10px rgba(0, 0, 0, 0.5)"
+              zIndex={10}
             >
               <NavBar />
             </GridItem>
