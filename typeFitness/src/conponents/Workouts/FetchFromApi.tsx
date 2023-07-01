@@ -36,7 +36,7 @@ export default function FetchFromApi({ selectedExs, setSelectedExs }: SelectedEx
     const [sets, setSets] = useState('')
     const [reps, setReps] = useState('')
 
-    const newExerciseSelect: NewExerciseSelect = {
+    const newExerciseSelect: CurrentExercise = {
         name: currentExercise.name,
         sets,
         reps
@@ -76,14 +76,21 @@ export default function FetchFromApi({ selectedExs, setSelectedExs }: SelectedEx
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Choose exercise</ModalHeader>
-                    <ModalCloseButton />
+                    <ModalCloseButton onClick={() => {
+                        setStepTwo(false)
+                        setInputedName('')
+                        setFetchedExs([])
+                    }
+                    } />
                     <ModalBody>
                         <>
 
                             {stepTwo ?
-                                (<VStack w='full' bg='red.200' >
-                                    <Button onClick={handleBack} mr={'360px'}>{'<'}</Button>
-                                    <Heading textAlign={'center'} size={'sm'}>{currentExercise.name}</Heading>
+                                (<VStack w='full' position="relative">
+                                    <Button onClick={handleBack} position="absolute" left={0} top={-1.5} bg={'transparent'} >
+                                        <Heading fontWeight={'bold'} size={'lg'}>{'<'}</Heading>
+                                    </Button>
+                                    <Heading textAlign={'center'} size={'lg'}>{currentExercise.name}</Heading>
                                     {currentExercise.name}
                                     <Box>
                                         <Input width={'70px'} placeholder="sets" mr={2} onChange={(event) => setSets(event.target.value)}></Input>
