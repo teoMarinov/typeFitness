@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem, Heading, SimpleGrid, Center, Text, VStack } from "@chakra-ui/react"
+import { Heading, Center, Text, VStack } from "@chakra-ui/react"
 import { Workout } from "./Workouts"
 
 type WorkoutType = {
@@ -18,7 +18,7 @@ export default function ListWorkouts({ workout }: WorkoutType) {
     return (
       <Center
         bg="white"
-        h="100%"
+        h="50vh"
         border="1px solid"
         textAlign="center"
         _hover={{ cursor: "pointer" }}

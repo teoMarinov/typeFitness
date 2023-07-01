@@ -20,14 +20,10 @@ const testData: Array<Workout> = [
   {
     name: 'Friday',
     data: ['aasdsa', 'asdlikjasd', 'asjkhdakjshd']
-  },
-  {
-    name: 'Monday',
-    data: ['aasdsa', 'asdlikjasd', 'asjkhdakjshd']
   }
 ];
 
-interface Workout {
+export interface Workout {
   name: string;
   data: string[];
 }
@@ -37,8 +33,10 @@ export default function BasicStatistics() {
     <Box width={'100%'}>
       <MakeNewWorkout />
       <SimpleGrid columns={{ base: 1, md: 3 }} p={5} spacing={5} >
-        {testData.map((workout: Workout) => (
-          <ListWorkouts workout={workout} />
+        {testData.map((workout: Workout, index) => (
+          <Box key={workout.name + index}>
+            <ListWorkouts workout={workout} />
+          </Box>
         ))}
       </SimpleGrid>
     </Box>
