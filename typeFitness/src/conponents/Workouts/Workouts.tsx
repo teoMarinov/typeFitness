@@ -30,6 +30,7 @@ export default function BasicStatistics() {
         const result:(string & Workout)[] = Object.entries(snapshot)
         setAllWorkouts(result)
       })
+      .catch(error => console.log(error))
   }, [currentUser])
 
 
