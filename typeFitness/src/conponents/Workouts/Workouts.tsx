@@ -15,6 +15,8 @@ export interface Workout {
   exercises: Exercise[];
 }
 
+
+
 export default function BasicStatistics() {
 
   const [allWorkouts, setAllWorkouts] = useState([])
@@ -25,7 +27,7 @@ export default function BasicStatistics() {
   useEffect(() => {
     readData(`workouts/${currentUser}`)
       .then((snapshot) => {
-        const result: Workout[] = Object.values(snapshot)
+        const result:(string & Workout)[] = Object.entries(snapshot)
         setAllWorkouts(result)
       })
   }, [currentUser])
@@ -36,9 +38,9 @@ export default function BasicStatistics() {
       <MakeNewWorkout />
       <SimpleGrid columns={{ base: 1, md: 3 }} p={5} spacing={5} >
         {
-          allWorkouts.map((workout: Workout, index) => (
-            <Box key={workout.name + index}>
-              <ListWorkouts workout={workout} />
+          allWorkouts.map((workout:string & Workout) => (
+            <Box key={workout[0]}>
+              <ListWorkouts workout={workout} user={currentUser}/>
             </Box>
           ))
         }
