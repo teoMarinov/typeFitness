@@ -57,7 +57,7 @@ export default function MakeNewWorkout() {
             >
                 {toggleWorkoutMaker ?
                     (< Box width={"30%"} height={'500px'} bg={'white'} position={'relative'}>
-                        <Button bg={'transparent'} textColor={'red.600'} fontWeight={'bold'} colorScheme={"blue"} onClick={toggleNewWorkout} position={'absolute'} top={2} right={0}>
+                        <Button bg={'transparent'} textColor={'red.600'} fontWeight={'bold'} colorScheme={"gray"} onClick={toggleNewWorkout} position={'absolute'} top={2} right={0}>
                         <Heading textColor={'red.600'} fontWeight={'bold'} size={'lg'}>X</Heading>
                         </Button>
                         <Center>
