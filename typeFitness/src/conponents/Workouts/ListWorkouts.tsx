@@ -1,5 +1,6 @@
 import { Heading, Center, Text, VStack } from "@chakra-ui/react"
 import { Workout } from "./Workouts"
+import { useState } from "react"
 
 type WorkoutType = {
   workout: Workout
@@ -11,34 +12,27 @@ type TypeExercise = {
   sets: string
 }
 export default function ListWorkouts({ workout }: WorkoutType) {
-  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.currentTarget.querySelector("h2").style.display = "none";
-    e.currentTarget.querySelector("div").style.display = "block";
-  };
 
-  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.currentTarget.querySelector("h2").style.display = "block";
-    e.currentTarget.querySelector("div").style.display = "none";
-  };
+  const [toggleDetails, setToggleDetails] = useState(true)
 
   return (
     <Center
+      onMouseOver={() => setToggleDetails(false)}
+      onMouseLeave={() => setToggleDetails(true)}
       bg="white"
       h="50vh"
       border="1px solid"
       textAlign="center"
       _hover={{ cursor: "pointer" }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
     >
-      <Heading as="h2" display="block">
+      {toggleDetails ? (<Heading as="h2" display="block">
         {workout.name}
-      </Heading>
-      <VStack display="none">
-        {workout.exercises.map((exercise: TypeExercise, index) => (
-          <Text key={exercise.name + index + exercise.reps}>{exercise.name} - {exercise.sets} x {exercise.reps}</Text>
-        ))}
-      </VStack>
+      </Heading>) :
+        (<VStack>
+          {workout.exercises.map((exercise: TypeExercise, index) => (
+            <Text key={exercise.name + index + exercise.reps}>{exercise.name} - {exercise.sets} x {exercise.reps}</Text>
+          ))}
+        </VStack>)}
     </Center>
   );
 }
