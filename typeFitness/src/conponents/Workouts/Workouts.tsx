@@ -1,43 +1,47 @@
 import MakeNewWorkout from "./MakeNewWorkout"
 import ListWorkouts from "./ListWorkouts"
-import {
-  Box,
-  SimpleGrid,
-} from '@chakra-ui/react';
+import { Box, SimpleGrid, } from '@chakra-ui/react';
+import { useState, useEffect, useContext } from "react";
+import readData from "../../utils/readData";
+import { AuthContext } from "../../context/AuthContext";
 
-
-
-
-const testData: Array<Workout> = [
-  {
-    name: 'Monday',
-    data: ['aasdsa', 'asdlikjasd', 'asjkhdakjshd']
-  },
-  {
-    name: 'Wednesday',
-    data: ['aasdsa', 'asdlikjasd', 'asjkhdakjshd']
-  },
-  {
-    name: 'Friday',
-    data: ['aasdsa', 'asdlikjasd', 'asjkhdakjshd']
-  }
-];
-
+interface Exercise {
+  name: string;
+  reps: string;
+  sets: string;
+}
 export interface Workout {
   name: string;
-  data: string[];
+  exercises: Exercise[];
 }
 
 export default function BasicStatistics() {
+
+  const [allWorkouts, setAllWorkouts] = useState([])
+
+  const context = useContext(AuthContext)
+  const currentUser = context.userData?.handle
+
+  useEffect(() => {
+    readData(`workouts/${currentUser}`)
+      .then((snapshot) => {
+        const result: Workout[] = Object.values(snapshot)
+        setAllWorkouts(result)
+      })
+  }, [currentUser])
+
+
   return (
     <Box width={'100%'}>
       <MakeNewWorkout />
       <SimpleGrid columns={{ base: 1, md: 3 }} p={5} spacing={5} >
-        {testData.map((workout: Workout, index) => (
-          <Box key={workout.name + index}>
-            <ListWorkouts workout={workout} />
-          </Box>
-        ))}
+        {
+          allWorkouts.map((workout: Workout, index) => (
+            <Box key={workout.name + index}>
+              <ListWorkouts workout={workout} />
+            </Box>
+          ))
+        }
       </SimpleGrid>
     </Box>
   );

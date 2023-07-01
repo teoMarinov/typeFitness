@@ -1,5 +1,5 @@
-import { Box, Stat, useColorModeValue, Center, Button, Input, VStack, Text } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { Box, Stat, useColorModeValue, Center, Button, Input, VStack, Text, Heading } from "@chakra-ui/react";
+import { useState } from "react";
 import FetchFromApi from "./FetchFromApi";
 import addData from "../../utils/addData.ts";
 import { useContext } from "react";
@@ -56,13 +56,13 @@ export default function MakeNewWorkout() {
                 height={backgroundHeight}
             >
                 {toggleWorkoutMaker ?
-                    (< Box width={"30%"} height={'500px'} bg={'white'}>
-                        <Button bg={'red.400'} colorScheme={"blue"} onClick={toggleNewWorkout} ml={'92%'}>
-                            X
+                    (< Box width={"30%"} height={'500px'} bg={'white'} position={'relative'}>
+                        <Button bg={'transparent'} textColor={'red.600'} fontWeight={'bold'} colorScheme={"blue"} onClick={toggleNewWorkout} position={'absolute'} top={2} right={0}>
+                        <Heading textColor={'red.600'} fontWeight={'bold'} size={'lg'}>X</Heading>
                         </Button>
                         <Center>
                             <VStack>
-                                <Input placeholder="Enter workout name" onChange={(event) => setName(event.target.value)}></Input>
+                                <Input placeholder="Enter workout name" onChange={(event) => setName(event.target.value)} position={'relative'} top={2} left={-15} width={'400px'} ></Input>
                                 {selectedExs.map((exercise: CurrentExercise) => (
                                     <Text key={exercise.name}>{exercise.name} - {exercise.sets} x {exercise.reps}</Text>
                                 ))}
