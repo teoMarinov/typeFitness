@@ -1,8 +1,8 @@
-import { ref, update } from "firebase/database";
+import { ref, set } from "firebase/database";
 import db from "../config/firebase.config.ts";
 
-const editData = (path: string, target: string, val: any) => {
-    update(ref(db, path), { [target]: val })
+const editData = (path: string, val: any) => {
+    set(ref(db, path), val)
 }
 
 export default editData
