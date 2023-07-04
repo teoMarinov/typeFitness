@@ -27,7 +27,7 @@ export default function DeleteModal({ workoutId, workoutName, currentUser }: Pro
 
     return (
         <>
-            <IconButton size={'sm'} aria-label='Delete' onClick={onOpen} icon={<DeleteIcon />} />
+            <IconButton size={'sm'} aria-label='Delete' _hover={{ bg: 'gray.500' }} bg={'gray.300'} onClick={onOpen} icon={<DeleteIcon />} />
 
                 <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay />
