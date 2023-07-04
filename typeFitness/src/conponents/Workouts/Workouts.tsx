@@ -1,6 +1,6 @@
 import MakeNewWorkout from "./MakeNewWorkout"
 import ListWorkouts from "./ListWorkouts"
-import { Box, SimpleGrid, } from '@chakra-ui/react';
+import { Box, Center, SimpleGrid, } from '@chakra-ui/react';
 import { useState, useEffect, useContext } from "react";
 import readData from "../../utils/readData";
 import { AuthContext } from "../../context/AuthContext";
@@ -37,12 +37,12 @@ export default function BasicStatistics() {
   return (
     <Box width={'100%'}>
       <MakeNewWorkout />
-      <SimpleGrid columns={{ base: 1, md: 3 }} p={5} spacing={5} >
+      <SimpleGrid columns={{ base: 1, md: 3 }} p={5} spacing={5}>
         {
           allWorkouts.map((workout:string & Workout) => (
-            <Box key={workout[0]}>
+            <Center key={workout[0]} h={'50vh'}>
               <ListWorkouts workout={workout} user={currentUser}/>
-            </Box>
+            </Center>
           ))
         }
       </SimpleGrid>
