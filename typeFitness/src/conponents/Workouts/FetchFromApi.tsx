@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Center, Heading, Input, VStack } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import exerciseFetcher from "../../utils/exerciseFetcher.ts";
@@ -23,7 +24,7 @@ interface Exercise {
 
 interface SelectedExercises {
     selectedExs: CurrentExercise[];
-    setSelectedExs: React.Dispatch<React.SetStateAction<CurrentExercise[]>>;
+    setSelectedExs: any;
 }
 
 export default function FetchFromApi({ selectedExs, setSelectedExs }: SelectedExercises) {
@@ -35,6 +36,7 @@ export default function FetchFromApi({ selectedExs, setSelectedExs }: SelectedEx
     const [currentExercise, setCurrentExercise] = useState({})
     const [sets, setSets] = useState('')
     const [reps, setReps] = useState('')
+
 
     const newExerciseSelect: CurrentExercise = {
         name: currentExercise.name,
@@ -68,9 +70,12 @@ export default function FetchFromApi({ selectedExs, setSelectedExs }: SelectedEx
         onClose()
     }
 
+
     return (
-        <>
-            <Button onClick={onOpen} bg='white'>Add more exercises</Button>
+        <Box pt={4} pb={2}>
+            <Button onClick={onOpen} bg={'none'} textColor={'white'} colorScheme="blackAlpha">
+                Add more exercises
+            </Button>
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
@@ -86,25 +91,41 @@ export default function FetchFromApi({ selectedExs, setSelectedExs }: SelectedEx
                         <>
 
                             {stepTwo ?
-                                (<VStack w='full' position="relative">
+                                (<VStack w='full'  position="relative">
                                     <Button onClick={handleBack} position="absolute" left={0} top={-1.5} bg={'transparent'} >
                                         <Heading fontWeight={'bold'} size={'lg'}>{'<'}</Heading>
                                     </Button>
-                                    <Heading textAlign={'center'} size={'lg'}>{currentExercise.name}</Heading>
+                                    <Heading textAlign={'center'} size={'lg'}>
+                                        {currentExercise.name}
+                                    </Heading>
                                     {currentExercise.name}
                                     <Box>
-                                        <Input width={'70px'} placeholder="sets" mr={2} onChange={(event) => setSets(event.target.value)}></Input>
-                                        <Input width={'70px'} placeholder="reps" ml={2} onChange={(event) => setReps(event.target.value)}></Input>
+                                        <Input
+                                            width={'70px'}
+                                            placeholder="sets"
+                                            mr={2}
+                                            onChange={(event) => setSets(event.target.value)}>
+                                        </Input>
+                                        <Input
+                                            width={'70px'}
+                                            placeholder="reps"
+                                            ml={2}
+                                            onChange={(event) => setReps(event.target.value)}>
+                                        </Input>
                                     </Box>
                                     <Button onClick={handleSave}>Save</Button>
                                 </VStack>)
                                 :
                                 (<>
-                                    <Input onChange={(event) => setInputedName(event.target.value)}></Input>
+                                    <Input
+                                        onChange={(event) => setInputedName(event.target.value)}>
+                                    </Input>
                                     {
                                         fetchedExs.map((exercise: Exercise) => (
                                             <>
-                                                <Center onClick={() => handleSelectEx(exercise)}>
+                                                <Center
+                                                    onClick={() => handleSelectEx(exercise)}
+                                                >
                                                     <Text >
                                                         {exercise.name}
                                                     </Text>
@@ -120,6 +141,6 @@ export default function FetchFromApi({ selectedExs, setSelectedExs }: SelectedEx
                     <ModalFooter></ModalFooter>
                 </ModalContent>
             </Modal>
-        </>
+        </Box>
     )
 }
