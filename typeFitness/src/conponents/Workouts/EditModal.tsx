@@ -13,7 +13,7 @@ import {
     Input,
     VStack
 } from '@chakra-ui/react'
-import { EditIcon} from "@chakra-ui/icons"
+import { EditIcon } from "@chakra-ui/icons"
 import { useState } from "react"
 import editData from "../../utils/editData.ts"
 
@@ -49,7 +49,8 @@ export default function EditModal({ name, id, workout, currentUser }: TypeProp) 
 
     return (
         <>
-            <IconButton size={'sm'} aria-label='Edit' onClick={onOpen} icon={<EditIcon />} />
+
+            <IconButton size={'sm'} aria-label='Edit' _hover={{ bg: 'gray.500' }} bg={'gray.300'} onClick={onOpen} icon={<EditIcon />} />
 
             <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
