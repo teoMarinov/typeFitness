@@ -59,6 +59,7 @@ function App() {
               as='aside'
               colSpan={1}
               bg="rgba(20, 20, 20, 0.81)"
+              _hover={{bg: "rgba(10, 10, 10, 0.85)"}}
               minHeight={'100vh'}
               boxShadow="3px 0 10px rgba(0, 0, 0, 0.5)"
               zIndex={10}
