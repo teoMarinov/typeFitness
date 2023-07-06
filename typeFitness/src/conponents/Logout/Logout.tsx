@@ -20,7 +20,7 @@ const Logout = () => {
     }
     return (
         <Button
-            colorScheme={"purple"}
+            colorScheme={"green"}
             onClick={onLogout}
         >
             Log out
