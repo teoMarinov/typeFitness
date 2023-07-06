@@ -8,12 +8,15 @@ import ListItems from "./ListItems"
 const NavBar = () => {
     return (
         <Flex >
-            <Center minHeight={'60vh'}>
-                <List color='white' spacing={'50%'}>
-                    <ListItems pathTo="/" icon={BiHomeAlt} text="Home" />
-                    <ListItems pathTo="/workouts" icon={CiDumbbell} text="Workouts" />
-                    <ListItems pathTo="/nutrition" icon={GiChickenLeg} text="Nutrition" />
-                    <ListItems pathTo="/profile" icon={CgProfile} text="Profile" />
+            <Center minHeight={'5vh'}>
+                <List color='white' spacing={'10%'} w={'100px'} m={6} >
+                    <Box pos={'fixed'}>
+                        <ListItems pathTo="/" text="Home" />
+                        <ListItems pathTo="/workouts" text="Workouts" />
+                        <ListItems pathTo="/nutrition" text="Nutrition" />
+                        <Box h='75vh'></Box>
+                        <ListItems pathTo="/profile" icon={CgProfile} text="Profile" />
+                    </Box>
                 </List>
             </Center>
         </Flex>

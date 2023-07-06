@@ -54,11 +54,11 @@ function App() {
     <>
       <AuthContext.Provider value={{ ...appState, setUser: setAppState }}>
         <BrowserRouter>
-          <Grid templateColumns='repeat(40, 1fr)'>
+          <Grid templateColumns='repeat(50, 1fr)'>
             <GridItem
               as='aside'
               colSpan={1}
-              bgColor={'purple.500'}
+              bgColor={'green.500'}
               minHeight={'100vh'}
               boxShadow="3px 0 10px rgba(0, 0, 0, 0.5)"
               zIndex={10}
@@ -66,7 +66,7 @@ function App() {
               <NavBar />
             </GridItem>
             <GridItem
-              colSpan={39}
+              colSpan={49}
               minHeight={'100vh'}
             >
               <Center>
