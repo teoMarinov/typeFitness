@@ -13,14 +13,12 @@ import {
     VStack,
     Center,
     Grid,
-    GridItem,
-    Box
+    GridItem
 } from '@chakra-ui/react'
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons"
 import { useState } from "react"
 import editData from "../../utils/editData.ts"
 import FetchFromApi from "./FetchFromApiModal.tsx"
-import addData from "../../utils/addData.ts"
 
 type TypeProp = {
     name: string;
@@ -30,7 +28,6 @@ type TypeProp = {
     update: number
     setUpdate: any
     unfocus: any
-    existingWorkout: boolean
 }
 
 type ExerciseList = {
@@ -44,8 +41,7 @@ export default function EditModal({
     name, id,
     workout,
     currentUser,
-    unfocus,
-    existingWorkout
+    unfocus
 }: TypeProp) {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -75,16 +71,6 @@ export default function EditModal({
         onClose()
     }
 
-    const exerciseList: ExerciseList = {
-        name: newName,
-        exercises: editedVals
-    }
-    const handleAddNewWorkout = () => {
-        if (!newName) return alert('Must enter a valid name')
-        addData(`workouts/${currentUser}`, exerciseList)
-        setUpdate(update + 1)
-        onClose()
-    }
 
     const handleRemoveExerciseFromSelectedExs = (name: string, index: number) => {
         const editedList = editedVals.filter(e => e.name !== name)
@@ -93,10 +79,18 @@ export default function EditModal({
 
     }
 
+    const handleCancel = () => {
+        unfocus(false)
+        setEditedVals([])
+        setNewName('')
+        setIndexesToDelete([])
+        onClose()
+    }
+
     return (
         <>
 
-            {existingWorkout ? (
+            
                 <IconButton
                     size={'sm'}
                     aria-label='Edit'
@@ -106,44 +100,6 @@ export default function EditModal({
                     onClick={onOpen}
                     icon={<EditIcon />}
                 />
-            )
-                :
-                (
-                    <Center
-                        w={'100%'}
-                        h={'100%'}
-                        onClick={onOpen}
-                        _hover={{
-                            cursor: 'pointer',
-                            '& > *': {
-                                width: '90px',
-                                height: '90px',
-                            },
-                            '* > *': {
-                                fontSize: '80px',
-                              }
-                          }}
-                    >
-                        <Center
-                            w={'70px'}
-                            h={'70px'}
-                            borderRadius="90px"
-                            border={'2px'}
-                            transition="height 0.15s ease, width 0.15s ease"
-                            borderColor={'white'}
-
-                        >
-                            <Text
-                                textColor={'white'}
-                                mb={4}
-                                transition="font-size 0.1s"
-                                fontSize={60}
-                            >
-                                +
-                            </Text>
-                        </Center>
-                    </Center>
-                )}
             <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} isCentered size='460px'>
                 <ModalOverlay />
                 <ModalContent
@@ -235,17 +191,11 @@ export default function EditModal({
                         <Button
                             colorScheme='green'
                             mr={3}
-                            onClick={existingWorkout ? handleSaveChanges : handleAddNewWorkout}
+                            onClick={handleSaveChanges}
                         >
                             Save
                         </Button>
-                        <Button onClick={() => {
-                            unfocus(false)
-                            setEditedVals(workout)
-                            setNewName(name)
-                            setIndexesToDelete([])
-                            onClose()
-                        }}>Cancel</Button>
+                        <Button onClick={handleCancel}>Cancel</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

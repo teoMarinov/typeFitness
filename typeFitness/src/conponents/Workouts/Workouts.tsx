@@ -2,9 +2,9 @@ import { Box, Center, Heading, SimpleGrid } from '@chakra-ui/react';
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import ListWorkouts from "./ListWorkouts"
-import MakeNewWorkOutModal from '../Modals/MakeNewWorkOutModal';
 import imageTwo from "../../images/Te-Rapa-28.jpg"
 import readData from "../../utils/readData";
+import MakeNewWorkoutModal from '../Modals/MakeNewWorkoutModal';
 
 interface Exercise {
   name: string;
@@ -70,7 +70,7 @@ export default function BasicStatistics() {
             </Center>
           ))}
           <Center h="60vh">
-          <MakeNewWorkOutModal update={update} setUpdate={setUpdate} user={currentUser}/>
+          <MakeNewWorkoutModal update={update} setUpdate={setUpdate} currentUser={currentUser} />
           </Center>
         </SimpleGrid>
       </Box>
