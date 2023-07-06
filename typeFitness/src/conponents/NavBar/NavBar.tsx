@@ -13,6 +13,7 @@ const NavBar = () => {
                     <Box pos={'fixed'}>
                         <ListItems pathTo="/" text="Home" />
                         <ListItems pathTo="/workouts" text="Workouts" />
+                        <ListItems pathTo="/logger" text="Logger" />
                         <ListItems pathTo="/nutrition" text="Nutrition" />
                         <Box h='75vh'></Box>
                         <ListItems pathTo="/profile" icon={CgProfile} text="Profile" />

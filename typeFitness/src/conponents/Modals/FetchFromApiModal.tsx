@@ -86,32 +86,36 @@ export default function FetchFromApi({ selectedExs, setSelectedExs }: SelectedEx
                 <ModalOverlay />
                 <ModalContent position={'relative'} textColor={'white'}  bg="rgba(13, 13, 13, 1)">
                     <Center mt='6'>
-                        {stepTwo ? (<IconButton ml={'3.5'} fontSize={'2xl'} onClick={handleBack} aria-label="goBack" bg='transparent' textColor={'white'} icon={<ArrowBackIcon />} > </IconButton>) : <Box w='40px' />}
+                        {stepTwo ? (<IconButton ml={'3.5'} fontSize={'2xl'} onClick={handleBack} aria-label="goBack" background={'none'} _hover={{ bg: 'rgba(30, 30, 30, 0.81)' }} textColor={'white'} icon={<ArrowBackIcon />} > </IconButton>) : <Box w='40px' />}
                         <Spacer />
                         <Heading fontSize={'2xl'} textAlign={'center'}>{stepTwo ? currentExercise.name : 'Choose exercise'}</Heading>
                         <Spacer />
-                        <IconButton mr={'3.5'} onClick={handleClose} aria-label="closeModal" bg='transparent' textColor={'white'} icon={<CloseIcon />} > </IconButton>
+                        <IconButton mr={'3.5'} onClick={handleClose} aria-label="closeModal" bg='none' _hover={{ bg: 'rgba(30, 30, 30, 0.81)' }} textColor={'white'} icon={<CloseIcon />} > </IconButton>
                     </Center>
                     <ModalBody>
                         <>
 
                             {stepTwo ?
-                                (<VStack w='full' height={'410px'} justify={'center'}>
-                                    <Box top={'3'}>
+                                (<VStack w='full' justify={'center'}>
+                                    <Box top={'3'} mt={6}>
                                         <Input
                                             width={'70px'}
                                             placeholder="sets"
                                             mr={2}
+                                            textAlign={'center'}
+                                            pb={1}
                                             onChange={(event) => setSets(event.target.value)}>
                                         </Input>
                                         <Input
                                             width={'70px'}
                                             placeholder="reps"
                                             ml={2}
+                                            textAlign={'center'}
+                                            pb={1}
                                             onChange={(event) => setReps(event.target.value)}>
                                         </Input>
                                     </Box>
-                                    <Button bottom={'0'} onClick={handleSave} colorScheme="green" >Save</Button>
+                                    <Button bottom={'-7'} mb={4} onClick={handleSave} w={'30%'} colorScheme="green" >Save</Button>
                                 </VStack>)
                                 :
                                 (

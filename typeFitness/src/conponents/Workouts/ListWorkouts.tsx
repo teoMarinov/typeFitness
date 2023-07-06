@@ -57,7 +57,15 @@ export default function ListWorkouts({ update, setUpdate, workout, user }: Worko
 
       <VStack position={'relative'} w={'full'} h={'100%'} textAlign={'center'} justifyContent={'center'} >
         <Box position={'absolute'} top={3} right={3} display={toggleDetails ? "block" : "none"} >
-          <EditModal update={update} setUpdate={setUpdate} workout={workoutData.exercises} name={workoutData.name} id={workout[0]} currentUser={user} unfocus={setToggleDetails}/>
+          <EditModal 
+          update={update} 
+          setUpdate={setUpdate} 
+          workout={workoutData.exercises} 
+          name={workoutData.name} 
+          id={workout[0]} 
+          currentUser={user} 
+          unfocus={setToggleDetails}
+          existingWorkout={true}/>
         </Box>
         <Box position={'absolute'} top={12} right={3} display={toggleDetails ? "block" : "none"}>
             <DeleteModal update={update} setUpdate={setUpdate} workoutId={workout[0]} workoutName={workoutData.name} currentUser={user} unfocus={setToggleDetails}/>

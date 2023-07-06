@@ -13,27 +13,45 @@ import {
     VStack,
     Center,
     Grid,
-    GridItem
+    GridItem,
+    Box
 } from '@chakra-ui/react'
-import { EditIcon } from "@chakra-ui/icons"
+import { EditIcon, DeleteIcon } from "@chakra-ui/icons"
 import { useState } from "react"
 import editData from "../../utils/editData.ts"
-
+import FetchFromApi from "./FetchFromApiModal.tsx"
+import addData from "../../utils/addData.ts"
 
 type TypeProp = {
     name: string;
     id: string;
-    workout: TypeExercise[];
+    workout: TypeExercise[] | [];
     currentUser: string
     update: number
     setUpdate: any
     unfocus: any
+    existingWorkout: boolean
 }
-export default function EditModal({ update, setUpdate, name, id, workout, currentUser, unfocus }: TypeProp) {
+
+type ExerciseList = {
+    name: string
+    exercises: TypeExercise[]
+}
+
+export default function EditModal({
+    update,
+    setUpdate,
+    name, id,
+    workout,
+    currentUser,
+    unfocus,
+    existingWorkout
+}: TypeProp) {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [editedVals, setEditedVals] = useState(workout)
     const [newName, setNewName] = useState(name)
+    const [indexesToDelete, setIndexesToDelete] = useState([])
 
 
     const handleChange = (index: number, key: string, newVal: string) => {
@@ -46,48 +64,133 @@ export default function EditModal({ update, setUpdate, name, id, workout, curren
     const handleSaveChanges = () => {
         if (name !== newName) editData(`workouts/${currentUser}/${id}/name`, newName)
         editedVals.map((exercise: TypeExercise, index: number) => {
-            if (exercise.reps !== workout[index].reps) editData(`workouts/${currentUser}/${id}/exercises/${index}/reps`, exercise.reps)
-            if (exercise.sets !== workout[index].sets) editData(`workouts/${currentUser}/${id}/exercises/${index}/sets`, exercise.sets)
+            if (exercise.reps !== workout[index]?.reps) editData(`workouts/${currentUser}/${id}/exercises/${index}/reps`, exercise.reps)
+            if (exercise.sets !== workout[index]?.sets) editData(`workouts/${currentUser}/${id}/exercises/${index}/sets`, exercise.sets)
+            if (!workout[index]) editData(`workouts/${currentUser}/${id}/exercises/${index}/name`, exercise.name)
+        })
+        indexesToDelete.map((currentIndex: number) => {
+            editData(`workouts/${currentUser}/${id}/exercises/${currentIndex}`, null)
         })
         setUpdate(update + 1)
         onClose()
     }
 
-    const handleOpen= () => {
-        onOpen()
-        setTimeout(() => {
-            unfocus(false)
-        }, 100)
+    const exerciseList: ExerciseList = {
+        name: newName,
+        exercises: editedVals
+    }
+    const handleAddNewWorkout = () => {
+        if (!newName) return alert('Must enter a valid name')
+        addData(`workouts/${currentUser}`, exerciseList)
+        setUpdate(update + 1)
+        onClose()
     }
 
+    const handleRemoveExerciseFromSelectedExs = (name: string, index: number) => {
+        const editedList = editedVals.filter(e => e.name !== name)
+        setEditedVals(editedList)
+        setIndexesToDelete([...indexesToDelete, index])
+
+    }
 
     return (
         <>
 
-            <IconButton size={'sm'} aria-label='Edit' _hover={{ bg: 'rgba(30, 30, 30, 0.81)' }} bg={'none'} textColor={'white'} onClick={handleOpen} icon={<EditIcon />} />
+            {existingWorkout ? (
+                <IconButton
+                    size={'sm'}
+                    aria-label='Edit'
+                    _hover={{ bg: 'rgba(30, 30, 30, 0.81)' }}
+                    bg={'none'}
+                    textColor={'white'}
+                    onClick={onOpen}
+                    icon={<EditIcon />}
+                />
+            )
+                :
+                (
+                    <Center
+                        w={'100%'}
+                        h={'100%'}
+                        onClick={onOpen}
+                        _hover={{
+                            
+                          }}
+                    >
+                        <Center
+                            w={'70px'}
+                            h={'70px'}
+                            _hover={{
+                               
+                            }}
+                            borderRadius="90px"
+                            border={'2px'}
+                            transition="height 0.15s ease, width 0.15s ease"
+                            borderColor={'white'}
+
+                        >
+                            <Text
+                                textColor={'white'}
+                                mb={4}
+                                transition="font-size 0.1s"
+                                _hover={{
+                                    fontSize: '80'
+                                }}
+                                fontSize={60}
+                            >
+                                +
+                            </Text>
+                        </Center>
+                    </Center>
+                )}
             <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} isCentered size='460px'>
                 <ModalOverlay />
-                <ModalContent h='52vh' width={'460px'} textColor={'white'} bg="rgba(0, 0, 0, 0.9)" position={'relative'}>
+                <ModalContent
+                    h='52vh'
+                    width={'460px'}
+                    textColor={'white'}
+                    bg="rgba(0, 0, 0, 0.9)"
+                    position={'relative'}
+                >
                     <ModalBody pb={6} >
                         <VStack >
                             <Input
-                                p={0}
+                                p={2}
                                 mr={1}
                                 top={5}
                                 w={'85%'}
                                 size={'lg'}
-                                fontSize={'4xl'}
                                 value={newName}
                                 fontWeight={'bold'}
                                 textAlign={'center'}
                                 position={'absolute'}
+                                placeholder="Enter workout name"
+                                _placeholder={{
+                                    color: "rgba(255, 255, 255, 0.3)",
+                                    fontSize: '20',
+                                    justifySelf: 'center'
+                                }}
                                 onChange={(e) => setNewName(e.target.value)}
                             />
-                            <Center h='35vh'>
-                                <VStack>
-                                    {workout.map((_, index: number) => (
-                                        <Grid templateColumns='repeat(10, 1fr)' gap={2}>
-                                            <GridItem colSpan={8} >
+                            <Center w='90%' position={'absolute'} top={"15%"} >
+                                <VStack mt={'3'}>
+                                    {editedVals.map((exercise: TypeExercise, index: number) => (
+                                        <Grid templateColumns='repeat(12, 1fr)' gap={2}>
+                                            <GridItem colSpan={1} >
+                                                <IconButton
+                                                    size="sm"
+                                                    aria-label="Edit"
+                                                    _hover={{ bg: "red.500" }}
+                                                    textColor="white"
+                                                    colorScheme="blackAlpha"
+                                                    onClick={() => handleRemoveExerciseFromSelectedExs(exercise.name, index)}
+                                                    top={'1'}
+                                                    right={0}
+                                                    icon={<DeleteIcon />}
+                                                />
+                                            </GridItem>
+
+                                            <GridItem colSpan={9} >
                                                 <Center h='40px'>
                                                     <Text
                                                         textAlign={'center'}
@@ -121,19 +224,25 @@ export default function EditModal({ update, setUpdate, name, id, workout, curren
                                             </GridItem>
                                         </Grid>
                                     ))}
+                                    <FetchFromApi selectedExs={editedVals} setSelectedExs={setEditedVals} />
                                 </VStack>
                             </Center>
                         </VStack>
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme='green' mr={3} onClick={handleSaveChanges}>
+                        <Button
+                            colorScheme='green'
+                            mr={3}
+                            onClick={existingWorkout ? handleSaveChanges : handleAddNewWorkout}
+                        >
                             Save
                         </Button>
                         <Button onClick={() => {
                             unfocus(false)
                             setEditedVals(workout)
                             setNewName(name)
+                            setIndexesToDelete([])
                             onClose()
                         }}>Cancel</Button>
                     </ModalFooter>

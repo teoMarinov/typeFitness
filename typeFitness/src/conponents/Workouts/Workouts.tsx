@@ -73,7 +73,7 @@ export default function BasicStatistics() {
             </Center>
           ))}
           <Center h="60vh">
-          <MakeNewWorkOutModal />
+          <MakeNewWorkOutModal update={update} setUpdate={setUpdate} user={currentUser}/>
           </Center>
         </SimpleGrid>
       </Box>
