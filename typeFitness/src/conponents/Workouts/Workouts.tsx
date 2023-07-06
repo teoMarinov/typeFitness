@@ -1,11 +1,9 @@
 import { Box, Center, Heading, SimpleGrid } from '@chakra-ui/react';
 import { useContext, useEffect, useState } from "react";
-
 import { AuthContext } from "../../context/AuthContext";
 import ListWorkouts from "./ListWorkouts"
 import MakeNewWorkOutModal from '../Modals/MakeNewWorkOutModal';
-import MakeNewWorkout from "./MakeNewWorkout"
-import imageTwo from "../../images/HD-Fitness-Backgrounds-For-Desktop.jpg"
+import imageTwo from "../../images/Te-Rapa-28.jpg"
 import readData from "../../utils/readData";
 
 interface Exercise {
@@ -52,7 +50,6 @@ export default function BasicStatistics() {
         zIndex="-1"
       />
       <Box height="100%" overflowY="scroll">
-        {/* <MakeNewWorkout update={update} setUpdate={setUpdate}/> */}
         <Center height='25vh'>
           <Heading
             p={4}

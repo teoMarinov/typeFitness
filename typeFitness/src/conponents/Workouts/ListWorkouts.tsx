@@ -40,7 +40,7 @@ export default function ListWorkouts({ update, setUpdate, workout, user }: Worko
       }}
       h={toggleDetails ? ('52vh') : ('50vh')}
       w={toggleDetails ? ('460px') : ('450px')}
-      bg="rgba(0, 0, 0, 0.3)" 
+      bg="rgba(20, 20, 20, 0.3)" 
       style={{
         backdropFilter: "blur(6px)",
       }}
@@ -52,11 +52,23 @@ export default function ListWorkouts({ update, setUpdate, workout, user }: Worko
       }}
       transition="height 0.1s ease, width 0.1s ease"
       rounded={'xl'}
+      boxShadow="0 0 8px 1px white"
       position={'relative'}
     >
 
-      <VStack position={'relative'} w={'full'} h={'100%'} textAlign={'center'} justifyContent={'center'} >
-        <Box position={'absolute'} top={3} right={3} display={toggleDetails ? "block" : "none"} >
+      <VStack 
+      position={'relative'} 
+      w={'full'} 
+      h={'100%'} 
+      textAlign={'center'} 
+      justifyContent={'center'} 
+      >
+        <Box 
+        position={'absolute'} 
+        top={3} 
+        right={3} 
+        display={toggleDetails ? "block" : "none"} 
+        >
           <EditModal 
           update={update} 
           setUpdate={setUpdate} 
@@ -67,8 +79,19 @@ export default function ListWorkouts({ update, setUpdate, workout, user }: Worko
           unfocus={setToggleDetails}
           existingWorkout={true}/>
         </Box>
-        <Box position={'absolute'} top={12} right={3} display={toggleDetails ? "block" : "none"}>
-            <DeleteModal update={update} setUpdate={setUpdate} workoutId={workout[0]} workoutName={workoutData.name} currentUser={user} unfocus={setToggleDetails}/>
+        <Box 
+        position={'absolute'} 
+        top={12} 
+        right={3} 
+        display={toggleDetails ? "block" : "none"}
+        >
+            <DeleteModal 
+            update={update} 
+            setUpdate={setUpdate} 
+            workoutId={workout[0]} 
+            workoutName={workoutData.name} 
+            currentUser={user} 
+            unfocus={setToggleDetails}/>
         </Box>
         {
           (workoutData.exercises.map((exercise: TypeExercise, index: number) => (

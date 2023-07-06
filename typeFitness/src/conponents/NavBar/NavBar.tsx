@@ -15,7 +15,7 @@ const NavBar = () => {
                         <ListItems pathTo="/workouts" text="Workouts" />
                         <ListItems pathTo="/logger" text="Logger" />
                         <ListItems pathTo="/nutrition" text="Nutrition" />
-                        <Box h='75vh'></Box>
+                        <Box h='70vh'></Box>
                         <ListItems pathTo="/profile" icon={CgProfile} text="Profile" />
                     </Box>
                 </List>

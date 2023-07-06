@@ -53,6 +53,7 @@ export default function MakeNewWorkOutModal({ update, setUpdate, user }: propTyp
                 rounded={'xl'}
                 position={'relative'}
                 onClick={onOpen}
+                boxShadow="0 0 8px 1px white"
             >
                 
                     <EditModal

@@ -114,15 +114,19 @@ export default function EditModal({
                         h={'100%'}
                         onClick={onOpen}
                         _hover={{
-                            
+                            cursor: 'pointer',
+                            '& > *': {
+                                width: '90px',
+                                height: '90px',
+                            },
+                            '* > *': {
+                                fontSize: '80px',
+                              }
                           }}
                     >
                         <Center
                             w={'70px'}
                             h={'70px'}
-                            _hover={{
-                               
-                            }}
                             borderRadius="90px"
                             border={'2px'}
                             transition="height 0.15s ease, width 0.15s ease"
@@ -133,9 +137,6 @@ export default function EditModal({
                                 textColor={'white'}
                                 mb={4}
                                 transition="font-size 0.1s"
-                                _hover={{
-                                    fontSize: '80'
-                                }}
                                 fontSize={60}
                             >
                                 +
