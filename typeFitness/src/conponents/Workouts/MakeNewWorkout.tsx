@@ -1,10 +1,10 @@
-import { Box, Stat, useColorModeValue, Center, Button, Input, VStack, Text, Heading, IconButton, HStack } from "@chakra-ui/react";
+import { Box, Stat, Center, Button, Input, VStack, Text, IconButton, HStack } from "@chakra-ui/react";
 import { useState } from "react";
 import FetchFromApi from "./FetchFromApi";
 import addData from "../../utils/addData.ts";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { CloseIcon } from '@chakra-ui/icons'
+import { CloseIcon, DeleteIcon } from '@chakra-ui/icons'
 import image from "../../images/pexels-victor-freitas-841130.jpg"
 export interface CurrentExercise {
     [key: string]: string;
@@ -49,7 +49,7 @@ export default function MakeNewWorkout() {
     const [selectedExs, setSelectedExs] = useState([])
     const [name, setName] = useState('')
     const exerciseList: ExerciseList = {
-        name: name.replace(/\s+/g, "_"),
+        name,
         exercises: selectedExs
     }
 
@@ -78,6 +78,7 @@ export default function MakeNewWorkout() {
             backgroundSize="cover"
             backgroundPosition="center"
             transition="height 0.25s ease"
+            mb={'3'}
         >
             <Center
                 height={'65vh'}
@@ -105,15 +106,24 @@ export default function MakeNewWorkout() {
                         icon={<CloseIcon />} />
                     <Center>
                         <VStack>
-                            <Input mb={8} placeholder="Enter workout name" focusBorderColor="white" onChange={(event) => setName(event.target.value)} position={'relative'} top={8} left={-15} width={'400px'} ></Input>
+                            <Input mb={8} textColor={'white'} placeholder="Enter workout name" focusBorderColor="white" onChange={(event) => setName(event.target.value)} position={'relative'} top={8} left={-15} width={'400px'} ></Input>
                             {selectedExs.map((exercise: CurrentExercise) => (
-                                <HStack key={exercise.name} pt={4} textColor={'white'}>
-                                    <Text fontSize={'xl'}>
+                                <HStack key={exercise.name} pt={4} textColor="white" position="relative">
+                                    <Text fontSize="xl" flex="1">
                                         {exercise.name} - {exercise.sets} x {exercise.reps}
                                     </Text>
-                                    <Text fontSize={'lg'} style={{ backdropFilter: "blur(1px)" }} pr={'1px'} _hover={{ bg: 'gray.800' }} w={'30px'} textAlign={'center'} mt={'2px'} rounded={'md'} onClick={() => handleRemoveExerciseFromSelectedExs(exercise.name)}>
-                                        X
-                                    </Text>
+                                    <IconButton
+                                        size="sm"
+                                        aria-label="Edit"
+                                        bg="none"
+                                        textColor="white"
+                                        colorScheme="blackAlpha"
+                                        onClick={() => handleRemoveExerciseFromSelectedExs(exercise.name)}
+                                        position="absolute"
+                                        top={'4'}
+                                        right={-9}
+                                        icon={<DeleteIcon />}
+                                    />
                                 </HStack>
                             ))}
 
