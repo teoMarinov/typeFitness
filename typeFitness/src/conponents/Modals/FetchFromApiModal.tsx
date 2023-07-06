@@ -12,7 +12,7 @@ import {
     Button,
     Text,
 } from '@chakra-ui/react'
-import { CurrentExercise } from "./MakeNewWorkout.tsx";
+import { CurrentExercise } from "../Workouts/MakeNewWorkout.tsx";
 import { ArrowBackIcon, CloseIcon } from "@chakra-ui/icons";
 
 
@@ -84,13 +84,13 @@ export default function FetchFromApi({ selectedExs, setSelectedExs }: SelectedEx
 
             <Modal isOpen={isOpen} onClose={handleClose} isCentered>
                 <ModalOverlay />
-                <ModalContent position={'relative'}>
+                <ModalContent position={'relative'} textColor={'white'} bg="rgba(0, 0, 0, 0.9)">
                     <Center mt='6'>
-                        {stepTwo ? (<IconButton ml={'3.5'} fontSize={'2xl'} onClick={handleBack} aria-label="goBack" bg='transparent' icon={<ArrowBackIcon />} > </IconButton>) : <Box w='40px' />}
+                        {stepTwo ? (<IconButton ml={'3.5'} fontSize={'2xl'} onClick={handleBack} aria-label="goBack" bg='transparent' textColor={'white'} icon={<ArrowBackIcon />} > </IconButton>) : <Box w='40px' />}
                         <Spacer />
                         <Heading fontSize={'2xl'} textAlign={'center'}>{stepTwo ? currentExercise.name : 'Choose exercise'}</Heading>
                         <Spacer />
-                        <IconButton mr={'3.5'} onClick={handleClose} aria-label="closeModal" bg='transparent' icon={<CloseIcon />} > </IconButton>
+                        <IconButton mr={'3.5'} onClick={handleClose} aria-label="closeModal" bg='transparent' textColor={'white'} icon={<CloseIcon />} > </IconButton>
                     </Center>
                     <ModalBody>
                         <>
@@ -111,7 +111,7 @@ export default function FetchFromApi({ selectedExs, setSelectedExs }: SelectedEx
                                             onChange={(event) => setReps(event.target.value)}>
                                         </Input>
                                     </Box>
-                                    <Button bottom={'0'} onClick={handleSave}>Save</Button>
+                                    <Button bottom={'0'} onClick={handleSave} colorScheme="green" >Save</Button>
                                 </VStack>)
                                 :
                                 (
@@ -131,7 +131,7 @@ export default function FetchFromApi({ selectedExs, setSelectedExs }: SelectedEx
                                                         rounded={'md'}
                                                         _hover={{
                                                             cursor: "pointer",
-                                                            bg: 'gray.100'
+                                                            bg: 'gray.800'
                                                         }}
                                                         fontSize={18}
                                                     >

@@ -53,13 +53,25 @@ export default function EditModal({ name, id, workout, currentUser }: TypeProp) 
     return (
         <>
 
-            <IconButton size={'sm'} aria-label='Edit' _hover={{ bg: 'gray.200' }} bg={'gray.50'} onClick={onOpen} icon={<EditIcon />} />
+            <IconButton size={'sm'} aria-label='Edit' _hover={{ bg: 'rgba(30, 30, 30, 0.81)' }} bg={'none'} textColor={'white'} onClick={onOpen} icon={<EditIcon />} />
             <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} isCentered size='460px'>
                 <ModalOverlay />
-                <ModalContent h='52vh' width={'460px'}>
+                <ModalContent h='52vh' width={'460px'} textColor={'white'} bg="rgba(0, 0, 0, 0.9)" position={'relative'}>
                     <ModalBody pb={6} >
                         <VStack >
-                            <Input textAlign={'center'} fontWeight={'bold'} size={'lg'} fontSize={'4xl'} p={0} value={newName} mt={'1'} w={'full'} onChange={(e) => setNewName(e.target.value)} mr={1}></Input>
+                            <Input
+                                p={0}
+                                mr={1} 
+                                top={5}
+                                w={'85%'}
+                                size={'lg'}
+                                fontSize={'4xl'}
+                                value={newName}
+                                fontWeight={'bold'}
+                                textAlign={'center'}
+                                position={'absolute'}
+                                onChange={(e) => setNewName(e.target.value)}
+                                />
                             <Center h='35vh'>
                                 <VStack>
                                     {workout.map((_, index: number) => (

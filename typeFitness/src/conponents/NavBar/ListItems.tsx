@@ -9,13 +9,20 @@ type ListItemsProps = {
 };
 
 
-export default function ListItems({ pathTo, icon=null, text }: ListItemsProps) {
+export default function ListItems({ pathTo, icon = null, text }: ListItemsProps) {
     return (
         <ListItem >
             <NavLink to={pathTo}>
                 <Flex>
-                    <Button width={'10vh'} colorScheme={"green"} fontSize={'1.2em'} py={6}>
-                        
+                    <Button
+                        py={6}
+                        bg={'none'}
+                        rounded={'xl'}
+                        width={'10.5vh'}
+                        fontSize={'1.2em'}
+                        textColor={'white'}
+                        _hover={{ bg: 'rgba(30, 30, 30, 0.81)' }}
+                    >
                         {icon && <Icon as={icon} fontSize="1.2em" mr={1} />}
                         {text}
                     </Button>

@@ -58,7 +58,7 @@ function App() {
             <GridItem
               as='aside'
               colSpan={1}
-              bgColor={'green.500'}
+              bg="rgba(20, 20, 20, 0.81)"
               minHeight={'100vh'}
               boxShadow="3px 0 10px rgba(0, 0, 0, 0.5)"
               zIndex={10}

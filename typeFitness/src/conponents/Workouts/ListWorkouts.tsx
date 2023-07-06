@@ -24,7 +24,6 @@ type TypeWorkout = {
 export default function ListWorkouts({ workout, user }: WorkoutType) {
 
   const workoutData: TypeWorkout = workout[1]
-  console.log(workoutData)
   const [toggleDetails, setToggleDetails] = useState(false)
 
 
@@ -38,10 +37,16 @@ export default function ListWorkouts({ workout, user }: WorkoutType) {
       }}
       h={toggleDetails ? ('52vh') : ('50vh')}
       w={toggleDetails ? ('460px') : ('450px')}
-      bg={'gray.50'}
+      bg="rgba(0, 0, 0, 0.3)"
+      style={{
+        backdropFilter: "blur(6px)",
+      }}
       textAlign="center"
-      _hover={{ cursor: "pointer" }}
-      boxShadow="2px 0 15px rgba(0, 0, 0, 0.5)"
+      _hover={{
+        cursor: "pointer",
+        bg: "rgba(0, 0, 0, 0.6)"
+
+      }}
       transition="height 0.1s ease, width 0.1s ease"
       rounded={'xl'}
       position={'relative'}
@@ -60,8 +65,9 @@ export default function ListWorkouts({ workout, user }: WorkoutType) {
           (workoutData.exercises.map((exercise: TypeExercise, index: number) => (
             <Box key={exercise.name + index} >
               <Text
-                fontSize={toggleDetails ? 20 : 0}
+                textColor={'white'}
                 transition="font-size 0.1s"
+                fontSize={toggleDetails ? 20 : 0}
               >
                 {exercise.name} - {exercise.sets} x {exercise.reps}
               </Text>
@@ -70,14 +76,15 @@ export default function ListWorkouts({ workout, user }: WorkoutType) {
       </VStack>
 
       <Heading
-        as="h2"
         p={4}
-        display="block"
-        position={'absolute'}
+        as="h2"
         maxW={'80%'}
-        transform={toggleDetails ? 'translateY(-200px)' : 'translateY(0%)'}
+        display="block"
+        textColor={'white'}
+        position={'absolute'}
         size={toggleDetails ? 'xl' : '2xl'}
         transition="transform 0.1s linear, font-size 0.1s linear"
+        transform={toggleDetails ? 'translateY(-200px)' : 'translateY(0%)'}
       >
         {workoutData.name}
       </Heading>

@@ -1,6 +1,6 @@
 import { Box, Stat, Center, Button, Input, VStack, Text, IconButton, HStack } from "@chakra-ui/react";
 import { useState } from "react";
-import FetchFromApi from "./FetchFromApi";
+import FetchFromApi from "../Modals/FetchFromApiModal.tsx";
 import addData from "../../utils/addData.ts";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -20,7 +20,7 @@ export default function MakeNewWorkout() {
     const context = useContext(AuthContext)
     const currentUser = context.userData?.handle
 
-    const [backgroundHeight, setbackgroundHeight] = useState("45vh")
+    const [backgroundHeight, setbackgroundHeight] = useState("25vh")
     const [displayButton, setdisplayButton] = useState('block')
     const [boxDisplay, setBoxDisplay] = useState('none')
     const [boxOpacity, setBoxOpacity] = useState(false)
@@ -37,7 +37,7 @@ export default function MakeNewWorkout() {
     }
 
     const handleCloseNewWorkout = () => {
-        setbackgroundHeight('45vh')
+        setbackgroundHeight('25vh')
         setBoxDisplay('none')
         setTimeout(() => {
             setdisplayButton('block')
@@ -66,22 +66,20 @@ export default function MakeNewWorkout() {
         setSelectedExs(editedList)
     }
 
-    // console.log(selectedExs)
+
     return (
         <Stat
             px={{ base: 4, md: 8 }}
             py={"5"}
             width="100%"
             height={backgroundHeight}
-            shadow={"xl"}
-            backgroundImage={image}
-            backgroundSize="cover"
             backgroundPosition="center"
             transition="height 0.25s ease"
             mb={'3'}
+            position={'relative'}
         >
             <Center
-                height={'65vh'}
+                height={backgroundHeight}
             >
                 < Box
                     shadow={'xl'}
@@ -98,15 +96,17 @@ export default function MakeNewWorkout() {
                     <IconButton
                         size={'lg'}
                         aria-label='Edit'
-                        bg={'none'} textColor={'white'} colorScheme="blackAlpha"
+                        bg={'none'}
+                        colorScheme="blackAlpha"
                         onClick={handleCloseNewWorkout}
                         position={'absolute'}
                         top={7}
                         right={10}
-                        icon={<CloseIcon />} />
+                        icon={<CloseIcon />}
+                    />
                     <Center>
-                        <VStack>
-                            <Input mb={8} textColor={'white'} placeholder="Enter workout name" focusBorderColor="white" onChange={(event) => setName(event.target.value)} position={'relative'} top={8} left={-15} width={'400px'} ></Input>
+                        <VStack w={'full'}>
+                            <Input mb={8} textColor={'white'} placeholder="Enter workout name" focusBorderColor="white" onChange={(event) => setName(event.target.value)} position={'relative'} top={8} left={-15} width={'70%'} ></Input>
                             {selectedExs.map((exercise: CurrentExercise) => (
                                 <HStack key={exercise.name} pt={4} textColor="white" position="relative">
                                     <Text fontSize="xl" flex="1">
@@ -128,29 +128,37 @@ export default function MakeNewWorkout() {
                             ))}
 
                             <FetchFromApi selectedExs={selectedExs} setSelectedExs={setSelectedExs} />
-                            <Button position={'absolute'} bottom={5} onClick={handleSave} bg={'none'} textColor={'white'} colorScheme="blackAlpha" size={'lg'}>
+                            <Button
+                                bottom={5}
+                                bg={'none'}
+                                size={'lg'}
+                                textColor={'white'}
+                                onClick={handleSave}
+                                position={'absolute'}
+                                colorScheme="blackAlpha"
+                            >
                                 Save
                             </Button>
                         </VStack>
                     </Center>
                 </Box>
-                <Button
-                    display={displayButton}
-                    bg="transparent"
-                    textColor="white"
-                    onClick={handleOpenNewWorkout}
-                    _hover={{ bg: "rgba(0, 0, 0, 0.5)" }}
-                    style={{
-                        backdropFilter: "blur(2px)",
-                    }}
-                    mb={'20vh'}
-                >
-                    Make New Workout
-                </Button>
-
-
-
             </Center >
+            <Button
+                display={displayButton}
+                bg="rgba(0, 0, 0, 0.35)"
+                textColor="white"
+                onClick={handleOpenNewWorkout}
+                _hover={{ bg: "rgba(0, 0, 0, 0.6)" }}
+                style={{
+                    backdropFilter: "blur(6px)",
+                }}
+                mb={'20vh'}
+                position={'absolute'}
+                top={'50%'}
+                left={'44.2%'}
+            >
+                Make New Workout
+            </Button>
         </Stat>
     )
 
