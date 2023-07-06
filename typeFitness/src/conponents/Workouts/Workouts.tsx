@@ -22,6 +22,7 @@ export interface Workout {
 export default function BasicStatistics() {
 
   const [allWorkouts, setAllWorkouts] = useState([])
+  const [update, setUpdate] = useState(0)
 
   const context = useContext(AuthContext)
   const currentUser = context.userData?.handle
@@ -33,7 +34,7 @@ export default function BasicStatistics() {
         setAllWorkouts(result)
       })
       .catch(error => console.log(error))
-  }, [currentUser])
+  }, [currentUser, update])
 
 
   return (
@@ -50,11 +51,11 @@ export default function BasicStatistics() {
         zIndex="-1"
       />
       <Box height="100%" overflowY="scroll">
-        <MakeNewWorkout />
+        <MakeNewWorkout update={update} setUpdate={setUpdate}/>
         <SimpleGrid columns={{ base: 1, md: 3 }} p={5} spacing={5}>
           {allWorkouts.map((workout: string & Workout) => (
             <Center key={workout[0]} h="60vh" >
-              <ListWorkouts workout={workout} user={currentUser} />
+              <ListWorkouts workout={workout} user={currentUser} update={update} setUpdate={setUpdate}/>
             </Center>
           ))}
         </SimpleGrid>

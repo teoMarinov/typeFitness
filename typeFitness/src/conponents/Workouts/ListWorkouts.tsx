@@ -7,6 +7,8 @@ import DeleteModal from "../Modals/DeleteModal"
 type WorkoutType = {
   workout: string & Workout
   user: string
+  update: number,
+  setUpdate: any
 }
 
 export type TypeExercise = {
@@ -21,7 +23,7 @@ type TypeWorkout = {
 }
 
 
-export default function ListWorkouts({ workout, user }: WorkoutType) {
+export default function ListWorkouts({ update, setUpdate, workout, user }: WorkoutType) {
 
   const workoutData: TypeWorkout = workout[1]
   const [toggleDetails, setToggleDetails] = useState(false)
@@ -54,11 +56,11 @@ export default function ListWorkouts({ workout, user }: WorkoutType) {
 
       <VStack position={'relative'} w={'full'} h={'100%'} textAlign={'center'} justifyContent={'center'}>
         <Box position={'absolute'} top={3} right={3} display={toggleDetails ? "block" : "none"} >
-          <EditModal workout={workoutData.exercises} name={workoutData.name} id={workout[0]} currentUser={user} />
+          <EditModal update={update} setUpdate={setUpdate} workout={workoutData.exercises} name={workoutData.name} id={workout[0]} currentUser={user} />
         </Box>
         <Box position={'absolute'} top={12} right={3} display={toggleDetails ? "block" : "none"}>
           <Center>
-            <DeleteModal workoutId={workout[0]} workoutName={workoutData.name} currentUser={user} />
+            <DeleteModal update={update} setUpdate={setUpdate} workoutId={workout[0]} workoutName={workoutData.name} currentUser={user} />
           </Center>
         </Box>
         {

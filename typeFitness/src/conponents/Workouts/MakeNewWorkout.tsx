@@ -15,7 +15,12 @@ interface ExerciseList {
     exercises: string[]
 }
 
-export default function MakeNewWorkout() {
+type propType = {
+    update: number,
+    setUpdate: any 
+}
+
+export default function MakeNewWorkout({update, setUpdate} : propType) {
 
     const context = useContext(AuthContext)
     const currentUser = context.userData?.handle
@@ -58,6 +63,7 @@ export default function MakeNewWorkout() {
         if (exerciseList.exercises.length === 0) return alert('Select exercises')
         addData(`workouts/${currentUser}`, exerciseList)
         handleCloseNewWorkout()
+        setUpdate(update + 1)
     }
 
 

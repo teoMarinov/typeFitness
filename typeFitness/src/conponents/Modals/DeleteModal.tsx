@@ -15,13 +15,16 @@ type PropType = {
     workoutId: string;
     workoutName: string;
     currentUser: string
+    update: number,
+    setUpdate: any 
 }
 
-export default function DeleteModal({ workoutId, workoutName, currentUser }: PropType) {
+export default function DeleteModal({update, setUpdate, workoutId, workoutName, currentUser }: PropType) {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const handleAcceptDelete = () => {
         editData(`workouts/${currentUser}/${workoutId}`, null)
+        setUpdate(update + 1)
         onClose()
     }
 

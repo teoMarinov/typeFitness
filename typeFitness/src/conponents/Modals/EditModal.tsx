@@ -25,8 +25,10 @@ type TypeProp = {
     id: string;
     workout: TypeExercise[];
     currentUser: string
+    update: number
+    setUpdate: any 
 }
-export default function EditModal({ name, id, workout, currentUser }: TypeProp) {
+export default function EditModal({update, setUpdate, name, id, workout, currentUser }: TypeProp) {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [editedVals, setEditedVals] = useState(workout)
@@ -46,6 +48,7 @@ export default function EditModal({ name, id, workout, currentUser }: TypeProp) 
             if (exercise.reps !== workout[index].reps) editData(`workouts/${currentUser}/${id}/exercises/${index}/reps`, exercise.reps)
             if (exercise.sets !== workout[index].sets) editData(`workouts/${currentUser}/${id}/exercises/${index}/sets`, exercise.sets)
         })
+        setUpdate(update + 1)
         onClose()
     }
 
