@@ -4,7 +4,6 @@ import { useState } from "react"
 import EditModal from "./EditModal"
 import DeleteModal from "./DeleteModal"
 
-
 type WorkoutType = {
   workout: string & Workout
   user: string
@@ -20,49 +19,67 @@ type TypeWorkout = {
   name: string;
   exercises: TypeExercise[];
 }
+
+
 export default function ListWorkouts({ workout, user }: WorkoutType) {
 
-
   const workoutData: TypeWorkout = workout[1]
+  console.log(workoutData)
   const [toggleDetails, setToggleDetails] = useState(false)
 
 
   return (
     <Center
-      onMouseOver={() => setToggleDetails(true)}
-      onMouseLeave={() => setToggleDetails(false)}
+      onMouseOver={() => {
+        setToggleDetails(true)
+      }}
+      onMouseLeave={() => {
+        setToggleDetails(false)
+      }}
       h={toggleDetails ? ('52vh') : ('50vh')}
       w={toggleDetails ? ('460px') : ('450px')}
-      bg={'gray.300'}
+      bg={'gray.50'}
       textAlign="center"
       _hover={{ cursor: "pointer" }}
       boxShadow="2px 0 15px rgba(0, 0, 0, 0.5)"
       transition="height 0.1s ease, width 0.1s ease"
       rounded={'xl'}
+      position={'relative'}
     >
-      {toggleDetails ? (
-        <VStack position={'relative'} w={'full'} h={'100%'} textAlign={'center'} justifyContent={'center'}>
-          <Box position={'absolute'} top={1} right={1} >
-            <EditModal workout={workoutData.exercises} name={workoutData.name} id={workout[0]} currentUser={user} />
-          </Box>
-          <Box position={'absolute'} top={10} right={1}>
-            <Center>
-              <DeleteModal workoutId={workout[0]} workoutName={workoutData.name} currentUser={user} />
-            </Center>
-          </Box>
-          {
-            (workoutData.exercises.map((exercise: TypeExercise, index: number) => (
-              <Box key={exercise.name + index}>
-                <Text >{exercise.name} - {exercise.sets} x {exercise.reps}</Text>
-              </Box>
-            )))}
-        </VStack>) : (
-        <>
 
-          <Heading as="h2" display="block">{workoutData.name}</Heading>
-        </>
-      )
-      }
+      <VStack position={'relative'} w={'full'} h={'100%'} textAlign={'center'} justifyContent={'center'}>
+        <Box position={'absolute'} top={3} right={3} display={toggleDetails ? "block" : "none"} >
+          <EditModal workout={workoutData.exercises} name={workoutData.name} id={workout[0]} currentUser={user} />
+        </Box>
+        <Box position={'absolute'} top={12} right={3} display={toggleDetails ? "block" : "none"}>
+          <Center>
+            <DeleteModal workoutId={workout[0]} workoutName={workoutData.name} currentUser={user} />
+          </Center>
+        </Box>
+        {
+          (workoutData.exercises.map((exercise: TypeExercise, index: number) => (
+            <Box key={exercise.name + index} >
+              <Text
+                fontSize={toggleDetails ? 20 : 0}
+                transition="font-size 0.1s"
+              >
+                {exercise.name} - {exercise.sets} x {exercise.reps}
+              </Text>
+            </Box>
+          )))}
+      </VStack>
+
+      <Heading
+        as="h2"
+        p={3}
+        display="block"
+        position={'absolute'}
+        transform={toggleDetails ? 'translateY(-200px)' : 'translateY(0%)'}
+        size={toggleDetails ? 'xl' : '2xl'}
+        transition="transform 0.1s linear, font-size 0.1s linear"
+      >
+        {workoutData.name}
+      </Heading>
     </Center >
   );
 }

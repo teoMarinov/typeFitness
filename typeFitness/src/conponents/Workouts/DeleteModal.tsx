@@ -27,14 +27,14 @@ export default function DeleteModal({ workoutId, workoutName, currentUser }: Pro
 
     return (
         <>
-            <IconButton size={'sm'} aria-label='Delete' _hover={{ bg: 'gray.500' }} bg={'gray.300'} onClick={onOpen} icon={<DeleteIcon />} />
+            <IconButton size={'sm'} aria-label='Delete' _hover={{ bg: 'gray.200' }} bg={'gray.50'} onClick={onOpen} icon={<DeleteIcon />} />
 
-                <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
+                <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} isCentered>
                     <ModalOverlay />
                     <ModalContent>
                         <ModalHeader>Are you sure you want to delete {workoutName} </ModalHeader>
                         <ModalFooter>
-                            <Button colorScheme='blue' mr={3} onClick={handleAcceptDelete}>
+                            <Button colorScheme='green' mr={3} onClick={handleAcceptDelete}>
                                 Delete
                             </Button>
                             <Button onClick={onClose}>Cancel</Button>
