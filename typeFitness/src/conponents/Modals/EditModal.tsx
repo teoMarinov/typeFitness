@@ -1,4 +1,4 @@
-import { TypeExercise } from "./ListWorkouts"
+import { TypeExercise } from "../Workouts/ListWorkouts.tsx"
 import {
     Modal,
     ModalOverlay,
@@ -9,11 +9,8 @@ import {
     Text,
     useDisclosure,
     IconButton,
-    Flex,
     Input,
     VStack,
-    Box,
-    HStack,
     Center,
     Grid,
     GridItem

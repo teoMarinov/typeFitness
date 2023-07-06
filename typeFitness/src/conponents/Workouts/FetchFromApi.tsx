@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, Center, HStack, Heading, IconButton, Input, Spacer, VStack } from "@chakra-ui/react";
+import { Box, Center, Heading, IconButton, Input, Spacer, VStack } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import exerciseFetcher from "../../utils/exerciseFetcher.ts";
 import { useDisclosure } from "@chakra-ui/react";
@@ -7,10 +7,8 @@ import {
     Modal,
     ModalOverlay,
     ModalContent,
-    ModalHeader,
     ModalFooter,
     ModalBody,
-    ModalCloseButton,
     Button,
     Text,
 } from '@chakra-ui/react'

@@ -1,8 +1,8 @@
 import { Heading, Center, Text, VStack, Box } from "@chakra-ui/react"
 import { Workout } from "./Workouts"
 import { useState } from "react"
-import EditModal from "./EditModal"
-import DeleteModal from "./DeleteModal"
+import EditModal from "../Modals/EditModal"
+import DeleteModal from "../Modals/DeleteModal"
 
 type WorkoutType = {
   workout: string & Workout
@@ -71,9 +71,10 @@ export default function ListWorkouts({ workout, user }: WorkoutType) {
 
       <Heading
         as="h2"
-        p={3}
+        p={4}
         display="block"
         position={'absolute'}
+        maxW={'80%'}
         transform={toggleDetails ? 'translateY(-200px)' : 'translateY(0%)'}
         size={toggleDetails ? 'xl' : '2xl'}
         transition="transform 0.1s linear, font-size 0.1s linear"
