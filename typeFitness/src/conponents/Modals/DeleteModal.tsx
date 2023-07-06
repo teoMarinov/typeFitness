@@ -16,10 +16,11 @@ type PropType = {
     workoutName: string;
     currentUser: string
     update: number,
-    setUpdate: any 
+    setUpdate: any
+    unfocus: any
 }
 
-export default function DeleteModal({update, setUpdate, workoutId, workoutName, currentUser }: PropType) {
+export default function DeleteModal({ update, setUpdate, workoutId, workoutName, currentUser, unfocus }: PropType) {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const handleAcceptDelete = () => {
@@ -28,22 +29,23 @@ export default function DeleteModal({update, setUpdate, workoutId, workoutName, 
         onClose()
     }
 
+
     return (
         <>
             <IconButton size={'sm'} aria-label='Delete' _hover={{ bg: 'rgba(30, 30, 30, 0.81)' }} bg={'none'} textColor={'white'} onClick={onOpen} icon={<DeleteIcon />} />
 
-                <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} isCentered>
-                    <ModalOverlay />
-                    <ModalContent textColor={'white'} bg="rgba(0, 0, 0, 0.9)">
-                        <ModalHeader textAlign={'center'}>Are you sure you want to delete {workoutName} </ModalHeader>
-                        <ModalFooter>
-                            <Button colorScheme='green' mr={3} onClick={handleAcceptDelete}>
-                                Delete
-                            </Button>
-                            <Button onClick={onClose}>Cancel</Button>
-                        </ModalFooter>
-                    </ModalContent>
-                </Modal>
+            <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} isCentered>
+                <ModalOverlay />
+                <ModalContent textColor={'white'} bg="rgba(15, 15, 15, 1)">
+                    <ModalHeader textAlign={'center'}>Are you sure you want to delete {workoutName} </ModalHeader>
+                    <ModalFooter>
+                        <Button colorScheme='green' mr={3} onClick={handleAcceptDelete}>
+                            Delete
+                        </Button>
+                        <Button onClick={onClose}>Cancel</Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
         </>
     )
 }

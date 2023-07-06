@@ -1,4 +1,3 @@
-import { TypeExercise } from "../Workouts/ListWorkouts.tsx"
 import {
     Modal,
     ModalOverlay,
@@ -15,78 +14,97 @@ import {
     Grid,
     GridItem
 } from '@chakra-ui/react'
-import { EditIcon } from "@chakra-ui/icons"
 import { useState } from "react"
-import editData from "../../utils/editData.ts"
+import FetchFromApi from './FetchFromApiModal';
 
 
-type TypeProp = {
-    name: string;
-    id: string;
-    workout: TypeExercise[];
-    currentUser: string
-    update: number
-    setUpdate: any
-    unfocus: any
+
+export interface CurrentExercise {
+    [key: string]: string;
 }
-export default function EditModal({ update, setUpdate, name, id, workout, currentUser, unfocus }: TypeProp) {
 
+interface ExerciseList {
+    name: string
+    exercises: string[]
+}
+
+type propType = {
+    update: number,
+    setUpdate: any
+}
+export default function MakeNewWorkOutModal({ update, setUpdate }: propType) {
+
+    const [toggleDetails, setToggleDetails] = useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const [editedVals, setEditedVals] = useState(workout)
-    const [newName, setNewName] = useState(name)
-
-
-    const handleChange = (index: number, key: string, newVal: string) => {
-        const updatedExercise = { ...editedVals[index], [key]: newVal };
-        const updatedVals = [...editedVals];
-        updatedVals[index] = updatedExercise;
-        setEditedVals(updatedVals);
-    };
-
-    const handleSaveChanges = () => {
-        if (name !== newName) editData(`workouts/${currentUser}/${id}/name`, newName)
-        editedVals.map((exercise: TypeExercise, index: number) => {
-            if (exercise.reps !== workout[index].reps) editData(`workouts/${currentUser}/${id}/exercises/${index}/reps`, exercise.reps)
-            if (exercise.sets !== workout[index].sets) editData(`workouts/${currentUser}/${id}/exercises/${index}/sets`, exercise.sets)
-        })
-        setUpdate(update + 1)
-        onClose()
-    }
-
-    const handleOpen= () => {
-        onOpen()
-        setTimeout(() => {
-            unfocus(false)
-        }, 100)
-    }
 
 
     return (
         <>
+            <Center
+                onMouseOver={() => {
+                    setToggleDetails(true)
+                }}
+                onMouseLeave={() => {
+                    setToggleDetails(false)
+                }}
+                h={toggleDetails ? ('52vh') : ('50vh')}
+                w={toggleDetails ? ('460px') : ('450px')}
+                bg="rgba(0, 0, 0, 0.3)"
+                style={{
+                    backdropFilter: "blur(6px)",
+                }}
+                textAlign="center"
+                _hover={{
+                    cursor: "pointer",
+                    bg: "rgba(0, 0, 0, 0.6)"
 
-            <IconButton size={'sm'} aria-label='Edit' _hover={{ bg: 'rgba(30, 30, 30, 0.81)' }} bg={'none'} textColor={'white'} onClick={handleOpen} icon={<EditIcon />} />
+                }}
+                transition="height 0.15s ease, width 0.15s ease"
+                rounded={'xl'}
+                position={'relative'}
+                onClick={onOpen}
+            >
+                <Center
+                    w={toggleDetails ? '90px' : '70px'}
+                    h={toggleDetails ? '90px' : '70px'}
+                    borderRadius="90px"
+                    border={'2px'}
+                    transition="height 0.15s ease, width 0.15s ease"
+                    borderColor={'white'}
+                >
+                    <Text
+                        textColor={'white'}
+                        mb={4}
+                        transition="font-size 0.1s"
+                        fontSize={toggleDetails ? 80 : 60}
+                    >
+                        +
+                    </Text>
+                </Center>
+            </Center >
+
             <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} isCentered size='460px'>
                 <ModalOverlay />
-                <ModalContent h='52vh' width={'460px'} textColor={'white'} bg="rgba(0, 0, 0, 0.9)" position={'relative'}>
+                <ModalContent h='52vh' width={'460px'} textColor={'white'} bg="rgba(15, 15, 15, 1)" position={'relative'}>
                     <ModalBody pb={6} >
                         <VStack >
                             <Input
-                                p={0}
+                                pb={1}
                                 mr={1}
                                 top={5}
                                 w={'85%'}
                                 size={'lg'}
                                 fontSize={'4xl'}
-                                value={newName}
+                                // value={newName}
                                 fontWeight={'bold'}
                                 textAlign={'center'}
                                 position={'absolute'}
-                                onChange={(e) => setNewName(e.target.value)}
+                                // onChange={(e) => setNewName(e.target.value)}
                             />
                             <Center h='35vh'>
                                 <VStack>
-                                    {workout.map((_, index: number) => (
-                                        <Grid templateColumns='repeat(10, 1fr)' gap={2}>
+                                    {/* {workout.map((_, index: number) => (
+                                        <Grid templateColumns='repeat(10, 1fr)' gap={2} mb={1}>
                                             <GridItem colSpan={8} >
                                                 <Center h='40px'>
                                                     <Text
@@ -105,8 +123,9 @@ export default function EditModal({ update, setUpdate, name, id, workout, curren
                                                     w={'40px'}
                                                     fontSize='18'
                                                     textAlign={'center'}
-                                                    value={editedVals[index].sets}
-                                                    onChange={(e) => handleChange(index, 'sets', e.target.value)}>
+                                                    // value={editedVals[index].sets}
+                                                    // onChange={(e) => handleChange(index, 'sets', e.target.value)}
+                                                    >
                                                 </Input>
                                             </GridItem >
                                             <GridItem colSpan={1}>
@@ -115,31 +134,32 @@ export default function EditModal({ update, setUpdate, name, id, workout, curren
                                                     w={'40px'}
                                                     fontSize='18'
                                                     textAlign={'center'}
-                                                    value={editedVals[index].reps}
-                                                    onChange={(e) => handleChange(index, 'reps', e.target.value)}>
+                                                    // value={editedVals[index].reps}
+                                                    // onChange={(e) => handleChange(index, 'reps', e.target.value)}
+                                                    >
                                                 </Input>
                                             </GridItem>
                                         </Grid>
-                                    ))}
+                                    ))} */}
+                                    <FetchFromApi />
                                 </VStack>
                             </Center>
                         </VStack>
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme='green' mr={3} onClick={handleSaveChanges}>
+                        <Button colorScheme='green' mr={3} 
+                        // onClick={handleSaveChanges}
+                        >
                             Save
                         </Button>
                         <Button onClick={() => {
-                            unfocus(false)
-                            setEditedVals(workout)
-                            setNewName(name)
+                            // setEditedVals(workout)
+                            // setNewName(name)
                             onClose()
                         }}>Cancel</Button>
                     </ModalFooter>
                 </ModalContent>
-            </Modal>
-        </>
-    )
+            </Modal></>
+    );
 }
-

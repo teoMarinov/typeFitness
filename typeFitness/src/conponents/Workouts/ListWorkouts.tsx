@@ -1,8 +1,9 @@
-import { Heading, Center, Text, VStack, Box } from "@chakra-ui/react"
+import { Box, Center, Heading, Text, VStack } from "@chakra-ui/react"
+
+import DeleteModal from "../Modals/DeleteModal"
+import EditModal from "../Modals/EditModal"
 import { Workout } from "./Workouts"
 import { useState } from "react"
-import EditModal from "../Modals/EditModal"
-import DeleteModal from "../Modals/DeleteModal"
 
 type WorkoutType = {
   workout: string & Workout
@@ -39,7 +40,7 @@ export default function ListWorkouts({ update, setUpdate, workout, user }: Worko
       }}
       h={toggleDetails ? ('52vh') : ('50vh')}
       w={toggleDetails ? ('460px') : ('450px')}
-      bg="rgba(0, 0, 0, 0.3)"
+      bg="rgba(0, 0, 0, 0.3)" 
       style={{
         backdropFilter: "blur(6px)",
       }}
@@ -54,14 +55,12 @@ export default function ListWorkouts({ update, setUpdate, workout, user }: Worko
       position={'relative'}
     >
 
-      <VStack position={'relative'} w={'full'} h={'100%'} textAlign={'center'} justifyContent={'center'}>
+      <VStack position={'relative'} w={'full'} h={'100%'} textAlign={'center'} justifyContent={'center'} >
         <Box position={'absolute'} top={3} right={3} display={toggleDetails ? "block" : "none"} >
-          <EditModal update={update} setUpdate={setUpdate} workout={workoutData.exercises} name={workoutData.name} id={workout[0]} currentUser={user} />
+          <EditModal update={update} setUpdate={setUpdate} workout={workoutData.exercises} name={workoutData.name} id={workout[0]} currentUser={user} unfocus={setToggleDetails}/>
         </Box>
         <Box position={'absolute'} top={12} right={3} display={toggleDetails ? "block" : "none"}>
-          <Center>
-            <DeleteModal update={update} setUpdate={setUpdate} workoutId={workout[0]} workoutName={workoutData.name} currentUser={user} />
-          </Center>
+            <DeleteModal update={update} setUpdate={setUpdate} workoutId={workout[0]} workoutName={workoutData.name} currentUser={user} unfocus={setToggleDetails}/>
         </Box>
         {
           (workoutData.exercises.map((exercise: TypeExercise, index: number) => (
@@ -71,7 +70,7 @@ export default function ListWorkouts({ update, setUpdate, workout, user }: Worko
                 transition="font-size 0.1s"
                 fontSize={toggleDetails ? 20 : 0}
               >
-                {exercise.name} - {exercise.sets} x {exercise.reps}
+                {exercise?.name} - {exercise?.sets} x {exercise?.reps}
               </Text>
             </Box>
           )))}

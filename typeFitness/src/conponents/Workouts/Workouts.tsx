@@ -1,12 +1,13 @@
-import MakeNewWorkout from "./MakeNewWorkout"
-import ListWorkouts from "./ListWorkouts"
-import { Box, Center, SimpleGrid, } from '@chakra-ui/react';
-import { useState, useEffect, useContext } from "react";
-import readData from "../../utils/readData";
+import { Box, Center, Heading, SimpleGrid } from '@chakra-ui/react';
+import { useContext, useEffect, useState } from "react";
+
 import { AuthContext } from "../../context/AuthContext";
-import image from "../../images/pexels-victor-freitas-841130.jpg"
+import ListWorkouts from "./ListWorkouts"
+import MakeNewWorkOutModal from '../Modals/MakeNewWorkOutModal';
+import MakeNewWorkout from "./MakeNewWorkout"
 import imageTwo from "../../images/HD-Fitness-Backgrounds-For-Desktop.jpg"
-import imageThree from "../../images/desktop-wallpaper-black-and-white-hall-rod-gym-fitness-for-section-спорт-gym-black.jpg"
+import readData from "../../utils/readData";
+
 interface Exercise {
   name: string;
   reps: string;
@@ -51,13 +52,29 @@ export default function BasicStatistics() {
         zIndex="-1"
       />
       <Box height="100%" overflowY="scroll">
-        <MakeNewWorkout update={update} setUpdate={setUpdate}/>
+        {/* <MakeNewWorkout update={update} setUpdate={setUpdate}/> */}
+        <Center height='25vh'>
+          <Heading
+            p={4}
+            size={'3xl'}
+            rounded={'xl'}
+            textColor={'white'}
+            fontWeight={'bold'}
+            bg="rgba(10, 10, 10, 0.3)"
+            style={{ backdropFilter: "blur(2px)", letterSpacing: "0.15em"}}
+          >
+            Your workouts
+          </Heading>
+        </Center>
         <SimpleGrid columns={{ base: 1, md: 3 }} p={5} spacing={5}>
           {allWorkouts.map((workout: string & Workout) => (
             <Center key={workout[0]} h="60vh" >
-              <ListWorkouts workout={workout} user={currentUser} update={update} setUpdate={setUpdate}/>
+              <ListWorkouts workout={workout} user={currentUser} update={update} setUpdate={setUpdate} />
             </Center>
           ))}
+          <Center h="60vh">
+          <MakeNewWorkOutModal />
+          </Center>
         </SimpleGrid>
       </Box>
     </Box>

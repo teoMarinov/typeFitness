@@ -84,7 +84,7 @@ export default function FetchFromApi({ selectedExs, setSelectedExs }: SelectedEx
 
             <Modal isOpen={isOpen} onClose={handleClose} isCentered>
                 <ModalOverlay />
-                <ModalContent position={'relative'} textColor={'white'} bg="rgba(0, 0, 0, 0.9)">
+                <ModalContent position={'relative'} textColor={'white'}  bg="rgba(13, 13, 13, 1)">
                     <Center mt='6'>
                         {stepTwo ? (<IconButton ml={'3.5'} fontSize={'2xl'} onClick={handleBack} aria-label="goBack" bg='transparent' textColor={'white'} icon={<ArrowBackIcon />} > </IconButton>) : <Box w='40px' />}
                         <Spacer />

@@ -5,7 +5,6 @@ import addData from "../../utils/addData.ts";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { CloseIcon, DeleteIcon } from '@chakra-ui/icons'
-import image from "../../images/pexels-victor-freitas-841130.jpg"
 export interface CurrentExercise {
     [key: string]: string;
 }
@@ -17,10 +16,10 @@ interface ExerciseList {
 
 type propType = {
     update: number,
-    setUpdate: any 
+    setUpdate: any
 }
 
-export default function MakeNewWorkout({update, setUpdate} : propType) {
+export default function MakeNewWorkout({ update, setUpdate }: propType) {
 
     const context = useContext(AuthContext)
     const currentUser = context.userData?.handle
@@ -155,9 +154,7 @@ export default function MakeNewWorkout({update, setUpdate} : propType) {
                 textColor="white"
                 onClick={handleOpenNewWorkout}
                 _hover={{ bg: "rgba(0, 0, 0, 0.6)" }}
-                style={{
-                    backdropFilter: "blur(6px)",
-                }}
+                style={{ backdropFilter: "blur(6px)", }}
                 mb={'20vh'}
                 position={'absolute'}
                 top={'50%'}
