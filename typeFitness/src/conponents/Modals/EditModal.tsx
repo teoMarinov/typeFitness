@@ -19,6 +19,7 @@ import { EditIcon, DeleteIcon } from "@chakra-ui/icons"
 import { useState } from "react"
 import editData from "../../utils/editData.ts"
 import FetchFromApi from "./FetchFromApiModal.tsx"
+import addData from "../../utils/addData.ts"
 
 type TypeProp = {
     name: string;
@@ -59,14 +60,16 @@ export default function EditModal({
 
     const handleSaveChanges = () => {
         if (name !== newName) editData(`workouts/${currentUser}/${id}/name`, newName)
-        editedVals.map((exercise: TypeExercise, index: number) => {
-            if (exercise.reps !== workout[index]?.reps) editData(`workouts/${currentUser}/${id}/exercises/${index}/reps`, exercise.reps)
-            if (exercise.sets !== workout[index]?.sets) editData(`workouts/${currentUser}/${id}/exercises/${index}/sets`, exercise.sets)
-            if (!workout[index]) editData(`workouts/${currentUser}/${id}/exercises/${index}/name`, exercise.name)
-        })
-        indexesToDelete.map((currentIndex: number) => {
-            editData(`workouts/${currentUser}/${id}/exercises/${currentIndex}`, null)
-        })
+        if (workout) {
+            editedVals.map((exercise: TypeExercise, index: number) => {
+                if (exercise.reps !== workout[index]?.reps) editData(`workouts/${currentUser}/${id}/exercises/${index}/reps`, exercise.reps)
+                if (exercise.sets !== workout[index]?.sets) editData(`workouts/${currentUser}/${id}/exercises/${index}/sets`, exercise.sets)
+                if (!workout[index]) editData(`workouts/${currentUser}/${id}/exercises/${index}/name`, exercise.name)
+            })   
+        } else {
+            addData(`workouts/${currentUser}/${id}/exercises`, editedVals)
+        }
+            editData(`workouts/${currentUser}/${id}/exercises`, editedVals)
         setUpdate(update + 1)
         onClose()
     }
@@ -81,8 +84,8 @@ export default function EditModal({
 
     const handleCancel = () => {
         unfocus(false)
-        setEditedVals([])
-        setNewName('')
+        setEditedVals(workout)
+        setNewName(name)
         setIndexesToDelete([])
         onClose()
     }
@@ -90,16 +93,16 @@ export default function EditModal({
     return (
         <>
 
-            
-                <IconButton
-                    size={'sm'}
-                    aria-label='Edit'
-                    _hover={{ bg: 'rgba(30, 30, 30, 0.81)' }}
-                    bg={'none'}
-                    textColor={'white'}
-                    onClick={onOpen}
-                    icon={<EditIcon />}
-                />
+
+            <IconButton
+                size={'sm'}
+                aria-label='Edit'
+                _hover={{ bg: 'rgba(30, 30, 30, 0.81)' }}
+                bg={'none'}
+                textColor={'white'}
+                onClick={onOpen}
+                icon={<EditIcon />}
+            />
             <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} isCentered size='460px'>
                 <ModalOverlay />
                 <ModalContent
@@ -109,7 +112,10 @@ export default function EditModal({
                     bg="rgba(0, 0, 0, 0.9)"
                     position={'relative'}
                 >
-                    <ModalBody pb={6} >
+                    <ModalBody 
+                    pb={6} 
+                    overflow={'auto'}
+                    >
                         <VStack >
                             <Input
                                 p={2}
@@ -131,8 +137,8 @@ export default function EditModal({
                             />
                             <Center w='90%' position={'absolute'} top={"15%"} >
                                 <VStack mt={'3'}>
-                                    {editedVals.map((exercise: TypeExercise, index: number) => (
-                                        <Grid templateColumns='repeat(12, 1fr)' gap={2}>
+                                    {editedVals && (editedVals.map((exercise: TypeExercise, index: number) => (
+                                        <Grid templateColumns='repeat(12, 1fr)' gap={2} key={index}>
                                             <GridItem colSpan={1} >
                                                 <IconButton
                                                     size="sm"
@@ -180,7 +186,7 @@ export default function EditModal({
                                                 </Input>
                                             </GridItem>
                                         </Grid>
-                                    ))}
+                                    )))}
                                     <FetchFromApi selectedExs={editedVals} setSelectedExs={setEditedVals} />
                                 </VStack>
                             </Center>

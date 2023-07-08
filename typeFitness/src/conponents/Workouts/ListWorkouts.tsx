@@ -4,6 +4,8 @@ import DeleteModal from "../Modals/DeleteModal"
 import EditModal from "../Modals/EditModal"
 import { Workout } from "./Workouts"
 import { useState } from "react"
+import LoggerModal from "../Modals/LoggerModal"
+
 
 type WorkoutType = {
   workout: string & Workout
@@ -29,7 +31,6 @@ export default function ListWorkouts({ update, setUpdate, workout, user }: Worko
   const workoutData: TypeWorkout = workout[1]
   const [toggleDetails, setToggleDetails] = useState(false)
 
-
   return (
     <Center
       onMouseOver={() => {
@@ -38,16 +39,18 @@ export default function ListWorkouts({ update, setUpdate, workout, user }: Worko
       onMouseLeave={() => {
         setToggleDetails(false)
       }}
-      h={toggleDetails ? ('52vh') : ('50vh')}
-      w={toggleDetails ? ('460px') : ('450px')}
-      bg="rgba(20, 20, 20, 0.3)" 
+      height='50vh'
+      width='450px'
+      bg="rgba(20, 20, 20, 0.3)"
       style={{
         backdropFilter: "blur(6px)",
       }}
       textAlign="center"
       _hover={{
         cursor: "pointer",
-        bg: "rgba(0, 0, 0, 0.6)"
+        bg: "rgba(0, 0, 0, 0.6)",
+        height: '52vh',
+        width: '460px'
 
       }}
       transition="height 0.1s ease, width 0.1s ease"
@@ -56,47 +59,51 @@ export default function ListWorkouts({ update, setUpdate, workout, user }: Worko
       position={'relative'}
     >
 
-      <VStack 
-      position={'relative'} 
-      w={'full'} 
-      h={'100%'} 
-      textAlign={'center'} 
-      justifyContent={'center'} 
+      <VStack
+        position={'relative'}
+        w={'full'}
+        h={'100%'}
+        textAlign={'center'}
+        justifyContent={'center'}
       >
-        <Box 
-        position={'absolute'} 
-        top={3} 
-        right={3} 
-        display={toggleDetails ? "block" : "none"} 
+        <Box
+          top={3}
+          right={3}
+          zIndex={1}
+          position={'absolute'}
+          display={toggleDetails ? "block" : "none"}
         >
-          <EditModal 
-          update={update} 
-          setUpdate={setUpdate} 
-          workout={workoutData.exercises} 
-          name={workoutData.name} 
-          id={workout[0]} 
-          currentUser={user} 
-          unfocus={setToggleDetails}
-          existingWorkout={true}/>
+          <EditModal
+            update={update}
+            setUpdate={setUpdate}
+            workout={workoutData.exercises}
+            name={workoutData.name}
+            id={workout[0]}
+            currentUser={user}
+            unfocus={setToggleDetails}
+          />
         </Box>
-        <Box 
-        position={'absolute'} 
-        top={12} 
-        right={3} 
-        display={toggleDetails ? "block" : "none"}
+        <Box
+          top={12}
+          right={3}
+          zIndex={1}
+          position={'absolute'}
+          display={toggleDetails ? "block" : "none"}
         >
-            <DeleteModal 
-            update={update} 
-            setUpdate={setUpdate} 
-            workoutId={workout[0]} 
-            workoutName={workoutData.name} 
-            currentUser={user} 
-            unfocus={setToggleDetails}/>
+          <DeleteModal
+            update={update}
+            setUpdate={setUpdate}
+            workoutId={workout[0]}
+            workoutName={workoutData.name}
+            currentUser={user}
+            unfocus={setToggleDetails}
+          />
         </Box>
-        {
+        {workoutData.exercises ?
           (workoutData.exercises.map((exercise: TypeExercise, index: number) => (
             <Box key={exercise.name + index} >
               <Text
+                px={4}
                 textColor={'white'}
                 transition="font-size 0.1s"
                 fontSize={toggleDetails ? 20 : 0}
@@ -104,7 +111,16 @@ export default function ListWorkouts({ update, setUpdate, workout, user }: Worko
                 {exercise?.name} - {exercise?.sets} x {exercise?.reps}
               </Text>
             </Box>
-          )))}
+          ))) : (
+            <Text
+              textColor={'white'}
+              transition="font-size 0.1s"
+              fontSize={toggleDetails ? 20 : 0}
+            >
+              no exercises
+            </Text>
+          )
+        }
       </VStack>
 
       <Heading
@@ -120,6 +136,11 @@ export default function ListWorkouts({ update, setUpdate, workout, user }: Worko
       >
         {workoutData.name}
       </Heading>
+      <LoggerModal
+        workout={workout[1]}
+        currentUser={user}
+        unfocus={setToggleDetails}
+      />
     </Center >
   );
 }

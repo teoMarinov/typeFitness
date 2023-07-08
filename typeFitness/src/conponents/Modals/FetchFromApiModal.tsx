@@ -61,7 +61,7 @@ export default function FetchFromApi({ selectedExs, setSelectedExs }: SelectedEx
     }
 
     const handleSave = () => {
-        setSelectedExs([...selectedExs, newExerciseSelect])
+        selectedExs ? setSelectedExs([...selectedExs, newExerciseSelect]) : setSelectedExs([newExerciseSelect])
         setStepTwo(false)
         setInputedName('')
         setFetchedExs([])
@@ -84,7 +84,7 @@ export default function FetchFromApi({ selectedExs, setSelectedExs }: SelectedEx
 
             <Modal isOpen={isOpen} onClose={handleClose} isCentered>
                 <ModalOverlay />
-                <ModalContent position={'relative'} textColor={'white'}  bg="rgba(13, 13, 13, 1)">
+                <ModalContent position={'relative'} textColor={'white'} bg="rgba(13, 13, 13, 1)">
                     <Center mt='6'>
                         {stepTwo ? (<IconButton ml={'3.5'} fontSize={'2xl'} onClick={handleBack} aria-label="goBack" background={'none'} _hover={{ bg: 'rgba(30, 30, 30, 0.81)' }} textColor={'white'} icon={<ArrowBackIcon />} > </IconButton>) : <Box w='40px' />}
                         <Spacer />

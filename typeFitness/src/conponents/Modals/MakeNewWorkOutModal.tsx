@@ -60,6 +60,7 @@ export default function MakeNewWorkoutModal({ update, setUpdate, currentUser }: 
         addData(`workouts/${currentUser}`, exerciseList)
         setUpdate(update + 1)
         onClose()
+        console.log(exerciseList)
     }
 
     const handleRemoveExerciseFromSelectedExs = (name: string, index: number) => {

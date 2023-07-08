@@ -16,7 +16,7 @@ type PropType = {
     workoutName: string;
     currentUser: string
     update: number,
-    setUpdate: any
+    setUpdate: any,
     unfocus: any
 }
 
@@ -30,19 +30,47 @@ export default function DeleteModal({ update, setUpdate, workoutId, workoutName,
     }
 
 
+    const handleClose = () => {
+        onClose()
+        unfocus(false)
+    }
+
     return (
         <>
-            <IconButton size={'sm'} aria-label='Delete' _hover={{ bg: 'rgba(30, 30, 30, 0.81)' }} bg={'none'} textColor={'white'} onClick={onOpen} icon={<DeleteIcon />} />
-
-            <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} isCentered>
+            <IconButton
+                size={'sm'}
+                aria-label='Delete'
+                _hover={{ bg: 'rgba(30, 30, 30, 0.81)' }}
+                bg={'none'}
+                textColor={'white'}
+                onClick={onOpen}
+                icon={<DeleteIcon />} 
+                />
+            <Modal
+                closeOnOverlayClick={false}
+                isOpen={isOpen}
+                onClose={onClose}
+                isCentered
+            >
                 <ModalOverlay />
-                <ModalContent textColor={'white'} bg="rgba(15, 15, 15, 1)">
-                    <ModalHeader textAlign={'center'}>Are you sure you want to delete {workoutName} </ModalHeader>
+                <ModalContent
+                    textColor={'white'}
+                    bg="rgba(15, 15, 15, 1)"
+                >
+                    <ModalHeader
+                        textAlign={'center'}
+                    >
+                        Are you sure you want to delete {workoutName}
+                    </ModalHeader>
                     <ModalFooter>
-                        <Button colorScheme='green' mr={3} onClick={handleAcceptDelete}>
+                        <Button
+                            colorScheme='green'
+                            mr={3}
+                            onClick={handleAcceptDelete}
+                        >
                             Delete
                         </Button>
-                        <Button onClick={onClose}>Cancel</Button>
+                        <Button onClick={handleClose}>Cancel</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
