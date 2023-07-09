@@ -25,22 +25,21 @@ type propTypes = {
 
 
 
-type exerciseType = logType[]
-
 type workoutDataType = {
   name: string
   date: string
-  exercises: exerciseType[]
+  exercises: any
 }
 
 export default function LoggerModal({ workout, currentUser, unfocus }: propTypes) {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [loggedData, setLoggedData] = useState([])
+  const [loggedData, setLoggedData] = useState({})
   const [currentlyOpen, setCurrentlyOpen] = useState('')
 
 
   const handleClose = () => {
+    setLoggedData({})
     setCurrentlyOpen('')
     unfocus(false)
     onClose()
@@ -53,8 +52,6 @@ export default function LoggerModal({ workout, currentUser, unfocus }: propTypes
       exercises: loggedData
     }
     
-    console.log(loggedData)
-    console.log(workoutData)
     try {
       addData(`finishedWorkouts/${currentUser}`, workoutData)
     } catch(error) {

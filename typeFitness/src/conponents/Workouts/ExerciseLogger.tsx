@@ -30,13 +30,16 @@ export type logType = {
 
 
 export default function ExerciseLogger({ exercise, loggedData, setLoggedData, currentlyOpen, setCurrentlyOpen, exerciseIndex }: propTypes) {
-    const [exerciseLoggs, setExerciseLoggs] = useState([{}])
+    const exerciseId = Object.keys(exercise).length
+    const [exerciseLoggs, setExerciseLoggs] = useState([{failure: false}])
     const lineH = exercise.name.length > 35 ? 64 : 40
     const lineIncrease = 38
 
     const updateLoggedData = (newLog: logType[]) => {
-        const changedLog = [...loggedData]
-        changedLog[exerciseIndex] = newLog
+        // const changedLog = {...loggedData}
+       const changedLog = {...loggedData,[exercise.name]: newLog}
+        console.log(changedLog, 'changedLog')
+        console.log(newLog, 'newLog')
         setLoggedData(changedLog)
     }
 
@@ -44,18 +47,19 @@ export default function ExerciseLogger({ exercise, loggedData, setLoggedData, cu
         const lastIndex = exerciseLoggs.length - 1;
         const updatedLoggs = [...exerciseLoggs];
 
+
         updatedLoggs[index] = {
             ...updatedLoggs[index],
             [key]: value,
-            failure: false
         };
+
 
         setExerciseLoggs(updatedLoggs);
 
         updateLoggedData(updatedLoggs)
-
+        
         if (lastIndex >= 0 && updatedLoggs[lastIndex].reps && updatedLoggs[lastIndex].weight) {
-            updatedLoggs.push({});
+            updatedLoggs.push({failure: false});
         }
     }
 
@@ -70,7 +74,7 @@ export default function ExerciseLogger({ exercise, loggedData, setLoggedData, cu
             failure: !updatedStatus[index].failure
         }
         setExerciseLoggs(updatedStatus)
-        setLoggedData(updatedStatus)
+        setLoggedData({...loggedData,[exercise.name]: updatedStatus})
     }
 
 
@@ -93,7 +97,7 @@ export default function ExerciseLogger({ exercise, loggedData, setLoggedData, cu
                     p={2}
                     userSelect="none"
                 >
-
+                    
                     {exercise.name} - {exercise.sets} x {exercise.reps}
                 </Text>
                     {exerciseLoggs.map((data: any, index: any) => (

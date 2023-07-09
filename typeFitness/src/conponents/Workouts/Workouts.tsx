@@ -2,7 +2,7 @@ import { Box, Center, Heading, SimpleGrid } from '@chakra-ui/react';
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import ListWorkouts from "./ListWorkouts"
-import imageTwo from "../../images/Te-Rapa-28.jpg"
+import image from "../../images/Te-Rapa-28.jpg"
 import readData from "../../utils/readData";
 import MakeNewWorkoutModal from '../Modals/MakeNewWorkoutModal';
 
@@ -44,7 +44,7 @@ export default function BasicStatistics() {
         position="fixed"
         top="0"
         left="0"
-        backgroundImage={imageTwo}
+        backgroundImage={image}
         backgroundSize="cover"
         backgroundPosition="center"
         zIndex="-1"
