@@ -51,12 +51,9 @@ export default function LoggerModal({ workout, currentUser, unfocus }: propTypes
       date: new Date().toString(),
       exercises: loggedData
     }
-    
-    try {
+  
       addData(`finishedWorkouts/${currentUser}`, workoutData)
-    } catch(error) {
-      console.log(error)
-    }
+
 
     handleClose()
   }

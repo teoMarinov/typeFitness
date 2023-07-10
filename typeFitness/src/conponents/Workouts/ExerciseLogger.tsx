@@ -29,19 +29,29 @@ export type logType = {
 }
 
 
-export default function ExerciseLogger({ exercise, loggedData, setLoggedData, currentlyOpen, setCurrentlyOpen, exerciseIndex }: propTypes) {
-    const exerciseId = Object.keys(exercise).length
-    const [exerciseLoggs, setExerciseLoggs] = useState([{failure: false}])
+
+
+
+export default function ExerciseLogger({ exercise, loggedData, setLoggedData, currentlyOpen, setCurrentlyOpen }: propTypes) {
+    const exerciseId = Object.keys(loggedData).length
+    const [exerciseLoggs, setExerciseLoggs] = useState([{ failure: false }])
     const lineH = exercise.name.length > 35 ? 64 : 40
     const lineIncrease = 38
 
     const updateLoggedData = (newLog: logType[]) => {
-        // const changedLog = {...loggedData}
-       const changedLog = {...loggedData,[exercise.name]: newLog}
-        console.log(changedLog, 'changedLog')
-        console.log(newLog, 'newLog')
+        const newLogCopy = [...newLog]
+        const lastIndex = newLogCopy.length-1
+        newLogCopy[lastIndex].failure = false 
+        if (!loggedData[exercise.name]) {
+            const changedLog = { ...loggedData, [exercise.name]: { id: exerciseId, logs: newLogCopy } }
+            setLoggedData(changedLog)
+        }
+        const thisId = loggedData[exercise.name].id
+        const changedLog = { ...loggedData, [exercise.name]: { id: thisId, logs: newLogCopy } }
         setLoggedData(changedLog)
     }
+
+
 
     const handleInput = (key: string, value: string, index: string) => {
         const lastIndex = exerciseLoggs.length - 1;
@@ -56,12 +66,15 @@ export default function ExerciseLogger({ exercise, loggedData, setLoggedData, cu
 
         setExerciseLoggs(updatedLoggs);
 
-        updateLoggedData(updatedLoggs)
-        
         if (lastIndex >= 0 && updatedLoggs[lastIndex].reps && updatedLoggs[lastIndex].weight) {
-            updatedLoggs.push({failure: false});
+            updatedLoggs.push({});
         }
+        if (updatedLoggs[lastIndex].reps && updatedLoggs[lastIndex].weight) {
+            updateLoggedData(updatedLoggs)
+        }
+
     }
+
 
 
 
@@ -74,7 +87,10 @@ export default function ExerciseLogger({ exercise, loggedData, setLoggedData, cu
             failure: !updatedStatus[index].failure
         }
         setExerciseLoggs(updatedStatus)
-        setLoggedData({...loggedData,[exercise.name]: updatedStatus})
+
+        const thisId = loggedData[exercise.name].id
+        if (!updatedStatus[index].reps || !updatedStatus[index].weight) return
+        setLoggedData({ ...loggedData, [exercise.name]: { id: thisId, logs: updatedStatus } })
     }
 
 
@@ -89,7 +105,7 @@ export default function ExerciseLogger({ exercise, loggedData, setLoggedData, cu
                 }}
             >
                 <Text
-                
+
                     _hover={{ bg: 'gray.600' }}
                     onClick={toggleCurrentlyOpen}
                     rounded={'md'}
@@ -97,47 +113,47 @@ export default function ExerciseLogger({ exercise, loggedData, setLoggedData, cu
                     p={2}
                     userSelect="none"
                 >
-                    
+
                     {exercise.name} - {exercise.sets} x {exercise.reps}
                 </Text>
-                    {exerciseLoggs.map((data: any, index: any) => (
-                        <HStack key={index}>
-                            <Input
-                                p={0}
-                                w={'65px'}
-                                h={'30px'}
-                                fontSize='18'
-                                placeholder="reps"
-                                value={data.reps}
-                                textAlign={'center'}
-                                onChange={(e) => {
-                                    handleInput('reps', e.target.value, index)
-                                }}
-                            />
-                            <Input
-                                p={0}
-                                w={'65px'}
-                                h={'30px'}
-                                fontSize='18'
-                                placeholder="weight"
-                                value={data.weight}
-                                textAlign={'center'}
-                                onChange={(e) => {
-                                    handleInput('weight', e.target.value, index)
-                                }}
-                            />
-                            <IconButton
-                                size={'xs'}
-                                aria-label='Edit'
-                                textColor={'white'}
-                                border={'1px'}
-                                _hover={{ bg: data.failure ? 'rgb(250, 0, 0)' : 'rgb(30, 30, 30)' }}
-                                icon={<NotAllowedIcon />}
-                                bg={data.failure ? 'rgb(250, 0, 0)' : 'none'}
-                                onClick={() => handleToggleFailure(index)}
-                            />
-                        </HStack>
-                    ))}
+                {exerciseLoggs.map((data: any, index: any) => (
+                    <HStack key={index}>
+                        <Input
+                            p={0}
+                            w={'65px'}
+                            h={'30px'}
+                            fontSize='18'
+                            placeholder="reps"
+                            value={data.reps}
+                            textAlign={'center'}
+                            onChange={(e) => {
+                                handleInput('reps', e.target.value, index)
+                            }}
+                        />
+                        <Input
+                            p={0}
+                            w={'65px'}
+                            h={'30px'}
+                            fontSize='18'
+                            placeholder="weight"
+                            value={data.weight}
+                            textAlign={'center'}
+                            onChange={(e) => {
+                                handleInput('weight', e.target.value, index)
+                            }}
+                        />
+                        <IconButton
+                            size={'xs'}
+                            aria-label='Edit'
+                            textColor={'white'}
+                            border={'1px'}
+                            _hover={{ bg: data.failure ? 'rgb(250, 0, 0)' : 'rgb(30, 30, 30)' }}
+                            icon={<NotAllowedIcon />}
+                            bg={data.failure ? 'rgb(250, 0, 0)' : 'none'}
+                            onClick={() => handleToggleFailure(index)}
+                        />
+                    </HStack>
+                ))}
 
             </VStack>
         </>
