@@ -39,15 +39,12 @@ export default function ExerciseLogger({ exercise, loggedData, setLoggedData, cu
     const lineIncrease = 38
 
     const updateLoggedData = (newLog: logType[]) => {
-        const newLogCopy = [...newLog]
-        const lastIndex = newLogCopy.length-1
-        newLogCopy[lastIndex].failure = false 
         if (!loggedData[exercise.name]) {
-            const changedLog = { ...loggedData, [exercise.name]: { id: exerciseId, logs: newLogCopy } }
+            const changedLog = { ...loggedData, [exercise.name]: { id: exerciseId, logs: newLog } }
             setLoggedData(changedLog)
         }
         const thisId = loggedData[exercise.name].id
-        const changedLog = { ...loggedData, [exercise.name]: { id: thisId, logs: newLogCopy } }
+        const changedLog = { ...loggedData, [exercise.name]: { id: thisId, logs: newLog } }
         setLoggedData(changedLog)
     }
 
@@ -66,12 +63,12 @@ export default function ExerciseLogger({ exercise, loggedData, setLoggedData, cu
 
         setExerciseLoggs(updatedLoggs);
 
+        updateLoggedData(updatedLoggs)
+
         if (lastIndex >= 0 && updatedLoggs[lastIndex].reps && updatedLoggs[lastIndex].weight) {
-            updatedLoggs.push({});
+            updatedLoggs.push({ failure: false });
         }
-        if (updatedLoggs[lastIndex].reps && updatedLoggs[lastIndex].weight) {
-            updateLoggedData(updatedLoggs)
-        }
+
 
     }
 
@@ -89,7 +86,6 @@ export default function ExerciseLogger({ exercise, loggedData, setLoggedData, cu
         setExerciseLoggs(updatedStatus)
 
         const thisId = loggedData[exercise.name].id
-        if (!updatedStatus[index].reps || !updatedStatus[index].weight) return
         setLoggedData({ ...loggedData, [exercise.name]: { id: thisId, logs: updatedStatus } })
     }
 

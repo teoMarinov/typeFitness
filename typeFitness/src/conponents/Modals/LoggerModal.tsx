@@ -46,13 +46,22 @@ export default function LoggerModal({ workout, currentUser, unfocus }: propTypes
   }
 
   const handleFinishWorkout = () => {
+    const test = Object.entries(loggedData)
+    const exercises = test.reduce((acc, currentExercise) => {
+      const exerciseName = currentExercise[0]
+      const filteredLogs = currentExercise[1].logs.filter(i => i.reps && i.weight)
+      if (filteredLogs.length === 0) return acc
+      acc[exerciseName] = filteredLogs
+      addData(`exerciseLogs/${currentUser}/${exerciseName}`, filteredLogs)
+      return acc
+    }, {})
+    console.log(exercises)
     const workoutData: workoutDataType = {
       name: workout.name,
       date: new Date().toString(),
-      exercises: loggedData
+      exercises
     }
-  
-      addData(`finishedWorkouts/${currentUser}`, workoutData)
+    addData(`finishedWorkouts/${currentUser}`, workoutData)
 
 
     handleClose()
@@ -67,12 +76,12 @@ export default function LoggerModal({ workout, currentUser, unfocus }: propTypes
         onClick={onOpen}
         position={'absolute'}
       >
-        <Modal 
-        isCentered 
-        size='460px' 
-        isOpen={isOpen} 
-        onClose={onClose} 
-        closeOnOverlayClick={false} 
+        <Modal
+          isCentered
+          size='460px'
+          isOpen={isOpen}
+          onClose={onClose}
+          closeOnOverlayClick={false}
         >
           <ModalOverlay />
           <ModalContent
@@ -104,15 +113,15 @@ export default function LoggerModal({ workout, currentUser, unfocus }: propTypes
               {
                 workout.exercises.map((exercise: TypeExercise, index: number) => (
                   <Box key={index}>
-                  <ExerciseLogger
-                    exercise={exercise}
-                    loggedData={loggedData}
-                    setLoggedData={setLoggedData}
-                    currentlyOpen={currentlyOpen}
-                    setCurrentlyOpen={setCurrentlyOpen}
-                    exerciseIndex={index}
+                    <ExerciseLogger
+                      exercise={exercise}
+                      loggedData={loggedData}
+                      setLoggedData={setLoggedData}
+                      currentlyOpen={currentlyOpen}
+                      setCurrentlyOpen={setCurrentlyOpen}
+                      exerciseIndex={index}
                     />
-                    </Box>
+                  </Box>
                 ))
               }
 
