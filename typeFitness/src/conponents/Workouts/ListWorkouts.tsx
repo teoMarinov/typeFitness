@@ -87,8 +87,8 @@ export default function ListWorkouts({ workout, user }: WorkoutType) {
           display={toggleDetails ? "block" : "none"}
         >
           <DeleteModal
-            workoutId={workout[0]}
-            workoutName={workoutData.name}
+            id={workout[0]}
+            name={workoutData.name}
             currentUser={user}
             unfocus={setToggleDetails}
           />

@@ -12,18 +12,18 @@ import { DeleteIcon } from "@chakra-ui/icons"
 import editData from "../../utils/editData"
 
 type PropType = {
-    workoutId: string;
-    workoutName: string;
+    id: string;
+    name: string;
     currentUser: string
 
     unfocus: any
 }
 
-export default function DeleteModal({ workoutId, workoutName, currentUser, unfocus }: PropType) {
+export default function DeleteModal({ id, name, currentUser, unfocus }: PropType) {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const handleAcceptDelete = () => {
-        editData(`workouts/${currentUser}/${workoutId}`, null)
+        editData(`workouts/${currentUser}/${id}`, null)
         onClose()
     }
 
@@ -58,7 +58,7 @@ export default function DeleteModal({ workoutId, workoutName, currentUser, unfoc
                     <ModalHeader
                         textAlign={'center'}
                     >
-                        Are you sure you want to delete {workoutName}
+                        Are you sure you want to delete {name}
                     </ModalHeader>
                     <ModalFooter>
                         <Button
