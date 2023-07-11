@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Center, Heading, SimpleGrid } from '@chakra-ui/react';
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -21,20 +22,27 @@ export interface Workout {
 export default function BasicStatistics() {
 
   const [allWorkouts, setAllWorkouts] = useState([])
-  const [update, setUpdate] = useState(0)
 
   const context = useContext(AuthContext)
   const currentUser = context.userData?.handle
 
+
   useEffect(() => {
-    readData(`workouts/${currentUser}`)
-      .then((snapshot) => {
+    let unsubscribe: any;
+
+    if (currentUser) {
+      unsubscribe = readData(`workouts/${currentUser}`, (snapshot: any) => {
         const result: (string & Workout)[] = Object.entries(snapshot)
         setAllWorkouts(result)
       })
-      .catch(error => console.log(error))
-  }, [currentUser, update])
+    }
 
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
+  }, [currentUser])
 
   return (
     <Box
@@ -72,11 +80,11 @@ export default function BasicStatistics() {
         <SimpleGrid columns={{ base: 1, md: 3 }} p={5} spacing={5}>
           {allWorkouts.map((workout: string & Workout) => (
             <Center key={workout[0]} h="60vh" >
-              <ListWorkouts workout={workout} user={currentUser} update={update} setUpdate={setUpdate} />
+              <ListWorkouts workout={workout} user={currentUser} />
             </Center>
           ))}
           <Center h="60vh">
-            <MakeNewWorkoutModal update={update} setUpdate={setUpdate} currentUser={currentUser} />
+            <MakeNewWorkoutModal  currentUser={currentUser} />
           </Center>
         </SimpleGrid>
       </Box>

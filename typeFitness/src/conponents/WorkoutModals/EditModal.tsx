@@ -26,20 +26,13 @@ type TypeProp = {
     id: string;
     workout: TypeExercise[] | [];
     currentUser: string
-    update: number
-    setUpdate: any
     unfocus: any
 }
 
-type ExerciseList = {
-    name: string
-    exercises: TypeExercise[]
-}
 
 export default function EditModal({
-    update,
-    setUpdate,
-    name, id,
+    name, 
+    id,
     workout,
     currentUser,
     unfocus
@@ -70,7 +63,6 @@ export default function EditModal({
             addData(`workouts/${currentUser}/${id}/exercises`, editedVals)
         }
             editData(`workouts/${currentUser}/${id}/exercises`, editedVals)
-        setUpdate(update + 1)
         onClose()
     }
 

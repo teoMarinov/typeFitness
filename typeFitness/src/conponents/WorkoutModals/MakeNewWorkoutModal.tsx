@@ -22,9 +22,6 @@ import addData from "../../utils/addData.ts"
 
 type TypeProp = {
     currentUser: string
-    update: number
-    setUpdate: any
-
 }
 
 type ExerciseList = {
@@ -35,7 +32,7 @@ type ExerciseList = {
 
 
 
-export default function MakeNewWorkoutModal({ update, setUpdate, currentUser }: TypeProp) {
+export default function MakeNewWorkoutModal({ currentUser }: TypeProp) {
 
 
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -58,7 +55,6 @@ export default function MakeNewWorkoutModal({ update, setUpdate, currentUser }: 
     const handleAddNewWorkout = () => {
         if (!newName) return alert('Must enter a valid name')
         addData(`workouts/${currentUser}`, exerciseList)
-        setUpdate(update + 1)
         onClose()
         console.log(exerciseList)
     }

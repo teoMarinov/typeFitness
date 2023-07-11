@@ -10,8 +10,6 @@ import LoggerModal from "../WorkoutModals/LoggerModal"
 type WorkoutType = {
   workout: string & Workout
   user: string
-  update: number,
-  setUpdate: any
 }
 
 export type TypeExercise = {
@@ -26,7 +24,7 @@ type TypeWorkout = {
 }
 
 
-export default function ListWorkouts({ update, setUpdate, workout, user }: WorkoutType) {
+export default function ListWorkouts({ workout, user }: WorkoutType) {
 
   const workoutData: TypeWorkout = workout[1]
   const [toggleDetails, setToggleDetails] = useState(false)
@@ -74,8 +72,6 @@ export default function ListWorkouts({ update, setUpdate, workout, user }: Worko
           display={toggleDetails ? "block" : "none"}
         >
           <EditModal
-            update={update}
-            setUpdate={setUpdate}
             workout={workoutData.exercises}
             name={workoutData.name}
             id={workout[0]}
@@ -91,8 +87,6 @@ export default function ListWorkouts({ update, setUpdate, workout, user }: Worko
           display={toggleDetails ? "block" : "none"}
         >
           <DeleteModal
-            update={update}
-            setUpdate={setUpdate}
             workoutId={workout[0]}
             workoutName={workoutData.name}
             currentUser={user}
