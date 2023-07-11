@@ -4,7 +4,7 @@ import { AuthContext } from "../../context/AuthContext";
 import ListWorkouts from "./ListWorkouts"
 import image from "../../images/Te-Rapa-28.jpg"
 import readData from "../../utils/readData";
-import MakeNewWorkoutModal from '../Modals/MakeNewWorkoutModal';
+import MakeNewWorkoutModal from '../WorkoutModals/MakeNewWorkoutModal';
 
 interface Exercise {
   name: string;
@@ -37,11 +37,14 @@ export default function BasicStatistics() {
 
 
   return (
-    <Box width="100%" height="100vh" overflow="hidden">
+    <Box
+      width="100%"
+      height="100vh"
+    >
       <Box
         width="100%"
         height="100%"
-        position="fixed"
+        position={'fixed'}
         top="0"
         left="0"
         backgroundImage={image}
@@ -58,7 +61,10 @@ export default function BasicStatistics() {
             textColor={'white'}
             fontWeight={'bold'}
             bg="rgba(10, 10, 10, 0.3)"
-            style={{ backdropFilter: "blur(2px)", letterSpacing: "0.15em"}}
+            style={{
+              backdropFilter: "blur(2px)",
+              letterSpacing: "0.15em"
+            }}
           >
             Your workouts
           </Heading>
@@ -70,7 +76,7 @@ export default function BasicStatistics() {
             </Center>
           ))}
           <Center h="60vh">
-          <MakeNewWorkoutModal update={update} setUpdate={setUpdate} currentUser={currentUser} />
+            <MakeNewWorkoutModal update={update} setUpdate={setUpdate} currentUser={currentUser} />
           </Center>
         </SimpleGrid>
       </Box>

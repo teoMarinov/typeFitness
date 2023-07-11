@@ -1,10 +1,10 @@
 import { Box, Center, Heading, Text, VStack } from "@chakra-ui/react"
 
-import DeleteModal from "../Modals/DeleteModal"
-import EditModal from "../Modals/EditModal"
+import DeleteModal from "../WorkoutModals/DeleteModal"
+import EditModal from "../WorkoutModals/EditModal"
 import { Workout } from "./Workouts"
 import { useState } from "react"
-import LoggerModal from "../Modals/LoggerModal"
+import LoggerModal from "../WorkoutModals/LoggerModal"
 
 
 type WorkoutType = {
