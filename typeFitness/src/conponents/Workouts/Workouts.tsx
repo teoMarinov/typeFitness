@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 import ListWorkouts from "./ListWorkouts"
 import image from "../../images/Te-Rapa-28.jpg"
 import readData from "../../utils/readData";
-import MakeNewWorkoutModal from '../WorkoutModals/MakeNewWorkoutModal';
+import MakeNewWorkoutModal from '../Modals/MakeNewWorkoutModal';
 
 interface Exercise {
   name: string;
