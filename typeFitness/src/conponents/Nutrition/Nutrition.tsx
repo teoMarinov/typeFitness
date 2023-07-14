@@ -2,12 +2,18 @@ import {
   Box,
   Button,
   IconButton,
-  Center
+  Center,
+  Text
 } from "@chakra-ui/react";
 import image from "../../images/Eliminating-Foul-Odors-in-restaurant-kitchen-scaled.jpeg"
-import { AddIcon } from '@chakra-ui/icons'
+import AddIngredientModal from "../Modals/AddFoodModal";
+
+
+
+
 
 export default function Nutrition() {
+
   return (
     <Box
       width="100%"
@@ -29,17 +35,7 @@ export default function Nutrition() {
         pos={'relative'}
         overflowY="scroll"
       >
-        <IconButton
-          top={4}
-          left={4}
-          size={'md'}
-          pos={'absolute'}
-          icon={<AddIcon />}
-          textColor={'white'}
-          aria-label='Delete'
-          bg={'rgba(40, 40, 40, 0.81)'}
-          _hover={{ bg: 'rgba(30, 30, 30, 0.81)' }}
-        />
+        <AddIngredientModal />
       </Box>
     </Box>
   )

@@ -1,5 +1,5 @@
 import db from "../config/firebase.config.ts";
-import { ref, get, onValue } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 
 const readData = async (postPath:string, callback: any) => {
      const dataRef = ref(db, postPath);
@@ -12,4 +12,3 @@ const readData = async (postPath:string, callback: any) => {
      return unsubscribe
 }
 export default readData
-

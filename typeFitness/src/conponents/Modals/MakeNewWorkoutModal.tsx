@@ -56,7 +56,6 @@ export default function MakeNewWorkoutModal({ currentUser }: TypeProp) {
         if (!newName) return alert('Must enter a valid name')
         addData(`workouts/${currentUser}`, exerciseList)
         onClose()
-        console.log(exerciseList)
     }
 
     const handleRemoveExerciseFromSelectedExs = (name: string, index: number) => {

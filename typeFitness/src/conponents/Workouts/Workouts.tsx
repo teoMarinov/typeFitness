@@ -28,20 +28,12 @@ export default function BasicStatistics() {
 
 
   useEffect(() => {
-    let unsubscribe: any;
-
-    if (currentUser) {
-      unsubscribe = readData(`workouts/${currentUser}`, (snapshot: any) => {
+       readData(`workouts/${currentUser}`, (snapshot: any) => {
         const result: (string & Workout)[] = Object.entries(snapshot)
         setAllWorkouts(result)
       })
-    }
 
-    return () => {
-      if (unsubscribe) {
-        unsubscribe();
-      }
-    };
+    
   }, [currentUser])
 
   return (

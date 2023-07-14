@@ -1,6 +1,6 @@
 import { apiKey } from "../common/constants.ts";
 
-export default async function getFood(name: string) {
+export default async function foodFetcher(name: string) {
     const reponse = await fetch(
         `https://api.api-ninjas.com/v1/nutrition?query=${name}`,
         {
