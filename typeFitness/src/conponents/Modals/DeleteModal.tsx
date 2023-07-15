@@ -10,20 +10,23 @@ import {
 } from '@chakra-ui/react'
 import { DeleteIcon } from "@chakra-ui/icons"
 import editData from "../../utils/editData"
-
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 type PropType = {
-    id: string;
     name: string;
-    currentUser: string
-
+    path: string
     unfocus: any
 }
 
-export default function DeleteModal({ id, name, currentUser, unfocus }: PropType) {
+export default function DeleteModal({ name, path, unfocus }: PropType) {
+
     const { isOpen, onOpen, onClose } = useDisclosure()
 
+    const context = useContext(AuthContext)
+    const currentUser = context.userData?.handle
+
     const handleAcceptDelete = () => {
-        editData(`workouts/${currentUser}/${id}`, null)
+        editData(path, null)
         onClose()
     }
 
@@ -42,8 +45,8 @@ export default function DeleteModal({ id, name, currentUser, unfocus }: PropType
                 bg={'none'}
                 textColor={'white'}
                 onClick={onOpen}
-                icon={<DeleteIcon />} 
-                />
+                icon={<DeleteIcon />}
+            />
             <Modal
                 closeOnOverlayClick={false}
                 isOpen={isOpen}

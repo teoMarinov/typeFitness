@@ -1,11 +1,15 @@
 import { foodDetails } from "./Nutrition"
 import { Box, Center, Heading, Text, VStack } from "@chakra-ui/react"
 import { useState } from "react"
+import DeleteModal from "../Modals/DeleteModal"
 
 
-type foodType = (string & foodDetails)[]
+type foodType = {
+    food: (string & foodDetails)[]
+    currentUser: string
+}
 
-export default function FoodDetailBox({ food }: foodType) {
+export default function FoodDetailBox({ food, currentUser }: foodType) {
 
     const [toggleDetails, setToggleDetails] = useState(false)
 
@@ -44,11 +48,22 @@ export default function FoodDetailBox({ food }: foodType) {
 
 
             </VStack>
+            <Box
+                pos={'absolute'}
+                top={0}
+                right={0}
+                opacity={toggleDetails ? '100' : '0'}
+                transition="opacity 0.1s linear"
+            >
+                <DeleteModal
+                    name={food[1].name}
+                    path={`nutrition/${currentUser}/foods/${food[0]}`}
+                    unfocus={setToggleDetails} />
+            </Box>
 
             <Heading
                 p={4}
-                as="h2"
-                maxW={'80%'}
+                maxW={'90%'}
                 display="block"
                 textColor={'white'}
                 position={'absolute'}

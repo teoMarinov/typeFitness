@@ -53,12 +53,15 @@ export default function Nutrition() {
       return food[1].name.toLowerCase().includes(normalizedInput)
     })
     setDisplayData(fitleredData)
-  }, [searchInput])
+  }, [currentUser, searchInput])
 
+
+  console.log(displayData)
   return (
     <Box
       width="100%"
       height="100vh"
+
     >
       <Box
         top="0"
@@ -69,17 +72,29 @@ export default function Nutrition() {
         backgroundSize="cover"
         backgroundImage={image}
         backgroundPosition="center"
+        css={{
+          '&::-webkit-scrollbar': {
+            width: '6px',
+            backgroundColor: 'transparent',
+          }
+        }}
       />
 
       <Box
         height="100%"
         pos={'relative'}
         overflowY="scroll"
+        css={{
+          '&::-webkit-scrollbar': {
+            width: '6px',
+            backgroundColor: 'transparent',
+          }
+        }}
       >
         <AddFoodModal />
         <ListFoods searchInput={searchInput} setSearchInput={setSearchInput}>
           {displayData.map(e => (
-            < FoodDetailBox food={e} />
+            < FoodDetailBox food={e} currentUser={currentUser} />
           ))}
         </ListFoods>
       </Box>

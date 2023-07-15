@@ -87,9 +87,8 @@ export default function ListWorkouts({ workout, user }: WorkoutType) {
           display={toggleDetails ? "block" : "none"}
         >
           <DeleteModal
-            id={workout[0]}
+            path={`workouts/${user}/${workout[0]}`}
             name={workoutData.name}
-            currentUser={user}
             unfocus={setToggleDetails}
           />
         </Box>

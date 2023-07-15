@@ -12,18 +12,16 @@ type propType = {
 export default function ListFoods({ children, searchInput, setSearchInput }: propType) {
 
     const [open, setOpen] = useState(false)
-    const [gridDisplay, setGridDisplay] = useState('none')
-
-
+    const menuH = open ? `${90 + Math.ceil(children.length / 6) * 320}px` : '60px'
     const handleToggleList = () => {
         if (open) {
             setOpen(false)
             setTimeout(() => {
-                setGridDisplay('none')
+                setSearchInput('')
             }, 180)
         } else {
             setOpen(true)
-            setGridDisplay('grid')
+
         }
     }
 
@@ -40,13 +38,14 @@ export default function ListFoods({ children, searchInput, setSearchInput }: pro
                     letterSpacing: "0.15em"
                 }}
                 w='85%'
-                h={open ? '800px' : '60px'}
+                h={menuH}
                 pos={'absolute'}
                 left={'7.5%'}
                 top={20}
                 transition="height 0.2s ease"
                 textAlign="center"
-                overflow={'auto'}
+                overflow={'hidden'}
+
             >
                 <Center
                     position={'relative'}
@@ -62,7 +61,7 @@ export default function ListFoods({ children, searchInput, setSearchInput }: pro
                                 mt={'10px'}
                                 mr={'300px'}
                                 pos={'absolute'}
-                                opacity={open ? '1000' : '0'}
+
                                 transition="opacity 0.1s linear"
                                 onClick={(e) => e.stopPropagation()}
                                 onChange={(e) => setSearchInput(e.target.value)}
@@ -79,7 +78,7 @@ export default function ListFoods({ children, searchInput, setSearchInput }: pro
                         Your saved foods {open ? <ChevronUpIcon mb={'2px'} boxSize={6} /> : <ChevronDownIcon mb={'2px'} boxSize={6} />}
                     </Text>
                 </Center>
-                <Box display={gridDisplay} mt={4}>
+                <Box mt={4}>
                     <SimpleGrid columns={{ base: 1, md: 6 }} p={5} spacing={5}>
                         {children}
                     </SimpleGrid>

@@ -28,18 +28,19 @@ export default function BasicStatistics() {
 
 
   useEffect(() => {
-       readData(`workouts/${currentUser}`, (snapshot: any) => {
-        const result: (string & Workout)[] = Object.entries(snapshot)
-        setAllWorkouts(result)
-      })
+    readData(`workouts/${currentUser}`, (snapshot: any) => {
+      const result: (string & Workout)[] = Object.entries(snapshot)
+      setAllWorkouts(result)
+    })
 
-    
+
   }, [currentUser])
 
   return (
     <Box
       width="100%"
       height="100vh"
+
     >
       <Box
         width="100%"
@@ -51,8 +52,16 @@ export default function BasicStatistics() {
         backgroundSize="cover"
         backgroundPosition="center"
         zIndex="-1"
+
       />
-      <Box height="100%" overflowY="scroll">
+      <Box height="100%" overflowY="scroll"
+        css={{
+          '&::-webkit-scrollbar': {
+            width: '6px',
+            backgroundColor: 'transparent',
+          }
+        }}
+      >
         <Center height='25vh'>
           <Heading
             p={4}
@@ -76,7 +85,7 @@ export default function BasicStatistics() {
             </Center>
           ))}
           <Center h="60vh">
-            <MakeNewWorkoutModal  currentUser={currentUser} />
+            <MakeNewWorkoutModal currentUser={currentUser} />
           </Center>
         </SimpleGrid>
       </Box>
