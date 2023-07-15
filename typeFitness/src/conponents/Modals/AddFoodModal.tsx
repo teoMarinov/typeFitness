@@ -73,12 +73,12 @@ export default function AddFoodModal() {
 
     const currentMealNutriotion = {
         name: state.name,
-        calories: state.calories,
-        fat: state.fat,
-        saturatedFat: state.saturatedFat,
-        carbohydrate: state.carbohydrate,
-        sugar: state.sugar,
-        protein: state.protein,
+        calories: state.calories || 0,
+        fat: state.fat || 0,
+        saturatedFat: state.saturatedFat || 0,
+        carbohydrate: state.carbohydrate || 0,
+        sugar: state.sugar || 0,
+        protein: state.protein || 0,
         date: new Date().toString()
     }
 
@@ -89,12 +89,6 @@ export default function AddFoodModal() {
 
     const handleSave = () => {
         if (!currentMealNutriotion.name) return alert('no name')
-        if (!currentMealNutriotion.calories) return alert('no calories')
-        if (!currentMealNutriotion.fat) return alert('no fat')
-        if (!currentMealNutriotion.saturatedFat) return alert('no saturatedFat')
-        if (!currentMealNutriotion.carbohydrate) return alert('no carbohydrate')
-        if (!currentMealNutriotion.sugar) return alert('no name')
-        if (!currentMealNutriotion.protein) return alert('no name')
         addData(`nutrition/${currentUser}/foods`, currentMealNutriotion)
         handleCancel()
     }
