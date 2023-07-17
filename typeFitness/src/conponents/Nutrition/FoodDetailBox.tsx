@@ -7,11 +7,17 @@ import DeleteModal from "../Modals/DeleteModal"
 type foodType = {
     food: (string & foodDetails)[]
     currentUser: string
+    addToSelected: any
 }
 
-export default function FoodDetailBox({ food, currentUser }: foodType) {
+export default function FoodDetailBox({ food, currentUser, addToSelected }: foodType) {
 
     const [toggleDetails, setToggleDetails] = useState(false)
+
+    const handleAddToSelected = () => {
+        addToSelected(food)
+    }
+
 
     return (
         <Center
@@ -35,11 +41,11 @@ export default function FoodDetailBox({ food, currentUser }: foodType) {
             }}
             rounded={'xl'}
             boxShadow="0 0 8px 1px white"
-            position={'relative'}
+            // position={'relative'}
+            onClick={handleAddToSelected}
         >
 
             <VStack
-                position={'relative'}
                 w={'full'}
                 h={'100%'}
                 textAlign={'center'}
@@ -50,8 +56,8 @@ export default function FoodDetailBox({ food, currentUser }: foodType) {
             </VStack>
             <Box
                 pos={'absolute'}
-                top={0}
-                right={0}
+                top={1}
+                right={1}
                 opacity={toggleDetails ? '100' : '0'}
                 transition="opacity 0.1s linear"
             >

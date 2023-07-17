@@ -3,7 +3,8 @@ import {
   Button,
   IconButton,
   Center,
-  Text
+  Text,
+  VStack
 } from "@chakra-ui/react";
 import image from "../../images/Eliminating-Foul-Odors-in-restaurant-kitchen-scaled.jpeg"
 import AddFoodModal from "../Modals/AddFoodModal";
@@ -12,6 +13,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import readData from "../../utils/readData";
 import FoodDetailBox from "./FoodDetailBox";
+import DisplaySelectedFoods from "./DisplaySelectedFoods";
 
 export type foodDetails = {
   calories: string
@@ -30,10 +32,23 @@ export default function Nutrition() {
   const [data, setData] = useState([])
   const [displayData, setDisplayData] = useState([])
   const [searchInput, setSearchInput] = useState('')
+  const [currentSelectedFoods, setCurrentSelecetedFoods] = useState([])
 
   const context = useContext(AuthContext)
   const currentUser = context.userData?.handle
 
+  const handleAddToSelected = (test: any) => {
+    if (currentSelectedFoods.includes(test)) return alert(`${test[1].name} has already been addedd`)
+    setCurrentSelecetedFoods([...currentSelectedFoods, test])
+  }
+
+  const removeFromSelected = (id: string) => {
+    if (currentSelectedFoods.length === 1) return setCurrentSelecetedFoods([])
+    const editedArr = currentSelectedFoods.filter((food: string & foodDetails) => {
+      return id === food[0]
+    })
+    setCurrentSelecetedFoods(editedArr)
+  }
 
   useEffect(() => {
     readData(`nutrition/${currentUser}/foods`, (snapshot: any) => {
@@ -53,20 +68,20 @@ export default function Nutrition() {
       return food[1].name.toLowerCase().includes(normalizedInput)
     })
     setDisplayData(fitleredData)
-  }, [currentUser, searchInput])
+  }, [currentUser, data, searchInput])
 
 
-  console.log(displayData)
   return (
     <Box
       width="100%"
       height="100vh"
-
+      
     >
       <Box
         top="0"
         left="0"
         width="100%"
+        mb={2}
         height="100%"
         position={'fixed'}
         backgroundSize="cover"
@@ -94,9 +109,12 @@ export default function Nutrition() {
         <AddFoodModal />
         <ListFoods searchInput={searchInput} setSearchInput={setSearchInput}>
           {displayData.map(e => (
-            < FoodDetailBox food={e} currentUser={currentUser} />
+            <Box key={e[0]}>
+              < FoodDetailBox food={e} currentUser={currentUser} addToSelected={handleAddToSelected} />
+            </Box>
           ))}
         </ListFoods>
+        {currentSelectedFoods.length > 0 && (<DisplaySelectedFoods selectedFoods={currentSelectedFoods} removeFood={removeFromSelected} />)}
       </Box>
     </Box>
   )

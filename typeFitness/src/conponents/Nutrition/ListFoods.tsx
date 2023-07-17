@@ -12,7 +12,7 @@ type propType = {
 export default function ListFoods({ children, searchInput, setSearchInput }: propType) {
 
     const [open, setOpen] = useState(false)
-    const menuH = open ? `${90 + Math.ceil(children.length / 6) * 320}px` : '60px'
+    const menuH = open ? `${90 + Math.ceil(children.length / 5) * 320}px` : '60px'
     const handleToggleList = () => {
         if (open) {
             setOpen(false)
@@ -39,9 +39,9 @@ export default function ListFoods({ children, searchInput, setSearchInput }: pro
                 }}
                 w='85%'
                 h={menuH}
-                pos={'absolute'}
-                left={'7.5%'}
-                top={20}
+                mt={'90px'}
+                ml={'7.5%'}
+                mb={'50px'}
                 transition="height 0.2s ease"
                 textAlign="center"
                 overflow={'hidden'}
@@ -79,7 +79,7 @@ export default function ListFoods({ children, searchInput, setSearchInput }: pro
                     </Text>
                 </Center>
                 <Box mt={4}>
-                    <SimpleGrid columns={{ base: 1, md: 6 }} p={5} spacing={5}>
+                    <SimpleGrid columns={{ base: 1, md: 5 }} p={5} spacing={5}>
                         {children}
                     </SimpleGrid>
                 </Box>
