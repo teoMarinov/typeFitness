@@ -11,7 +11,6 @@ import {
     HStack
 } from "@chakra-ui/react"
 import { DeleteIcon } from "@chakra-ui/icons"
-import { remove } from "firebase/database"
 
 type propType = {
     currentFood: string & foodDetails
@@ -27,7 +26,6 @@ export default function SelecetedFoodRow({ currentFood, removeFood }: propType) 
                     textColor={'white'}
                     mt={'15px'}
                     textAlign={'center'}
-                    borderLeft={'1px'}
                 >
                     {currentFood[1].name}
                 </Text>
@@ -89,7 +87,6 @@ export default function SelecetedFoodRow({ currentFood, removeFood }: propType) 
                     mt={'15px'}
                     textAlign={'center'}
                     borderLeft={'1px'}
-                    borderRight={'1px'}
                 >
                     {currentFood[1].protein} g
                 </Text>

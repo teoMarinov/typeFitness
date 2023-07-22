@@ -14,6 +14,9 @@ import { AuthContext } from "../../context/AuthContext";
 import readData from "../../utils/readData";
 import FoodDetailBox from "./FoodDetailBox";
 import DisplaySelectedFoods from "./DisplaySelectedFoods";
+import DisplaySelectedFoodTopRow from "./DisplaySelectedFoodTopRow";
+import DIsplaySelectedFoodBot from "./DisplaySelectedFoodBotRow";
+import DisplaySelectedFoodBotRow from "./DisplaySelectedFoodBotRow";
 
 export type foodDetails = {
   calories: string
@@ -26,6 +29,14 @@ export type foodDetails = {
   sugar: string
 }
 
+export type macroType = {
+  calories: number
+  fat: number
+  saturatedFat: number
+  carbohydrate: number
+  sugar: number
+  protein: number
+}
 
 export default function Nutrition() {
 
@@ -33,22 +44,47 @@ export default function Nutrition() {
   const [displayData, setDisplayData] = useState([])
   const [searchInput, setSearchInput] = useState('')
   const [currentSelectedFoods, setCurrentSelecetedFoods] = useState([])
+  const [currentSelectedFoodsWeight, setCurrentSelecetedFoodsWeight] = useState({})
+  const [mealName, setMealName] = useState('')
+
+  const totalCalories = currentSelectedFoods.reduce((acc, food: string & macroType[]) => {
+    acc += food[1].calories
+    return acc
+  }, 0).toFixed(1)
+  const totalFat = currentSelectedFoods.reduce((acc, food) => {
+    acc += food[1].fat
+    return acc
+  }, 0).toFixed(1)
+  const totalSaturatedFat = currentSelectedFoods.reduce((acc, food) => {
+    acc += food[1].saturatedFat
+    return acc
+  }, 0).toFixed(1)
+  const totalCarbohydrates = currentSelectedFoods.reduce((acc, food) => {
+    acc += food[1].carbohydrate
+    return acc
+  }, 0).toFixed(1)
+  const totalSugar = currentSelectedFoods.reduce((acc, food) => {
+    acc += food[1].sugar
+    return acc
+  }, 0).toFixed(1)
+  const totalProtein = currentSelectedFoods.reduce((acc, food) => {
+    acc += food[1].protein
+    return acc
+  }, 0).toFixed(1)
+
+
+  const totalMacros = {
+    totalCalories,
+    totalFat,
+    totalSaturatedFat,
+    totalCarbohydrates,
+    totalSugar,
+    totalProtein
+  }
 
   const context = useContext(AuthContext)
   const currentUser = context.userData?.handle
 
-  const handleAddToSelected = (test: any) => {
-    if (currentSelectedFoods.includes(test)) return alert(`${test[1].name} has already been addedd`)
-    setCurrentSelecetedFoods([...currentSelectedFoods, test])
-  }
-
-  const removeFromSelected = (id: string) => {
-    if (currentSelectedFoods.length === 1) return setCurrentSelecetedFoods([])
-    const editedArr = currentSelectedFoods.filter((food: string & foodDetails) => {
-      return id === food[0]
-    })
-    setCurrentSelecetedFoods(editedArr)
-  }
 
   useEffect(() => {
     readData(`nutrition/${currentUser}/foods`, (snapshot: any) => {
@@ -71,11 +107,31 @@ export default function Nutrition() {
   }, [currentUser, data, searchInput])
 
 
+  const handleAddToSelected = (test: any) => {
+    if (currentSelectedFoods.includes(test)) return alert(`${test[1].name} has already been addedd`)
+    setCurrentSelecetedFoods([...currentSelectedFoods, test])
+    setCurrentSelecetedFoodsWeight({...currentSelectedFoodsWeight, [test[0]] : 100 })
+    console.log(test[0])
+  }
+  console.log(currentSelectedFoodsWeight)
+
+  const removeFromSelected = (id: string) => {
+    if (currentSelectedFoods.length === 1) return setCurrentSelecetedFoods([])
+    const editedArr = currentSelectedFoods.filter((food: string & foodDetails) => {
+      return id !== food[0]
+    })
+    setCurrentSelecetedFoods(editedArr)
+    const deletedWeight = {...currentSelectedFoodsWeight}
+    delete deletedWeight[id]
+    setCurrentSelecetedFoodsWeight(deletedWeight)
+  }
+
+
   return (
     <Box
       width="100%"
       height="100vh"
-      
+
     >
       <Box
         top="0"
@@ -109,12 +165,20 @@ export default function Nutrition() {
         <AddFoodModal />
         <ListFoods searchInput={searchInput} setSearchInput={setSearchInput}>
           {displayData.map(e => (
-            <Box key={e[0]}>
-              < FoodDetailBox food={e} currentUser={currentUser} addToSelected={handleAddToSelected} />
-            </Box>
+              <Box key={e[0]}>
+                < FoodDetailBox food={e} currentUser={currentUser} addToSelected={handleAddToSelected} />
+              </Box>
           ))}
         </ListFoods>
-        {currentSelectedFoods.length > 0 && (<DisplaySelectedFoods selectedFoods={currentSelectedFoods} removeFood={removeFromSelected} />)}
+        {currentSelectedFoods.length > 0 && (
+          <Center>
+            <VStack bg={'rgba(0,0,0, 0.6)'} rounded={'md'}>
+              <DisplaySelectedFoodTopRow name={mealName} editName={setMealName} />
+              <DisplaySelectedFoods selectedFoods={currentSelectedFoods} removeFood={removeFromSelected} />
+              <DisplaySelectedFoodBotRow totalMacros={totalMacros} />
+            </VStack>
+          </Center>
+        )}
       </Box>
     </Box>
   )
