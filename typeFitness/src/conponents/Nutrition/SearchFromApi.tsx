@@ -25,7 +25,6 @@ type propTypes = {
 export default function SearchFromApi({ moveToAddCustom, state, dispatch }: propTypes) {
 
     const [nameInput, setNameInput] = useState('')
-    const [dataReady, setDataReady] = useState(true)
     const [loading, setLoading] = useState(false)
 
     const inputBoxLength = state.name.length > 5 ? `${state.name.length * 9}px` : '48px'
@@ -39,7 +38,6 @@ export default function SearchFromApi({ moveToAddCustom, state, dispatch }: prop
     useEffect(() => {
         dispatch({ type: ACTION.RESET_STATE })
         setLoading(true)
-        setDataReady(true)
         foodFetcher(nameInput)
             .then((snapshot) => {
                 dispatch({ type: ACTION.CHANGE_NAME, payload: (snapshot[0].name) })
@@ -49,14 +47,12 @@ export default function SearchFromApi({ moveToAddCustom, state, dispatch }: prop
                 dispatch({ type: ACTION.CHANGE_CARBOHYDRATE, payload: (snapshot[0].carbohydrates_total_g) })
                 dispatch({ type: ACTION.CHANGE_SUGAR, payload: (snapshot[0].sugar_g) })
                 dispatch({ type: ACTION.CHANGE_PROTEIN, payload: (snapshot[0].protein_g) })
+                console.log(typeof snapshot[0].calories)
             })
             .then(() => {
-                setDataReady(true)
                 setLoading(false)
             })
             .catch((e) => {
-                console.log(e)
-                setDataReady(false)
                 setLoading(false)
             })
     }, [nameInput]);
@@ -108,7 +104,8 @@ export default function SearchFromApi({ moveToAddCustom, state, dispatch }: prop
                 </Center>
             ) :
 
-                (dataReady ? (<>
+                // (dataReady ? (
+                <>
 
                     <Grid
                         templateColumns='repeat(2, 1fr)'
@@ -181,23 +178,24 @@ export default function SearchFromApi({ moveToAddCustom, state, dispatch }: prop
                     <GridRow name={'carbohydrate'} value={state.carbohydrate} setValue={setCarbohydrate} mes="g" />
                     <GridRow name={'sugar'} value={state.sugar} setValue={setSugar} mes="g" />
                     <GridRow name={'protein'} value={state.protein} setValue={setProtein} mes="g" />
-                </>) : (
-                    <Text
-                        textAlign={'center'}
-                        textColor={'white'}
-                    >
-                        We are sorry, but we can't find any data for {nameInput}
-                        <Link
-                            textColor={'cyan.400'}
-                            ml={2}
-                            onClick={handleMoveToAddCustom}
-                        >
-                            Please use Add custom.
-                        </Link>
-                    </Text>
-                )
+                </>
+                // ) : (
+                //     <Text
+                //         textAlign={'center'}
+                //         textColor={'white'}
+                //     >
+                //         We are sorry, but we can't find any data for {nameInput}
+                //         <Link
+                //             textColor={'cyan.400'}
+                //             ml={2}
+                //             onClick={handleMoveToAddCustom}
+                //         >
+                //             Please use Add custom.
+                //         </Link>
+                //     </Text>
+                // )
 
-                )
+                // )
             )
             }
 

@@ -60,7 +60,7 @@ export default function GridRow({ name, value, setValue, mes }: propType) {
               value={value}
               _hover={{}}
               textAlign={'center'}
-              onChange={(e) => setValue(e.target.value)}
+              onChange={(e) => setValue(Number(e.target.value))}
             />
             <Text
               mt={'3px'}

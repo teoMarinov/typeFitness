@@ -46,6 +46,8 @@ export default function Nutrition() {
   const [currentSelectedFoods, setCurrentSelecetedFoods] = useState([])
   const [mealName, setMealName] = useState('')
 
+console.log(displayData)
+
   const totalCalories = currentSelectedFoods.reduce((acc, food: string & macroType[]) => {
     acc += food[1].calories
     return acc
@@ -106,9 +108,9 @@ export default function Nutrition() {
   }, [currentUser, data, searchInput])
 
 
-  const handleAddToSelected = (test: any) => {
-    if (currentSelectedFoods.includes(test)) return alert(`${test[1].name} has already been addedd`)
-    setCurrentSelecetedFoods([...currentSelectedFoods, test])
+  const handleAddToSelected = (food: any) => {
+    if (currentSelectedFoods.includes(food)) return alert(`${food[1].name} has already been addedd`)
+    setCurrentSelecetedFoods([...currentSelectedFoods, food])
   }
  
 

@@ -27,27 +27,27 @@ export default function AddCustom({ state, dispatch }: propTypes) {
 
 
 
-    const setCalories = (value: string) => {
+    const setCalories = (value: number) => {
         dispatch({ type: ACTION.CHANGE_CALORIES, payload: value })
     }
 
-    const setFat = (value: string) => {
+    const setFat = (value: number) => {
         dispatch({ type: ACTION.CHANGE_FAT, payload: value })
     }
 
-    const setSaturatedFat = (value: string) => {
+    const setSaturatedFat = (value: number) => {
         dispatch({ type: ACTION.CHANGE_SATURATED_FAT, payload: value })
     }
 
-    const setCarbohydrate = (value: string) => {
+    const setCarbohydrate = (value: number) => {
         dispatch({ type: ACTION.CHANGE_CARBOHYDRATE, payload: value })
     }
 
-    const setSugar = (value: string) => {
+    const setSugar = (value: number) => {
         dispatch({ type: ACTION.CHANGE_SUGAR, payload: value })
     }
 
-    const setProtein = (value: string) => {
+    const setProtein = (value: number) => {
         dispatch({ type: ACTION.CHANGE_PROTEIN, payload: value })
     }
 
