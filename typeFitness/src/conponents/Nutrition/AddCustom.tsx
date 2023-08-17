@@ -97,7 +97,7 @@ export default function AddCustom({ state, dispatch }: propTypes) {
                             rounded={'none'}
                             borderBottom="2px solid rgba(195, 195, 195, 0.3)"
                             focusBorderColor="none"
-                            defaultValue={'100'}
+                            value={'100'}
                             _hover={{
                                 cursor: 'default'
                             }}
