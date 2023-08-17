@@ -44,7 +44,10 @@ export default function DeleteModal({ name, path, unfocus }: PropType) {
                 _hover={{ bg: 'rgba(30, 30, 30, 0.81)' }}
                 bg={'none'}
                 textColor={'white'}
-                onClick={onOpen}
+                onClick={(e) => {
+                    e.stopPropagation();
+                    onOpen(); 
+                }}
                 icon={<DeleteIcon />}
             />
             <Modal
