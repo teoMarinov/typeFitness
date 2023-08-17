@@ -18,18 +18,16 @@ export type weightsType = {
 type propType = {
     selectedFoods: (string & foodDetails)[]
     removeFood: any,
-    weights: weightsType,
-    changeWeights: any
 }
 
-export default function DisplaySelectedFoods({  selectedFoods, removeFood, weights, changeWeights }: propType) {
+export default function DisplaySelectedFoods({  selectedFoods, removeFood }: propType) {
 
 
     return (
         <>
             {selectedFoods.map((currenFood: string & foodDetails) => (
                 <VStack key={currenFood[0]}>
-                    <SelecetedFoodRow currentFood={currenFood} removeFood={removeFood} weights={weights[currenFood[0]]}  changeWeights={changeWeights}/>
+                    <SelecetedFoodRow currentFood={currenFood} removeFood={removeFood}/>
                 </VStack>
             ))}
         </>

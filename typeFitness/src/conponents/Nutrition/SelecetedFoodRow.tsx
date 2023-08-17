@@ -16,11 +16,9 @@ import { DeleteIcon } from "@chakra-ui/icons"
 type propType = {
     selectedFoods: (string & foodDetails)[]
     removeFood: any,
-    weights: string,
-    changeWeights: any
 }
 
-export default function SelecetedFoodRow({ currentFood, removeFood, weights, changeWeights }: propType) {
+export default function SelecetedFoodRow({ currentFood, removeFood }: propType) {
     return (
         <HStack ml={'40px'}>
             <Grid templateColumns='repeat(9, 0fr)' h='50px'>

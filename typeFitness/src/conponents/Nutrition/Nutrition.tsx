@@ -44,7 +44,6 @@ export default function Nutrition() {
   const [displayData, setDisplayData] = useState([])
   const [searchInput, setSearchInput] = useState('')
   const [currentSelectedFoods, setCurrentSelecetedFoods] = useState([])
-  const [currentSelectedFoodsWeight, setCurrentSelecetedFoodsWeight] = useState({})
   const [mealName, setMealName] = useState('')
 
   const totalCalories = currentSelectedFoods.reduce((acc, food: string & macroType[]) => {
@@ -110,8 +109,6 @@ export default function Nutrition() {
   const handleAddToSelected = (test: any) => {
     if (currentSelectedFoods.includes(test)) return alert(`${test[1].name} has already been addedd`)
     setCurrentSelecetedFoods([...currentSelectedFoods, test])
-    setCurrentSelecetedFoodsWeight({...currentSelectedFoodsWeight, [test[0]] : 100 })
-    console.log(test[0])
   }
  
 
@@ -121,9 +118,6 @@ export default function Nutrition() {
       return id !== food[0]
     })
     setCurrentSelecetedFoods(editedArr)
-    const deletedWeight = {...currentSelectedFoodsWeight}
-    delete deletedWeight[id]
-    setCurrentSelecetedFoodsWeight(deletedWeight)
   }
 
 
@@ -174,7 +168,7 @@ export default function Nutrition() {
           <Center>
             <VStack bg={'rgba(0,0,0, 0.6)'} rounded={'md'}>
               <DisplaySelectedFoodTopRow name={mealName} editName={setMealName} />
-              <DisplaySelectedFoods selectedFoods={currentSelectedFoods} removeFood={removeFromSelected} weights={currentSelectedFoodsWeight} changeWeights={setCurrentSelecetedFoodsWeight}/>
+              <DisplaySelectedFoods selectedFoods={currentSelectedFoods} removeFood={removeFromSelected}/>
               <DisplaySelectedFoodBotRow totalMacros={totalMacros} />
             </VStack>
           </Center>
