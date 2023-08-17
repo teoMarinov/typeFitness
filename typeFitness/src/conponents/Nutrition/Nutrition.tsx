@@ -113,7 +113,7 @@ export default function Nutrition() {
     setCurrentSelecetedFoodsWeight({...currentSelectedFoodsWeight, [test[0]] : 100 })
     console.log(test[0])
   }
-  console.log(currentSelectedFoodsWeight)
+ 
 
   const removeFromSelected = (id: string) => {
     if (currentSelectedFoods.length === 1) return setCurrentSelecetedFoods([])
@@ -174,7 +174,7 @@ export default function Nutrition() {
           <Center>
             <VStack bg={'rgba(0,0,0, 0.6)'} rounded={'md'}>
               <DisplaySelectedFoodTopRow name={mealName} editName={setMealName} />
-              <DisplaySelectedFoods selectedFoods={currentSelectedFoods} removeFood={removeFromSelected} />
+              <DisplaySelectedFoods selectedFoods={currentSelectedFoods} removeFood={removeFromSelected} weights={currentSelectedFoodsWeight} changeWeights={setCurrentSelecetedFoodsWeight}/>
               <DisplaySelectedFoodBotRow totalMacros={totalMacros} />
             </VStack>
           </Center>

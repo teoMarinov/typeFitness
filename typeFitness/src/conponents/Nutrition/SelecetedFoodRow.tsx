@@ -12,86 +12,89 @@ import {
 } from "@chakra-ui/react"
 import { DeleteIcon } from "@chakra-ui/icons"
 
+
 type propType = {
-    currentFood: string & foodDetails
-    removeFood: any
+    selectedFoods: (string & foodDetails)[]
+    removeFood: any,
+    weights: string,
+    changeWeights: any
 }
 
-export default function SelecetedFoodRow({ currentFood, removeFood }: propType) {
+export default function SelecetedFoodRow({ currentFood, removeFood, weights, changeWeights }: propType) {
     return (
         <HStack ml={'40px'}>
-        <Grid templateColumns='repeat(9, 0fr)' h='50px'>
-            <GridItem w='215px'>
-                <Text
-                    textColor={'white'}
-                    mt={'15px'}
-                    textAlign={'center'}
-                >
-                    {currentFood[1].name}
-                </Text>
-            </GridItem>
-            <GridItem w='115px'>
-                <Text
-                    textColor={'white'}
-                    mt={'15px'}
-                    textAlign={'center'}
-                    borderLeft={'1px'}
-                >
-                    {currentFood[1].calories} kcal
+            <Grid templateColumns='repeat(9, 0fr)' h='50px'>
+                <GridItem w='215px'>
+                    <Text
+                        textColor={'white'}
+                        mt={'15px'}
+                        textAlign={'center'}
+                    >
+                        {currentFood[1].name}
+                    </Text>
+                </GridItem>
+                <GridItem w='115px'>
+                    <Text
+                        textColor={'white'}
+                        mt={'15px'}
+                        textAlign={'center'}
+                        borderLeft={'1px'}
+                    >
+                        {currentFood[1].calories} kcal
 
-                </Text>
-            </GridItem>
-            <GridItem w='115px'>
-                <Text
-                    textColor={'white'}
-                    mt={'15px'}
-                    textAlign={'center'}
-                    borderLeft={'1px'}
-                >
-                    {currentFood[1].fat} g
-                </Text>
-            </GridItem>
-            <GridItem w='115px'>
-                <Text
-                    textColor={'white'}
-                    mt={'15px'}
-                    textAlign={'center'}
-                    borderLeft={'1px'}
-                >
-                    {currentFood[1].saturatedFat} g
-                </Text>
-            </GridItem>
-            <GridItem w='115px'>
-                <Text
-                    textColor={'white'}
-                    mt={'15px'}
-                    textAlign={'center'}
-                    borderLeft={'1px'}
-                >
-                    {currentFood[1].carbohydrate} g
-                </Text>
-            </GridItem>
-            <GridItem w='115px'>
-                <Text
-                    textColor={'white'}
-                    mt={'15px'}
-                    textAlign={'center'}
-                    borderLeft={'1px'}
-                >
-                    {currentFood[1].sugar} g
-                </Text>
-            </GridItem>
-            <GridItem w='115px'>
-                <Text
-                    textColor={'white'}
-                    mt={'15px'}
-                    textAlign={'center'}
-                    borderLeft={'1px'}
-                >
-                    {currentFood[1].protein} g
-                </Text>
-            </GridItem>
-        </Grid>
+                    </Text>
+                </GridItem>
+                <GridItem w='115px'>
+                    <Text
+                        textColor={'white'}
+                        mt={'15px'}
+                        textAlign={'center'}
+                        borderLeft={'1px'}
+                    >
+                        {currentFood[1].fat} g
+                    </Text>
+                </GridItem>
+                <GridItem w='115px'>
+                    <Text
+                        textColor={'white'}
+                        mt={'15px'}
+                        textAlign={'center'}
+                        borderLeft={'1px'}
+                    >
+                        {currentFood[1].saturatedFat} g
+                    </Text>
+                </GridItem>
+                <GridItem w='115px'>
+                    <Text
+                        textColor={'white'}
+                        mt={'15px'}
+                        textAlign={'center'}
+                        borderLeft={'1px'}
+                    >
+                        {currentFood[1].carbohydrate} g
+                    </Text>
+                </GridItem>
+                <GridItem w='115px'>
+                    <Text
+                        textColor={'white'}
+                        mt={'15px'}
+                        textAlign={'center'}
+                        borderLeft={'1px'}
+                    >
+                        {currentFood[1].sugar} g
+                    </Text>
+                </GridItem>
+                <GridItem w='115px'>
+                    <Text
+                        textColor={'white'}
+                        mt={'15px'}
+                        textAlign={'center'}
+                        borderLeft={'1px'}
+                    >
+                        {currentFood[1].protein} g
+                    </Text>
+                </GridItem>
+            </Grid>
             <GridItem>
                 <IconButton
                     size={'sm'}
