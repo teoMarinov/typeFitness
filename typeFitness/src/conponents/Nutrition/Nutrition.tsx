@@ -27,6 +27,7 @@ export type foodDetails = {
   protein: string
   saturatedFat: string
   sugar: string
+  weight: string
 }
 
 export type macroType = {

@@ -84,6 +84,7 @@ export default function FoodDetailBox({
         transition="opacity 0.1s linear"
         fontSize={"md"}
       >
+        <Text>per {food[1].weight}g: </Text>
         <Text>calories: {food[1].calories} kcal</Text>
         <Text>fats: {food[1].fat} g</Text>
         <Text>saturated fats: {food[1].saturatedFat} g</Text>
