@@ -19,15 +19,15 @@ import DIsplaySelectedFoodBot from "./DisplaySelectedFoodBotRow";
 import DisplaySelectedFoodBotRow from "./DisplaySelectedFoodBotRow";
 
 export type foodDetails = {
-  calories: string
-  carbohydrate: string
+  calories: number
+  carbohydrate: number
   date: string
-  fat: string
+  fat: number
   name: string
-  protein: string
-  saturatedFat: string
-  sugar: string
-  weight: string
+  protein: number
+  saturatedFat: number
+  sugar: number
+  weight: number
 }
 
 export type macroType = {
