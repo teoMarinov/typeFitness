@@ -22,6 +22,17 @@ export default function SelecetedFoodRow({
   currentFood,
   removeFood,
 }: propType) {
+  const handleWeightChange = (e) => {
+    const inputValue = e.target.value;
+
+    // Check if the input value is a valid number or empty string (for backspace/delete)
+    if (inputValue === "" || !isNaN(inputValue)) {
+      setWeight(Number(inputValue));
+    } else {
+      alert("You can enter only numbers");
+    }
+  };
+
   const [weight, setWeight] = useState(123);
   const [inputBoxLength, setInputBoxLength] = useState("");
 
@@ -50,7 +61,7 @@ export default function SelecetedFoodRow({
                 value={weight}
                 _hover={{}}
                 textAlign={"center"}
-                onChange={(e) => typeof e.target.value === 'number' ? setWeight(Number(e.target.value)) : alert('you can enter only numbers')}
+                onChange={handleWeightChange}
               />
               <Text
                 mt={"5px"}
@@ -75,7 +86,7 @@ export default function SelecetedFoodRow({
             textAlign={"center"}
             borderLeft={"1px"}
           >
-            {(currentFood[1].calories * weight /100).toFixed(1)} kcal
+            {((currentFood[1].calories * weight) / 100).toFixed(1)} kcal
           </Text>
         </GridItem>
         <GridItem w="115px">
@@ -85,7 +96,7 @@ export default function SelecetedFoodRow({
             textAlign={"center"}
             borderLeft={"1px"}
           >
-            {currentFood[1].fat} g
+            {((currentFood[1].fat * weight) / 100).toFixed(1)} g
           </Text>
         </GridItem>
         <GridItem w="115px">
@@ -95,7 +106,7 @@ export default function SelecetedFoodRow({
             textAlign={"center"}
             borderLeft={"1px"}
           >
-            {currentFood[1].saturatedFat} g
+            {((currentFood[1].saturatedFat * weight) / 100).toFixed(1)} g
           </Text>
         </GridItem>
         <GridItem w="115px">
@@ -105,7 +116,7 @@ export default function SelecetedFoodRow({
             textAlign={"center"}
             borderLeft={"1px"}
           >
-            {currentFood[1].carbohydrate} g
+            {((currentFood[1].carbohydrate * weight) / 100).toFixed(1)} g
           </Text>
         </GridItem>
         <GridItem w="115px">
@@ -115,7 +126,7 @@ export default function SelecetedFoodRow({
             textAlign={"center"}
             borderLeft={"1px"}
           >
-            {currentFood[1].sugar} g
+            {((currentFood[1].sugar * weight) / 100).toFixed(1)} g
           </Text>
         </GridItem>
         <GridItem w="115px">
@@ -125,7 +136,7 @@ export default function SelecetedFoodRow({
             textAlign={"center"}
             borderLeft={"1px"}
           >
-            {currentFood[1].protein} g
+            {((currentFood[1].protein * weight) / 100).toFixed(1)} g
           </Text>
         </GridItem>
       </Grid>
