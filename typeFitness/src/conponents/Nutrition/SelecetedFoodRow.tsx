@@ -22,15 +22,14 @@ export default function SelecetedFoodRow({
   currentFood,
   removeFood,
 }: propType) {
-  const [value, setValue] = useState(123);
+  const [weight, setWeight] = useState(123);
   const [inputBoxLength, setInputBoxLength] = useState("");
 
-  console.log(value);
   useEffect(() => {
-    value.toString().length > 2
-      ? setInputBoxLength(`${value.toString().length * 9}px`)
+    weight.toString().length > 2
+      ? setInputBoxLength(`${weight.toString().length * 9}px`)
       : setInputBoxLength("20px");
-  }, [value]);
+  }, [weight]);
   return (
     <HStack ml={"40px"} mr={"10px"}>
       <Grid templateColumns="repeat(9, 0fr)" h="50px">
@@ -48,10 +47,10 @@ export default function SelecetedFoodRow({
                 rounded={"none"}
                 borderBottom="2px solid rgba(195, 195, 195, 0.3)"
                 focusBorderColor="none"
-                value={value}
+                value={weight}
                 _hover={{}}
                 textAlign={"center"}
-                onChange={(e) => setValue(Number(e.target.value))}
+                onChange={(e) => typeof e.target.value === 'number' ? setWeight(Number(e.target.value)) : alert('you can enter only numbers')}
               />
               <Text
                 mt={"5px"}
@@ -76,7 +75,7 @@ export default function SelecetedFoodRow({
             textAlign={"center"}
             borderLeft={"1px"}
           >
-            {currentFood[1].calories} kcal
+            {(currentFood[1].calories * weight /100).toFixed(1)} kcal
           </Text>
         </GridItem>
         <GridItem w="115px">
