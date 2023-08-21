@@ -45,9 +45,9 @@ export default function SelecetedFoodRow({
   }, [currentFood[1].weight]);
   return (
     <HStack ml={"40px"} mr={"10px"}>
-      <Grid templateColumns="repeat(9, 0fr)" h="50px">
+      <Grid templateColumns="repeat(9, 0fr)" h="50px" ml={'10px'}>
         <GridItem w="215px">
-          <HStack mt={"8px"}>
+          <Center mt={"8px"} >
             <Text textColor={"white"} textAlign={"center"}>
               {currentFood[1].name} :
             </Text>
@@ -79,7 +79,7 @@ export default function SelecetedFoodRow({
                 g
               </Text>
             </Center>
-          </HStack>
+          </Center>
         </GridItem>
         <GridItem w="115px">
           <Text
