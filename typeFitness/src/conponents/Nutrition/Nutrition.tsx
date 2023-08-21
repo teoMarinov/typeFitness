@@ -173,7 +173,7 @@ export default function Nutrition() {
     };
 
     addData(`nutrition/${currentUser}/meals`, mealProps);
-    resetSelectedMenu()
+    resetSelectedMenu();
   };
 
   return (
@@ -225,6 +225,7 @@ export default function Nutrition() {
               <DisplaySelectedFoodTopRow
                 name={mealName}
                 editName={setMealName}
+                closeMenu={resetSelectedMenu}
               />
               <DisplaySelectedFoods
                 selectedFoods={currentSelectedFoods}
