@@ -51,7 +51,7 @@ export default function SelecetedFoodRow({
             <Text textColor={"white"} textAlign={"center"}>
               {currentFood[1].name} :
             </Text>
-            <Center textColor="white">
+            <Center textColor="white" ml={1.5}>
               <Input
                 p={0}
                 w={inputBoxLength}
