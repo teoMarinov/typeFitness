@@ -16,31 +16,33 @@ import { DeleteIcon } from "@chakra-ui/icons";
 type propType = {
   currentFood: (string & foodDetails)[];
   removeFood: any;
+  changeFoodWeight: any;
 };
 
 export default function SelecetedFoodRow({
   currentFood,
   removeFood,
+  changeFoodWeight,
 }: propType) {
+
 
   const handleWeightChange = (e: any) => {
     const inputValue = e.target.value;
 
     if (inputValue === "" || !isNaN(inputValue)) {
-      setWeight(Number(inputValue));
+      changeFoodWeight(currentFood[0] ,Number(inputValue));
     } else {
       alert("You can enter only numbers");
     }
   };
 
-  const [weight, setWeight] = useState(123);
   const [inputBoxLength, setInputBoxLength] = useState("");
 
   useEffect(() => {
-    weight.toString().length > 2
-      ? setInputBoxLength(`${weight.toString().length * 9}px`)
+    currentFood[1].weight.toString().length > 2
+      ? setInputBoxLength(`${currentFood[1].weight.toString().length * 9}px`)
       : setInputBoxLength("20px");
-  }, [weight]);
+  }, [currentFood[1].weight]);
   return (
     <HStack ml={"40px"} mr={"10px"}>
       <Grid templateColumns="repeat(9, 0fr)" h="50px">
@@ -58,7 +60,7 @@ export default function SelecetedFoodRow({
                 rounded={"none"}
                 borderBottom="2px solid rgba(195, 195, 195, 0.3)"
                 focusBorderColor="none"
-                value={weight}
+                value={currentFood[1].weight}
                 _hover={{}}
                 textAlign={"center"}
                 onChange={handleWeightChange}
@@ -86,7 +88,7 @@ export default function SelecetedFoodRow({
             textAlign={"center"}
             borderLeft={"1px"}
           >
-            {((currentFood[1].calories * weight) / 100).toFixed(1)} kcal
+            {((currentFood[1].calories * currentFood[1].weight) / 100).toFixed(1)} kcal
           </Text>
         </GridItem>
         <GridItem w="115px">
@@ -96,7 +98,7 @@ export default function SelecetedFoodRow({
             textAlign={"center"}
             borderLeft={"1px"}
           >
-            {((currentFood[1].fat * weight) / 100).toFixed(1)} g
+            {((currentFood[1].fat * currentFood[1].weight) / 100).toFixed(1)} g
           </Text>
         </GridItem>
         <GridItem w="115px">
@@ -106,7 +108,7 @@ export default function SelecetedFoodRow({
             textAlign={"center"}
             borderLeft={"1px"}
           >
-            {((currentFood[1].saturatedFat * weight) / 100).toFixed(1)} g
+            {((currentFood[1].saturatedFat * currentFood[1].weight) / 100).toFixed(1)} g
           </Text>
         </GridItem>
         <GridItem w="115px">
@@ -116,7 +118,7 @@ export default function SelecetedFoodRow({
             textAlign={"center"}
             borderLeft={"1px"}
           >
-            {((currentFood[1].carbohydrate * weight) / 100).toFixed(1)} g
+            {((currentFood[1].carbohydrate * currentFood[1].weight) / 100).toFixed(1)} g
           </Text>
         </GridItem>
         <GridItem w="115px">
@@ -126,7 +128,7 @@ export default function SelecetedFoodRow({
             textAlign={"center"}
             borderLeft={"1px"}
           >
-            {((currentFood[1].sugar * weight) / 100).toFixed(1)} g
+            {((currentFood[1].sugar * currentFood[1].weight) / 100).toFixed(1)} g
           </Text>
         </GridItem>
         <GridItem w="115px">
@@ -136,7 +138,7 @@ export default function SelecetedFoodRow({
             textAlign={"center"}
             borderLeft={"1px"}
           >
-            {((currentFood[1].protein * weight) / 100).toFixed(1)} g
+            {((currentFood[1].protein * currentFood[1].weight) / 100).toFixed(1)} g
           </Text>
         </GridItem>
       </Grid>
