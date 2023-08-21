@@ -144,7 +144,6 @@ export default function Nutrition() {
     editedWeight.map((food: string & foodDetails[]) => {
       if (food[0] === id) food[1].weight = newVal;
     });
-    console.log(editedWeight);
     setCurrentSelecetedFoods(editedWeight);
   };
 
@@ -167,8 +166,7 @@ export default function Nutrition() {
       ingredients,
     };
 
-    if(!ingredients) return alert('you must select at least 1 food')
-    console.log(mealProps);
+    addData(`nutrition/${currentUser}/meals`, mealProps)
   };
 
   return (
