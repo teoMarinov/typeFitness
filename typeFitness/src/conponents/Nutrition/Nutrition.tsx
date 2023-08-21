@@ -129,13 +129,18 @@ export default function Nutrition() {
     setCurrentSelecetedFoods([...currentSelectedFoods, food]);
   };
 
+  const resetSelectedMenu = () => {
+    setMealName("");
+    setCurrentSelecetedFoods([]);
+  };
   const removeFromSelected = (id: string) => {
-    if (currentSelectedFoods.length === 1) return setCurrentSelecetedFoods([]);
+    if (currentSelectedFoods.length === 1) return resetSelectedMenu();
     const editedArr = currentSelectedFoods.filter(
       (food: string & foodDetails) => {
         return id !== food[0];
       }
     );
+
     setCurrentSelecetedFoods(editedArr);
   };
 
@@ -148,11 +153,12 @@ export default function Nutrition() {
   };
 
   const handleSave = () => {
+    if (!mealName) return alert("you must enter name!");
+
     const ingredients: foodDetails[] = [];
     currentSelectedFoods.map((food: string & foodDetails[]) => {
       ingredients.push(food[1]);
     });
-    if (!mealName) return alert("you must enter name!");
 
     const mealProps = {
       name: mealName,
@@ -166,7 +172,8 @@ export default function Nutrition() {
       ingredients,
     };
 
-    addData(`nutrition/${currentUser}/meals`, mealProps)
+    addData(`nutrition/${currentUser}/meals`, mealProps);
+    resetSelectedMenu()
   };
 
   return (
