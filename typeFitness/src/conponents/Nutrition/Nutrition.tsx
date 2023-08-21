@@ -12,10 +12,10 @@ import ListFoods from "./ListFoods";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import readData from "../../utils/readData";
+import addData from "../../utils/addData";
 import FoodDetailBox from "./FoodDetailBox";
 import DisplaySelectedFoods from "./DisplaySelectedFoods";
 import DisplaySelectedFoodTopRow from "./DisplaySelectedFoodTopRow";
-import DIsplaySelectedFoodBot from "./DisplaySelectedFoodBotRow";
 import DisplaySelectedFoodBotRow from "./DisplaySelectedFoodBotRow";
 
 export type foodDetails = {
@@ -63,7 +63,7 @@ export default function Nutrition() {
     .toFixed(1);
   const totalSaturatedFat = currentSelectedFoods
     .reduce((acc, food) => {
-      acc += (food[1].saturatedFat * food[1].weight) / 100; 
+      acc += (food[1].saturatedFat * food[1].weight) / 100;
       acc.toFixed(1);
       return acc;
     }, 0)
@@ -149,9 +149,10 @@ export default function Nutrition() {
   };
 
   const handleSave = () => {
-    const ingredients = currentSelectedFoods.reduce(
-      (acc, food: string & foodDetails[]) => {}
-    );
+    const ingredients: foodDetails[] = [];
+    currentSelectedFoods.map((food: string & foodDetails[]) => {
+      ingredients.push(food[1]);
+    });
     if (!mealName) return alert("you must enter name!");
 
     const mealProps = {
@@ -166,6 +167,7 @@ export default function Nutrition() {
       ingredients,
     };
 
+    if(!ingredients) return alert('you must select at least 1 food')
     console.log(mealProps);
   };
 
