@@ -9,7 +9,6 @@ import {
     VStack
 } from "@chakra-ui/react"
 import SelecetedFoodRow from "./SelecetedFoodRow"
-import DisplaySelectedFoodTopRow from "./DisplaySelectedFoodTopRow"
 
 export type weightsType = {
     [key:string]: string
