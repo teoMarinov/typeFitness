@@ -49,27 +49,32 @@ export default function Nutrition() {
 
 
   const totalCalories = currentSelectedFoods.reduce((acc, food: string & macroType[]) => {
-    acc += food[1].calories
+    acc += food[1].calories * food[1].weight / 100
+    acc.toFixed(1)
     return acc
   }, 0).toFixed(1)
   const totalFat = currentSelectedFoods.reduce((acc, food) => {
-    acc += food[1].fat
+    acc += food[1].fat * food[1].weight / 100
+    acc.toFixed(1)
     return acc
   }, 0).toFixed(1)
   const totalSaturatedFat = currentSelectedFoods.reduce((acc, food) => {
     acc += food[1].saturatedFat
+    acc.toFixed(1)
     return acc
   }, 0).toFixed(1)
   const totalCarbohydrates = currentSelectedFoods.reduce((acc, food) => {
-    acc += food[1].carbohydrate
+    acc += food[1].carbohydrate * food[1].weight / 100
+    acc.toFixed(1)
     return acc
   }, 0).toFixed(1)
   const totalSugar = currentSelectedFoods.reduce((acc, food) => {
-    acc += food[1].sugar
+    acc += food[1].sugar * food[1].weight / 100
     return acc
   }, 0).toFixed(1)
   const totalProtein = currentSelectedFoods.reduce((acc, food) => {
-    acc += food[1].protein
+    acc += food[1].protein * food[1].weight / 100 
+    acc.toFixed(1)
     return acc
   }, 0).toFixed(1)
 
