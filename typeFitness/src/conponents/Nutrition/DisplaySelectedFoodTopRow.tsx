@@ -99,6 +99,7 @@ export default function DisplaySelectedFoodTopRow({
       <IconButton
         size={"sm"}
         mt={"10px"}
+        mb={"3px"}
         aria-label="Delete"
         _hover={{ bg: "rgba(70, 70, 70, 0.81)" }}
         bg={"none"}
