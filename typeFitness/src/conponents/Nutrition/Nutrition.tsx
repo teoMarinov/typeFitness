@@ -47,7 +47,6 @@ export default function Nutrition() {
   const [currentSelectedFoods, setCurrentSelecetedFoods] = useState([])
   const [mealName, setMealName] = useState('')
 
-console.log(displayData)
 
   const totalCalories = currentSelectedFoods.reduce((acc, food: string & macroType[]) => {
     acc += food[1].calories
@@ -124,6 +123,17 @@ console.log(displayData)
   }
 
 
+  const changeFoodWeight = (id: string, newVal: number) => {
+    const editedWeight: any = [...currentSelectedFoods]
+    editedWeight.map((food: string & foodDetails[]) => {
+      if (food[0] === id) food[1].weight = newVal
+    })
+    console.log(editedWeight)
+    setCurrentSelecetedFoods(editedWeight)
+  }
+
+
+
   return (
     <Box
       width="100%"
@@ -171,7 +181,7 @@ console.log(displayData)
           <Center>
             <VStack bg={'rgba(0,0,0, 0.6)'} rounded={'md'}>
               <DisplaySelectedFoodTopRow name={mealName} editName={setMealName} />
-              <DisplaySelectedFoods selectedFoods={currentSelectedFoods} removeFood={removeFromSelected}/>
+              <DisplaySelectedFoods selectedFoods={currentSelectedFoods} changeFoodWeight={changeFoodWeight} removeFood={removeFromSelected}/>
               <DisplaySelectedFoodBotRow totalMacros={totalMacros} />
             </VStack>
           </Center>
