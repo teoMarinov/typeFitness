@@ -22,10 +22,10 @@ export default function SelecetedFoodRow({
   currentFood,
   removeFood,
 }: propType) {
-  const handleWeightChange = (e) => {
+
+  const handleWeightChange = (e: any) => {
     const inputValue = e.target.value;
 
-    // Check if the input value is a valid number or empty string (for backspace/delete)
     if (inputValue === "" || !isNaN(inputValue)) {
       setWeight(Number(inputValue));
     } else {
