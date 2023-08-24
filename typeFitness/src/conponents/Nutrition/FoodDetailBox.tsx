@@ -6,7 +6,7 @@ import DeleteModal from "../Modals/DeleteModal";
 type foodType = {
   food: [string , foodDetails]
   currentUser: string;
-  addToSelected: any;
+  addToSelected: (food: [string, foodDetails]) => void;
 };
 
 export default function FoodDetailBox({
