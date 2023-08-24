@@ -25,7 +25,7 @@ export default function ListFoods({
 }: propType) {
   const [open, setOpen] = useState(false);
   const menuH = open
-    ? `${90 + Math.ceil(children.length / 5) * 320}px`
+    ? `${90 + Math.ceil(children.length / 5) * 370}px`
     : "60px";
   const handleToggleList = () => {
     if (open) {

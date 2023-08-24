@@ -29,7 +29,7 @@ export default function FoodDetailBox({
       onMouseLeave={() => {
         setToggleDetails(false);
       }}
-      height="300px"
+      height="350px"
       width="260px"
       bg="rgba(20, 20, 20, 0.3)"
       style={{
