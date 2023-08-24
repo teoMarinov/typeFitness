@@ -16,10 +16,7 @@ type propType = {
   setSearchInput: any;
 };
 
-export default function ListFoods({
-  children,
-  setSearchInput,
-}: propType) {
+export default function ListFoods({ children, setSearchInput }: propType) {
   const [open, setOpen] = useState(false);
   const menuH = open
     ? `${90 + Math.ceil(children.length / 5) * 320}px`
@@ -56,32 +53,43 @@ export default function ListFoods({
         overflow={"hidden"}
       >
         <Center
-          position={"relative"}
           _hover={{ cursor: "pointer" }}
           onClick={handleToggleList}
           mt="2"
         >
           {open && (
-            <HStack mr={"270px"} pos={"absolute"}>
+            <HStack mr={"245px"} pos={"absolute"}>
               <Button
                 mt={"10px"}
+                bg={"none"}
+                textColor={"white"}
+                pos={"absolute"}
+                left={"-268px"}
                 onClick={(e) => {
                   e.stopPropagation();
                 }}
+                _hover={{ bg: "#494949" }}
               >
                 foods
               </Button>
               <Button
                 mt={"10px"}
+                bg={"none"}
+                textColor={"white"}
+                pos={"absolute"}
+                left={"-195px"}
                 onClick={(e) => {
                   e.stopPropagation();
                 }}
+                _hover={{ bg: "#494949" }}
               >
                 meals
               </Button>
               <Input
                 w={"400px"}
                 mt={"10px"}
+                left={"-85px"}
+                pos={"absolute"}
                 transition="opacity 0.1s linear"
                 onClick={(e) => e.stopPropagation()}
                 onChange={(e) => setSearchInput(e.target.value)}
