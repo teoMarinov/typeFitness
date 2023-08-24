@@ -1,11 +1,5 @@
-import {
-  Box,
-  Button,
-  IconButton,
-  Center,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Box, Button, Center, VStack } from "@chakra-ui/react";
 import image from "../../images/Eliminating-Foul-Odors-in-restaurant-kitchen-scaled.jpeg";
 import AddFoodModal from "../Modals/AddFoodModal";
 import ListFoods from "./ListFoods";
@@ -48,8 +42,7 @@ export default function Nutrition() {
   const [searchInput, setSearchInput] = useState("");
   const [currentSelectedFoods, setCurrentSelecetedFoods] = useState([]);
   const [mealName, setMealName] = useState("");
-
-  console.log(currentSelectedFoods)
+  const [currentToggle, setCurrentToggle] = useState("foods");
 
   const totalCalories = currentSelectedFoods
     .reduce((acc, food: string & macroType[]) => {
@@ -106,17 +99,18 @@ export default function Nutrition() {
   const currentUser = context.userData?.handle;
 
   useEffect(() => {
-    readData(`nutrition/${currentUser}/foods`, (snapshot: Record<string, foodDetails>) => {
-      const result: dataType = Object.entries(snapshot).sort(
-        (a, b) => {
+    readData(
+      `nutrition/${currentUser}/foods`,
+      (snapshot: Record<string, foodDetails>) => {
+        const result: dataType = Object.entries(snapshot).sort((a, b) => {
           const dateA: Date = new Date(a[1].date);
           const dateB = new Date(b[1].date);
           return dateA.getTime() - dateB.getTime();
-        }
-      );
-      setData(result);
-      setDisplayData(result);
-    });
+        });
+        setData(result);
+        setDisplayData(result);
+      }
+    );
   }, [currentUser]);
 
   useEffect(() => {
@@ -128,11 +122,11 @@ export default function Nutrition() {
   }, [currentUser, data, searchInput]);
 
   const handleAddToSelected = (food: [string, foodDetails]) => {
-
-    if (currentSelectedFoods.some(item => item[0] === food[0])) {
+    if (currentSelectedFoods.some((item) => item[0] === food[0])) {
       return alert(`${food[1].name} has already been added`);
     }
-    setCurrentSelecetedFoods([...currentSelectedFoods, food]);
+    const newFood: any = [...currentSelectedFoods, food];
+    setCurrentSelecetedFoods(newFood);
   };
 
   const resetSelectedMenu = () => {
@@ -155,7 +149,7 @@ export default function Nutrition() {
     editedWeight.map((food: string & foodDetails[]) => {
       if (food[0] === id) food[1].weight = newVal;
     });
-    console.log(editedWeight)
+
     setCurrentSelecetedFoods(editedWeight);
   };
 
@@ -215,8 +209,13 @@ export default function Nutrition() {
         }}
       >
         <AddFoodModal />
-        <ListFoods setSearchInput={setSearchInput}>
-          {displayData.map((e) => (
+        <ListFoods
+          setSearchInput={setSearchInput}
+          currentToggle={currentToggle}
+          setCurrentToggle={setCurrentToggle}
+        >
+          { currentToggle === 'foods' ? 
+          (displayData.map((e) => (
             <Box key={e[0]}>
               <FoodDetailBox
                 food={e}
@@ -224,7 +223,13 @@ export default function Nutrition() {
                 addToSelected={handleAddToSelected}
               />
             </Box>
-          ))}
+          )))
+          :
+          (
+            <>meals</>
+          )
+          
+          }
         </ListFoods>
         {currentSelectedFoods.length > 0 && (
           <Center>

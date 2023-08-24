@@ -4,7 +4,6 @@ import {
   HStack,
   Input,
   SimpleGrid,
-  Spacer,
   Text,
   Button,
 } from "@chakra-ui/react";
@@ -14,9 +13,16 @@ import { useState } from "react";
 type propType = {
   children: any;
   setSearchInput: any;
+  currentToggle: string;
+  setCurrentToggle: (newToggle: string) => void;
 };
 
-export default function ListFoods({ children, setSearchInput }: propType) {
+export default function ListFoods({
+  children,
+  setSearchInput,
+  currentToggle,
+  setCurrentToggle,
+}: propType) {
   const [open, setOpen] = useState(false);
   const menuH = open
     ? `${90 + Math.ceil(children.length / 5) * 320}px`
@@ -61,27 +67,31 @@ export default function ListFoods({ children, setSearchInput }: propType) {
             <HStack mr={"245px"} pos={"absolute"}>
               <Button
                 mt={"10px"}
-                bg={"none"}
+                roundedRight={'none'}
+                bg={currentToggle == "foods" ? "#292929" : "none"}
                 textColor={"white"}
                 pos={"absolute"}
                 left={"-268px"}
                 onClick={(e) => {
                   e.stopPropagation();
+                  setCurrentToggle("foods");
                 }}
-                _hover={{ bg: "#494949" }}
-              >
+                _hover={{ bg: "#292929" }}
+                >
                 foods
               </Button>
               <Button
                 mt={"10px"}
-                bg={"none"}
+                roundedLeft={'none'}
+                bg={currentToggle == "meals" ? "#292929" : "none"}
                 textColor={"white"}
                 pos={"absolute"}
                 left={"-195px"}
                 onClick={(e) => {
                   e.stopPropagation();
+                  setCurrentToggle("meals");
                 }}
-                _hover={{ bg: "#494949" }}
+                _hover={{ bg: "#292929" }}
               >
                 meals
               </Button>

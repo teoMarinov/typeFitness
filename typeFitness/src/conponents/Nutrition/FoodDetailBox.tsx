@@ -3,17 +3,18 @@ import { Box, Center, Heading, Text, VStack } from "@chakra-ui/react";
 import { useState } from "react";
 import DeleteModal from "../Modals/DeleteModal";
 
-type foodType = {
-  food: [string , foodDetails]
+type propType = {
+  food: [string, foodDetails];
   currentUser: string;
   addToSelected: (food: [string, foodDetails]) => void;
+
 };
 
 export default function FoodDetailBox({
   food,
   currentUser,
-  addToSelected,
-}: foodType) {
+  addToSelected
+}: propType) {
   const [toggleDetails, setToggleDetails] = useState(false);
 
   const handleAddToSelected = () => {
@@ -41,7 +42,6 @@ export default function FoodDetailBox({
       }}
       rounded={"xl"}
       boxShadow="0 0 8px 1px white"
-      // position={'relative'}
       onClick={handleAddToSelected}
     >
       <VStack
