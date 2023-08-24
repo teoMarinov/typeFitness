@@ -4,7 +4,7 @@ import { useState } from "react";
 import DeleteModal from "../Modals/DeleteModal";
 
 type foodType = {
-  food: (string & foodDetails)[];
+  food: [string , foodDetails]
   currentUser: string;
   addToSelected: any;
 };

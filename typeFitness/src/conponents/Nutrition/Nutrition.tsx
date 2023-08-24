@@ -40,12 +40,16 @@ export type macroType = {
   weight: number;
 };
 
+type dataType = [string, foodDetails][];
+
 export default function Nutrition() {
-  const [data, setData] = useState([]);
-  const [displayData, setDisplayData] = useState([]);
+  const [data, setData] = useState<dataType>([]);
+  const [displayData, setDisplayData] = useState<dataType>([]);
   const [searchInput, setSearchInput] = useState("");
   const [currentSelectedFoods, setCurrentSelecetedFoods] = useState([]);
   const [mealName, setMealName] = useState("");
+
+  console.log(currentSelectedFoods)
 
   const totalCalories = currentSelectedFoods
     .reduce((acc, food: string & macroType[]) => {
@@ -55,34 +59,34 @@ export default function Nutrition() {
     }, 0)
     .toFixed(1);
   const totalFat = currentSelectedFoods
-    .reduce((acc, food) => {
+    .reduce((acc, food: string & macroType[]) => {
       acc += (food[1].fat * food[1].weight) / 100;
       acc.toFixed(1);
       return acc;
     }, 0)
     .toFixed(1);
   const totalSaturatedFat = currentSelectedFoods
-    .reduce((acc, food) => {
+    .reduce((acc, food: string & macroType[]) => {
       acc += (food[1].saturatedFat * food[1].weight) / 100;
       acc.toFixed(1);
       return acc;
     }, 0)
     .toFixed(1);
   const totalCarbohydrates = currentSelectedFoods
-    .reduce((acc, food) => {
+    .reduce((acc, food: string & macroType[]) => {
       acc += (food[1].carbohydrate * food[1].weight) / 100;
       acc.toFixed(1);
       return acc;
     }, 0)
     .toFixed(1);
   const totalSugar = currentSelectedFoods
-    .reduce((acc, food) => {
+    .reduce((acc, food: string & macroType[]) => {
       acc += (food[1].sugar * food[1].weight) / 100;
       return acc;
     }, 0)
     .toFixed(1);
   const totalProtein = currentSelectedFoods
-    .reduce((acc, food) => {
+    .reduce((acc, food: string & macroType[]) => {
       acc += (food[1].protein * food[1].weight) / 100;
       acc.toFixed(1);
       return acc;
@@ -102,12 +106,12 @@ export default function Nutrition() {
   const currentUser = context.userData?.handle;
 
   useEffect(() => {
-    readData(`nutrition/${currentUser}/foods`, (snapshot: any) => {
-      const result: (string & foodDetails)[] = Object.entries(snapshot).sort(
+    readData(`nutrition/${currentUser}/foods`, (snapshot: Record<string, foodDetails>) => {
+      const result: dataType = Object.entries(snapshot).sort(
         (a, b) => {
-          const dateA = new Date(a[1].date);
+          const dateA: Date = new Date(a[1].date);
           const dateB = new Date(b[1].date);
-          return dateA - dateB;
+          return dateA.getTime() - dateB.getTime();
         }
       );
       setData(result);
@@ -116,16 +120,18 @@ export default function Nutrition() {
   }, [currentUser]);
 
   useEffect(() => {
-    const fitleredData = data.filter((food: (string & foodDetails)[]) => {
+    const fitleredData = data.filter((food) => {
       const normalizedInput = searchInput.toLowerCase();
       return food[1].name.toLowerCase().includes(normalizedInput);
     });
     setDisplayData(fitleredData);
   }, [currentUser, data, searchInput]);
 
-  const handleAddToSelected = (food: any) => {
-    if (currentSelectedFoods.includes(food))
-      return alert(`${food[1].name} has already been addedd`);
+  const handleAddToSelected = (food: [string, foodDetails]) => {
+
+    if (currentSelectedFoods.some(item => item[0] === food[0])) {
+      return alert(`${food[1].name} has already been added`);
+    }
     setCurrentSelecetedFoods([...currentSelectedFoods, food]);
   };
 
@@ -149,6 +155,7 @@ export default function Nutrition() {
     editedWeight.map((food: string & foodDetails[]) => {
       if (food[0] === id) food[1].weight = newVal;
     });
+    console.log(editedWeight)
     setCurrentSelecetedFoods(editedWeight);
   };
 
@@ -208,7 +215,7 @@ export default function Nutrition() {
         }}
       >
         <AddFoodModal />
-        <ListFoods searchInput={searchInput} setSearchInput={setSearchInput}>
+        <ListFoods setSearchInput={setSearchInput}>
           {displayData.map((e) => (
             <Box key={e[0]}>
               <FoodDetailBox
