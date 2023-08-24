@@ -30,7 +30,7 @@ export default function FoodDetailBox({
         setToggleDetails(false);
       }}
       height="300px"
-      width="220px"
+      width="260px"
       bg="rgba(20, 20, 20, 0.3)"
       style={{
         backdropFilter: "blur(6px)",
@@ -88,7 +88,7 @@ export default function FoodDetailBox({
         <Text>calories: {food[1].calories} kcal</Text>
         <Text>fats: {food[1].fat} g</Text>
         <Text>saturated fats: {food[1].saturatedFat} g</Text>
-        <Text>carbohydrates fats: {food[1].carbohydrate} g</Text>
+        <Text>carbohydrates: {food[1].carbohydrate} g</Text>
         <Text>sugar: {food[1].sugar} g</Text>
         <Text>protein: {food[1].protein} g</Text>
       </VStack>
