@@ -1,5 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, Button, Center, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  HStack,
+  IconButton,
+  VStack,
+} from "@chakra-ui/react";
+import { AddIcon } from "@chakra-ui/icons";
 import image from "../../images/Eliminating-Foul-Odors-in-restaurant-kitchen-scaled.jpeg";
 import AddFoodModal from "../Modals/AddFoodModal";
 import ListFoods from "./ListFoods";
@@ -153,28 +161,48 @@ export default function Nutrition() {
     setCurrentSelecetedFoods(editedWeight);
   };
 
-  const handleSave = () => {
+  const handleSave = (type: string) => {
     if (!mealName) return alert("you must enter name!");
 
-    const ingredients: foodDetails[] = [];
-    currentSelectedFoods.map((food: string & foodDetails[]) => {
-      ingredients.push(food[1]);
-    });
+    if (type === "finishedMeals") {
+      const ingredients: foodDetails[] = [];
+      currentSelectedFoods.map((food: string & foodDetails[]) => {
+        ingredients.push(food[1]);
+      });
 
-    const mealProps = {
-      name: mealName,
-      calories: totalCalories,
-      fat: totalFat,
-      saturatedFat: totalSaturatedFat,
-      carbohydrates: totalCarbohydrates,
-      sugar: totalSugar,
-      protein: totalProtein,
-      date: new Date().toString(),
-      ingredients,
-    };
+      const mealProps = {
+        name: mealName,
+        calories: totalCalories,
+        fat: totalFat,
+        saturatedFat: totalSaturatedFat,
+        carbohydrates: totalCarbohydrates,
+        sugar: totalSugar,
+        protein: totalProtein,
+        date: new Date().toString(),
+        ingredients,
+      };
 
-    addData(`nutrition/${currentUser}/meals`, mealProps);
-    resetSelectedMenu();
+      addData(`nutrition/${currentUser}/finishedMeals`, mealProps);
+      resetSelectedMenu();
+    } else if (type === "meals") {
+      const mealProps = {
+        name: mealName,
+        calories: totalCalories,
+        fat: totalFat,
+        saturatedFat: totalSaturatedFat,
+        carbohydrates: totalCarbohydrates,
+        sugar: totalSugar,
+        protein: totalProtein,
+        date: new Date().toString(),
+        ingredients: currentSelectedFoods,
+      };
+
+      addData(`nutrition/${currentUser}/meals`, mealProps);
+    } else {
+      throw new Error(
+        `${type} is not valid command for handleSave Nutriotion 164`
+      );
+    }
   };
 
   return (
@@ -214,22 +242,19 @@ export default function Nutrition() {
           currentToggle={currentToggle}
           setCurrentToggle={setCurrentToggle}
         >
-          { currentToggle === 'foods' ? 
-          (displayData.map((e) => (
-            <Box key={e[0]}>
-              <FoodDetailBox
-                food={e}
-                currentUser={currentUser}
-                addToSelected={handleAddToSelected}
-              />
-            </Box>
-          )))
-          :
-          (
+          {currentToggle === "foods" ? (
+            displayData.map((e) => (
+              <Box key={e[0]}>
+                <FoodDetailBox
+                  food={e}
+                  currentUser={currentUser}
+                  addToSelected={handleAddToSelected}
+                />
+              </Box>
+            ))
+          ) : (
             <>meals</>
-          )
-          
-          }
+          )}
         </ListFoods>
         {currentSelectedFoods.length > 0 && (
           <Center>
@@ -245,9 +270,26 @@ export default function Nutrition() {
                 removeFood={removeFromSelected}
               />
               <DisplaySelectedFoodBotRow totalMacros={totalMacros} />
-              <Button colorScheme="green" mb={4} onClick={handleSave}>
-                Save
-              </Button>
+              <HStack w={"full"} pos={"relative"} h={"50px"}>
+                <Button
+                  colorScheme="green"
+                  mb={6}
+                  onClick={() => handleSave("finishedMeals")}
+                  pos={"absolute"}
+                  left={"50%"}
+                >
+                  Save
+                </Button>
+                <IconButton
+                  aria-label="Search database"
+                  icon={<AddIcon />}
+                  colorScheme="green"
+                  mb={6}
+                  pos={"absolute"}
+                  right={6}
+                  onClick={() => handleSave("meals")}
+                ></IconButton>
+              </HStack>
             </VStack>
           </Center>
         )}
