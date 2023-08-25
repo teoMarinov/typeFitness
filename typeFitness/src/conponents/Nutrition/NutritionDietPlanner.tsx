@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react"
 
 export default function NutritionDietPlanner() {
   return (
-    <Box>
+    <Box textColor={'white'}>
         Diet planner
     </Box>
   )

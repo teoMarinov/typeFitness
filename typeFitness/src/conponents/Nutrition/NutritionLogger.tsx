@@ -1,7 +1,5 @@
-import { Box } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react";
 
 export default function NutritionLogger() {
-  return (
-    <Box>Loggereer</Box>
-  )
+  return <Box textColor={"white"}>Loggereer</Box>;
 }

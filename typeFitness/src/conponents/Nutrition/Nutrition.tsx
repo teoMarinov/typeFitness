@@ -1,15 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-  Box,
-} from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import image from "../../images/Eliminating-Foul-Odors-in-restaurant-kitchen-scaled.jpeg";
 import { useState } from "react";
 import NutritionHeader from "./NutritionHeader";
 import NutritionMenu from "./NutritionMenu";
+import NutritionDietPlanner from "./NutritionDietPlanner";
+import NutritionLogger from "./NutritionLogger";
 
 export default function Nutrition() {
-
-
   const [selectedMenu, setSelectedMenu] = useState("menu");
 
   return (
@@ -44,7 +42,11 @@ export default function Nutrition() {
         }}
       >
         <NutritionHeader changeMenu={setSelectedMenu}></NutritionHeader>
-        <NutritionMenu></NutritionMenu>
+        {selectedMenu === "menu" && <NutritionMenu></NutritionMenu>}
+        {selectedMenu === "logger" && <NutritionLogger></NutritionLogger>}
+        {selectedMenu === "planner" && (
+          <NutritionDietPlanner></NutritionDietPlanner>
+        )}
       </Box>
     </Box>
   );
