@@ -21,6 +21,7 @@ import DisplaySelectedFoods from "./DisplaySelectedFoods";
 import DisplaySelectedFoodTopRow from "./DisplaySelectedFoodTopRow";
 import DisplaySelectedFoodBotRow from "./DisplaySelectedFoodBotRow";
 import MealDetailBox from "./MealDetailsBox";
+import NutritionHeader from "./NutritionHeader";
 
 export type foodDetails = {
   calories: number;
@@ -249,122 +250,123 @@ export default function Nutrition() {
   };
 
   return (
-    <Box width="100%" height="100vh">
-      <Box
-        top="0"
-        left="0"
-        width="100%"
-        mb={2}
-        height="100%"
-        position={"fixed"}
-        backgroundSize="cover"
-        backgroundImage={image}
-        backgroundPosition="center"
-        css={{
-          "&::-webkit-scrollbar": {
-            width: "6px",
-            backgroundColor: "transparent",
-          },
-        }}
-      />
+      <Box width="100%" height="100vh">
+        <Box
+          top="0"
+          left="0"
+          width="100%"
+          mb={2}
+          height="100%"
+          position={"fixed"}
+          backgroundSize="cover"
+          backgroundImage={image}
+          backgroundPosition="center"
+          css={{
+            "&::-webkit-scrollbar": {
+              width: "6px",
+              backgroundColor: "transparent",
+            },
+          }}
+        />
 
-      <Box
-        height="100%"
-        pos={"relative"}
-        overflowY="scroll"
-        css={{
-          "&::-webkit-scrollbar": {
-            width: "6px",
-            backgroundColor: "transparent",
-          },
-        }}
-      >
-        <ListFoods
-          setSearchInput={setSearchInput}
-          currentToggle={currentToggle}
-          setCurrentToggle={setCurrentToggle}
+        <Box
+          height="100%"
+          pos={"relative"}
+          overflowY="scroll"
+          css={{
+            "&::-webkit-scrollbar": {
+              width: "6px",
+              backgroundColor: "transparent",
+            },
+          }}
         >
-          {currentToggle === "foods" ? (
-            <>
-              {displayData.map((e) => (
+          <NutritionHeader></NutritionHeader>
+          <ListFoods
+            setSearchInput={setSearchInput}
+            currentToggle={currentToggle}
+            setCurrentToggle={setCurrentToggle}
+          >
+            {currentToggle === "foods" ? (
+              <>
+                {displayData.map((e) => (
+                  <Box key={e[0]}>
+                    <FoodDetailBox
+                      food={e}
+                      currentUser={currentUser}
+                      addToSelected={handleAddToSelected}
+                    />
+                  </Box>
+                ))}
+                <AddFoodModal />
+              </>
+            ) : (
+              displayData.map((e) => (
                 <Box key={e[0]}>
-                  <FoodDetailBox
-                    food={e}
+                  <MealDetailBox
+                    meal={e}
                     currentUser={currentUser}
-                    addToSelected={handleAddToSelected}
+                    addToSelected={setCurrentSelecetedFoods}
+                    addSelectedName={setMealName}
+                    hidePlus={setDisplayPlus}
                   />
                 </Box>
-              ))}
-              <AddFoodModal />
-            </>
-          ) : (
-            displayData.map((e) => (
-              <Box key={e[0]}>
-                <MealDetailBox
-                  meal={e}
-                  currentUser={currentUser}
-                  addToSelected={setCurrentSelecetedFoods}
-                  addSelectedName={setMealName}
-                  hidePlus={setDisplayPlus}
+              ))
+            )}
+          </ListFoods>
+          {currentSelectedFoods.length > 0 && (
+            <Center>
+              <VStack bg={"rgba(0,0,0, 0.6)"} rounded={"md"}>
+                <DisplaySelectedFoodTopRow
+                  name={mealName}
+                  editName={setMealName}
+                  closeMenu={resetSelectedMenu}
                 />
-              </Box>
-            ))
-          )}
-        </ListFoods>
-        {currentSelectedFoods.length > 0 && (
-          <Center>
-            <VStack bg={"rgba(0,0,0, 0.6)"} rounded={"md"}>
-              <DisplaySelectedFoodTopRow
-                name={mealName}
-                editName={setMealName}
-                closeMenu={resetSelectedMenu}
-              />
-              <DisplaySelectedFoods
-                selectedFoods={currentSelectedFoods}
-                changeFoodWeight={changeFoodWeight}
-                removeFood={removeFromSelected}
-              />
-              <DisplaySelectedFoodBotRow totalMacros={totalMacros} />
-              <HStack w={"full"} pos={"relative"} h={"50px"}>
-                <Button
-                  colorScheme="green"
-                  mb={6}
-                  onClick={() => handleSave("finishedMeals")}
-                  pos={"absolute"}
-                  left={"50%"}
-                >
-                  Save
-                </Button>
-                {displayPlus ? (
-                  <IconButton
-                    aria-label="Search database"
-                    icon={<AddIcon />}
+                <DisplaySelectedFoods
+                  selectedFoods={currentSelectedFoods}
+                  changeFoodWeight={changeFoodWeight}
+                  removeFood={removeFromSelected}
+                />
+                <DisplaySelectedFoodBotRow totalMacros={totalMacros} />
+                <HStack w={"full"} pos={"relative"} h={"50px"}>
+                  <Button
                     colorScheme="green"
                     mb={6}
+                    onClick={() => handleSave("finishedMeals")}
                     pos={"absolute"}
-                    right={6}
-                    onClick={() => {
-                      handleSave("meals");
-                      setDisplayPlus(false);
-                    }}
-                  ></IconButton>
-                ) : (
-                  <Text
-                    mb={6}
-                    pos={"absolute"}
-                    right={7}
-                    textColor={"white"}
-                    w={"60px"}
-                    textAlign={"center"}
+                    left={"50%"}
                   >
-                    saved to meals
-                  </Text>
-                )}
-              </HStack>
-            </VStack>
-          </Center>
-        )}
+                    Save
+                  </Button>
+                  {displayPlus ? (
+                    <IconButton
+                      aria-label="Search database"
+                      icon={<AddIcon />}
+                      colorScheme="green"
+                      mb={6}
+                      pos={"absolute"}
+                      right={6}
+                      onClick={() => {
+                        handleSave("meals");
+                        setDisplayPlus(false);
+                      }}
+                    ></IconButton>
+                  ) : (
+                    <Text
+                      mb={6}
+                      pos={"absolute"}
+                      right={7}
+                      textColor={"white"}
+                      w={"60px"}
+                      textAlign={"center"}
+                    >
+                      saved to meals
+                    </Text>
+                  )}
+                </HStack>
+              </VStack>
+            </Center>
+          )}
+        </Box>
       </Box>
-    </Box>
   );
 }
