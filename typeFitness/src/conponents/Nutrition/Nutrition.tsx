@@ -44,9 +44,24 @@ export type macroType = {
 
 type dataType = [string, foodDetails][];
 
+type mealDetails = {
+  calories: number;
+  fat: number;
+  saturatedFat: number;
+  carbohydrate: number;
+  sugar: number;
+  protein: number;
+  name: string;
+  date: string;
+  ingregients: dataType;
+};
+
+type mealType = [string, mealDetails][];
+
 export default function Nutrition() {
   const [data, setData] = useState<dataType>([]);
-  const [displayData, setDisplayData] = useState<dataType>([]);
+  const [mealData, setMealData] = useState<mealType>([]);
+  const [displayData, setDisplayData] = useState<dataType | mealType>([]);
   const [searchInput, setSearchInput] = useState("");
   const [currentSelectedFoods, setCurrentSelecetedFoods] = useState([]);
   const [mealName, setMealName] = useState("");
@@ -119,7 +134,28 @@ export default function Nutrition() {
         setDisplayData(result);
       }
     );
+    readData(
+      `nutrition/${currentUser}/meals`,
+      (snapshot: Record<string, foodDetails>) => {
+        const result: mealType = Object.entries(snapshot).sort((a, b) => {
+          const dateA: Date = new Date(a[1].date);
+          const dateB = new Date(b[1].date);
+          return dateA.getTime() - dateB.getTime();
+        });
+        setMealData(result);
+      }
+    );
   }, [currentUser]);
+
+  useEffect(() => {
+    if (currentToggle === "foods") {
+      setDisplayData(data)
+    } else if (currentToggle === 'meals') {
+      setDisplayData(mealData)
+    }
+  }, [currentToggle]);
+
+  console.log(displayData)
 
   useEffect(() => {
     const fitleredData = data.filter((food) => {
