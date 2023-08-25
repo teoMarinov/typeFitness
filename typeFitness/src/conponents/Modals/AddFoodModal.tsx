@@ -6,10 +6,10 @@ import {
   ModalFooter,
   ModalBody,
   Button,
-  IconButton,
+  Center,
   useDisclosure,
+  Text,
 } from "@chakra-ui/react";
-import { AddIcon } from "@chakra-ui/icons";
 import SearchFromApi from "../Nutrition/SearchFromApi";
 import { useState, useReducer, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -98,14 +98,31 @@ export default function AddFoodModal() {
         height="350px"
         boxShadow="0 0 8px 1px white"
         width="260px"
-        icon={<AddIcon />}
         textColor={"white"}
         aria-label="Delete"
         bg="rgba(20, 20, 20, 0.3)"
         _hover={{ bg: "rgba(0, 0, 0, 0.6)" }}
-        fontWeight={'bold'}
-        fontSize={'6xl'}
-      >+</Button>
+        fontWeight={"bold"}
+        fontSize={"6xl"}
+      >
+        <Center
+          w={"70px"}
+          h={"70px"}
+          borderRadius="90px"
+          border={"2px"}
+          transition="height 0.15s ease, width 0.15s ease"
+          borderColor={"white"}
+        >
+          <Text
+            textColor={"white"}
+            mb={4}
+            transition="font-size 0.1s"
+            fontSize={60}
+          >
+            +
+          </Text>
+        </Center>
+      </Button>
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered size={"md"}>
         <ModalOverlay />
