@@ -6,6 +6,7 @@ import {
   HStack,
   IconButton,
   VStack,
+  Text,
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import image from "../../images/Eliminating-Foul-Odors-in-restaurant-kitchen-scaled.jpeg";
@@ -45,7 +46,7 @@ export type macroType = {
 
 type dataType = [string, foodDetails][];
 
-type mealDetails = {
+export type mealDetails = {
   calories: number;
   fat: number;
   saturatedFat: number;
@@ -54,7 +55,7 @@ type mealDetails = {
   protein: number;
   name: string;
   date: string;
-  ingregients: dataType;
+  ingredients: dataType;
 };
 
 type mealType = [string, mealDetails][];
@@ -67,6 +68,7 @@ export default function Nutrition() {
   const [currentSelectedFoods, setCurrentSelecetedFoods] = useState([]);
   const [mealName, setMealName] = useState("");
   const [currentToggle, setCurrentToggle] = useState("foods");
+  const [displayPlus, setDisplayPlus] = useState(true);
 
   const totalCalories = currentSelectedFoods
     .reduce((acc, food: string & macroType[]) => {
@@ -290,8 +292,11 @@ export default function Nutrition() {
             : displayData.map((e) => (
                 <Box key={e[0]}>
                   <MealDetailBox
-                  food={e}
-                  currentUser={currentUser}
+                    food={e}
+                    currentUser={currentUser}
+                    addToSelected={setCurrentSelecetedFoods}
+                    addSelectedName={setMealName}
+                    hidePlus={setDisplayPlus}
                   />
                 </Box>
               ))}
@@ -320,15 +325,31 @@ export default function Nutrition() {
                 >
                   Save
                 </Button>
-                <IconButton
-                  aria-label="Search database"
-                  icon={<AddIcon />}
-                  colorScheme="green"
-                  mb={6}
-                  pos={"absolute"}
-                  right={6}
-                  onClick={() => handleSave("meals")}
-                ></IconButton>
+                {displayPlus ? (
+                  <IconButton
+                    aria-label="Search database"
+                    icon={<AddIcon />}
+                    colorScheme="green"
+                    mb={6}
+                    pos={"absolute"}
+                    right={6}
+                    onClick={() => {
+                      handleSave("meals");
+                      setDisplayPlus(false);
+                    }}
+                  ></IconButton>
+                ) : (
+                  <Text
+                    mb={6}
+                    pos={"absolute"}
+                    right={7}
+                    textColor={"white"}
+                    w={"60px"}
+                    textAlign={"center"}
+                  >
+                    saved to meals
+                  </Text>
+                )}
               </HStack>
             </VStack>
           </Center>

@@ -1,24 +1,32 @@
-import { foodDetails } from "./Nutrition";
+import { mealDetails } from "./Nutrition";
 import { Box, Center, Heading, Text, VStack } from "@chakra-ui/react";
 import { useState } from "react";
 import DeleteModal from "../Modals/DeleteModal";
 
 type propType = {
-  food: [string, foodDetails];
+  food: [string, mealDetails];
   currentUser: string;
-  addToSelected: (food: [string, foodDetails]) => void;
-
+  addToSelected: any;
+  addSelectedName: any;
+  hidePlus: any
 };
 
 export default function MealDetailBox({
   food,
   currentUser,
+  addToSelected,
+  addSelectedName,
+  hidePlus
 }: propType) {
   const [toggleDetails, setToggleDetails] = useState(false);
 
   const handleAddToSelected = () => {
-    // addToSelected(food);
+    addToSelected(food[1].ingredients);
+    addSelectedName(food[1].name)
+    hidePlus(false)
   };
+
+  console.log(food)
 
   return (
     <Center
@@ -83,8 +91,6 @@ export default function MealDetailBox({
         transition="opacity 0.1s linear"
         fontSize={"md"}
       >
-        <Text>per {food[1].weight}g: </Text>
-        <Text>calories: {food[1].calories} kcal</Text>
         <Text>fats: {food[1].fat} g</Text>
         <Text>saturated fats: {food[1].saturatedFat} g</Text>
         <Text>carbohydrates: {food[1].carbohydrate} g</Text>
