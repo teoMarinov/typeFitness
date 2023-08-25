@@ -137,6 +137,9 @@ export default function Nutrition() {
         setDisplayData(result);
       }
     );
+  }, [currentUser]);
+
+  useEffect(() => {
     readData(
       `nutrition/${currentUser}/meals`,
       (snapshot: Record<string, foodDetails>) => {
@@ -146,6 +149,7 @@ export default function Nutrition() {
           return dateA.getTime() - dateB.getTime();
         });
         setMealData(result);
+        setDisplayData(result);
       }
     );
   }, [currentUser]);
