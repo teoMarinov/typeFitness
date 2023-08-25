@@ -70,6 +70,7 @@ export default function Nutrition() {
   const [mealName, setMealName] = useState("");
   const [currentToggle, setCurrentToggle] = useState("foods");
   const [displayPlus, setDisplayPlus] = useState(true);
+  const [selectedMenu, setSelectedMenu] = useState('menu')
 
   const totalCalories = currentSelectedFoods
     .reduce((acc, food: string & macroType[]) => {
@@ -280,7 +281,7 @@ export default function Nutrition() {
             },
           }}
         >
-          <NutritionHeader></NutritionHeader>
+          <NutritionHeader changeMenu={setSelectedMenu}></NutritionHeader>
           <ListFoods
             setSearchInput={setSearchInput}
             currentToggle={currentToggle}
