@@ -181,7 +181,9 @@ export default function Nutrition() {
   const resetSelectedMenu = () => {
     setMealName("");
     setCurrentSelecetedFoods([]);
+    setDisplayPlus(true)
   };
+
   const removeFromSelected = (id: string) => {
     if (currentSelectedFoods.length === 1) return resetSelectedMenu();
     const editedArr = currentSelectedFoods.filter(
