@@ -1,5 +1,16 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
-export default function NutritionLogger() {
-  return <Box textColor={"white"}>Loggereer</Box>;
+type propType = {
+  data: any;
+};
+
+export default function NutritionLogger({ data }: propType) {
+  console.log(data);
+  return (
+    <>
+      {data.map((log: any) => (
+        <Text textColor={"white"}>{log[0]}</Text>
+      ))}
+    </>
+  );
 }

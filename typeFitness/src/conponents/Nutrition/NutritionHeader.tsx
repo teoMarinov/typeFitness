@@ -8,7 +8,7 @@ export default function NutritionHeader({ changeMenu }: propType) {
   return (
     <Flex
       w={"full"}
-      h={"40px"}
+      p={1.5}
       bg="rgba(20, 20, 20, 0.81)"
       justify={"space-around"}
     >
