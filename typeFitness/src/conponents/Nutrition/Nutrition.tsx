@@ -292,7 +292,7 @@ export default function Nutrition() {
             : displayData.map((e) => (
                 <Box key={e[0]}>
                   <MealDetailBox
-                    food={e}
+                    meal={e}
                     currentUser={currentUser}
                     addToSelected={setCurrentSelecetedFoods}
                     addSelectedName={setMealName}

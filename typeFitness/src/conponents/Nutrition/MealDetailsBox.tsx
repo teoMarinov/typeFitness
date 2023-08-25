@@ -4,7 +4,7 @@ import { useState } from "react";
 import DeleteModal from "../Modals/DeleteModal";
 
 type propType = {
-  food: [string, mealDetails];
+  meal: [string, mealDetails];
   currentUser: string;
   addToSelected: any;
   addSelectedName: any;
@@ -12,7 +12,7 @@ type propType = {
 };
 
 export default function MealDetailBox({
-  food,
+  meal,
   currentUser,
   addToSelected,
   addSelectedName,
@@ -21,12 +21,10 @@ export default function MealDetailBox({
   const [toggleDetails, setToggleDetails] = useState(false);
 
   const handleAddToSelected = () => {
-    addToSelected(food[1].ingredients);
-    addSelectedName(food[1].name)
+    addToSelected(meal[1].ingredients);
+    addSelectedName(meal[1].name)
     hidePlus(false)
   };
-
-  console.log(food)
 
   return (
     <Center
@@ -65,8 +63,8 @@ export default function MealDetailBox({
         transition="opacity 0.1s linear"
       >
         <DeleteModal
-          name={food[1].name}
-          path={`nutrition/${currentUser}/foods/${food[0]}`}
+          name={meal[1].name}
+          path={`nutrition/${currentUser}/meals/${meal[0]}`}
           unfocus={setToggleDetails}
         />
       </Box>
@@ -80,7 +78,7 @@ export default function MealDetailBox({
         opacity={toggleDetails ? "0" : "100"}
         transition="opacity 0.1s linear"
       >
-        {food[1].name}
+        {meal[1].name}
       </Heading>
 
       <VStack
@@ -91,11 +89,11 @@ export default function MealDetailBox({
         transition="opacity 0.1s linear"
         fontSize={"md"}
       >
-        <Text>fats: {food[1].fat} g</Text>
-        <Text>saturated fats: {food[1].saturatedFat} g</Text>
-        <Text>carbohydrates: {food[1].carbohydrate} g</Text>
-        <Text>sugar: {food[1].sugar} g</Text>
-        <Text>protein: {food[1].protein} g</Text>
+        <Text>fats: {meal[1].fat} g</Text>
+        <Text>saturated fats: {meal[1].saturatedFat} g</Text>
+        <Text>carbohydrates: {meal[1].carbohydrate} g</Text>
+        <Text>sugar: {meal[1].sugar} g</Text>
+        <Text>protein: {meal[1].protein} g</Text>
       </VStack>
     </Center>
   );
