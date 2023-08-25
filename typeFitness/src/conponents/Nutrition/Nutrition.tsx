@@ -181,7 +181,7 @@ export default function Nutrition() {
   const resetSelectedMenu = () => {
     setMealName("");
     setCurrentSelecetedFoods([]);
-    setDisplayPlus(true)
+    setDisplayPlus(true);
   };
 
   const removeFromSelected = (id: string) => {
@@ -279,14 +279,14 @@ export default function Nutrition() {
           },
         }}
       >
-        <AddFoodModal />
         <ListFoods
           setSearchInput={setSearchInput}
           currentToggle={currentToggle}
           setCurrentToggle={setCurrentToggle}
         >
-          {currentToggle === "foods"
-            ? displayData.map((e) => (
+          {currentToggle === "foods" ? (
+            <>
+              {displayData.map((e) => (
                 <Box key={e[0]}>
                   <FoodDetailBox
                     food={e}
@@ -294,18 +294,22 @@ export default function Nutrition() {
                     addToSelected={handleAddToSelected}
                   />
                 </Box>
-              ))
-            : displayData.map((e) => (
-                <Box key={e[0]}>
-                  <MealDetailBox
-                    meal={e}
-                    currentUser={currentUser}
-                    addToSelected={setCurrentSelecetedFoods}
-                    addSelectedName={setMealName}
-                    hidePlus={setDisplayPlus}
-                  />
-                </Box>
               ))}
+              <AddFoodModal />
+            </>
+          ) : (
+            displayData.map((e) => (
+              <Box key={e[0]}>
+                <MealDetailBox
+                  meal={e}
+                  currentUser={currentUser}
+                  addToSelected={setCurrentSelecetedFoods}
+                  addSelectedName={setMealName}
+                  hidePlus={setDisplayPlus}
+                />
+              </Box>
+            ))
+          )}
         </ListFoods>
         {currentSelectedFoods.length > 0 && (
           <Center>

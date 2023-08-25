@@ -91,18 +91,21 @@ export default function AddFoodModal() {
   };
   return (
     <>
-      <IconButton
-        top={4}
-        left={4}
+      <Button
         size={"md"}
-        pos={"absolute"}
+        rounded={"xl"}
         onClick={onOpen}
+        height="350px"
+        boxShadow="0 0 8px 1px white"
+        width="260px"
         icon={<AddIcon />}
         textColor={"white"}
         aria-label="Delete"
-        bg={"rgba(40, 40, 40, 0.81)"}
-        _hover={{ bg: "rgba(30, 30, 30, 0.81)" }}
-      />
+        bg="rgba(20, 20, 20, 0.3)"
+        _hover={{ bg: "rgba(0, 0, 0, 0.6)" }}
+        fontWeight={'bold'}
+        fontSize={'6xl'}
+      >+</Button>
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered size={"md"}>
         <ModalOverlay />
