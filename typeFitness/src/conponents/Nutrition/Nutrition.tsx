@@ -19,6 +19,7 @@ import FoodDetailBox from "./FoodDetailBox";
 import DisplaySelectedFoods from "./DisplaySelectedFoods";
 import DisplaySelectedFoodTopRow from "./DisplaySelectedFoodTopRow";
 import DisplaySelectedFoodBotRow from "./DisplaySelectedFoodBotRow";
+import MealDetailBox from "./MealDetailsBox";
 
 export type foodDetails = {
   calories: number;
@@ -149,13 +150,11 @@ export default function Nutrition() {
 
   useEffect(() => {
     if (currentToggle === "foods") {
-      setDisplayData(data)
-    } else if (currentToggle === 'meals') {
-      setDisplayData(mealData)
+      setDisplayData(data);
+    } else if (currentToggle === "meals") {
+      setDisplayData(mealData);
     }
   }, [currentToggle]);
-
-  console.log(displayData)
 
   useEffect(() => {
     const fitleredData = data.filter((food) => {
@@ -278,19 +277,24 @@ export default function Nutrition() {
           currentToggle={currentToggle}
           setCurrentToggle={setCurrentToggle}
         >
-          {currentToggle === "foods" ? (
-            displayData.map((e) => (
-              <Box key={e[0]}>
-                <FoodDetailBox
+          {currentToggle === "foods"
+            ? displayData.map((e) => (
+                <Box key={e[0]}>
+                  <FoodDetailBox
+                    food={e}
+                    currentUser={currentUser}
+                    addToSelected={handleAddToSelected}
+                  />
+                </Box>
+              ))
+            : displayData.map((e) => (
+                <Box key={e[0]}>
+                  <MealDetailBox
                   food={e}
                   currentUser={currentUser}
-                  addToSelected={handleAddToSelected}
-                />
-              </Box>
-            ))
-          ) : (
-            <>meals</>
-          )}
+                  />
+                </Box>
+              ))}
         </ListFoods>
         {currentSelectedFoods.length > 0 && (
           <Center>
