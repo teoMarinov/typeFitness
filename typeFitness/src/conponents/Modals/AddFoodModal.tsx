@@ -91,27 +91,30 @@ export default function AddFoodModal() {
   };
   return (
     <>
-      <Button
-        size={"md"}
-        rounded={"xl"}
-        onClick={onOpen}
-        height="350px"
-        boxShadow="0 0 8px 1px white"
-        width="260px"
-        textColor={"white"}
-        aria-label="Delete"
-        bg="rgba(20, 20, 20, 0.3)"
-        _hover={{ bg: "rgba(0, 0, 0, 0.6)" }}
-        fontWeight={"bold"}
-        fontSize={"6xl"}
-      >
-        <Center
-          w={"70px"}
-          h={"70px"}
+      <Center>
+        <Button
+          size={"md"}
+          rounded={"xl"}
+          height="70px"
+          boxShadow="0 0 8px 1px white"
+          width="70px"
+          textColor={"white"}
+          aria-label="Delete"
+          bg="rgba(20, 20, 20, 0.3)"
+          _hover={{
+            cursor: "pointer",
+            bg: "rgba(0, 0, 0, 0.6)",
+            width: "90px",
+            height: "90px",
+            "& > *": {
+              fontSize: "80px",
+            },
+          }}
+          transition="height 0.1s ease, width 0.1s ease"
+          fontWeight={"bold"}
+          fontSize={"6xl"}
+          onClick={onOpen}
           borderRadius="90px"
-          border={"2px"}
-          transition="height 0.15s ease, width 0.15s ease"
-          borderColor={"white"}
         >
           <Text
             textColor={"white"}
@@ -121,8 +124,8 @@ export default function AddFoodModal() {
           >
             +
           </Text>
-        </Center>
-      </Button>
+        </Button>
+      </Center>
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered size={"md"}>
         <ModalOverlay />
