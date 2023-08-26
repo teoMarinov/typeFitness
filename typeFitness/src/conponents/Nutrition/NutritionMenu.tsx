@@ -50,7 +50,7 @@ import {
     calories: number;
     fat: number;
     saturatedFat: number;
-    carbohydrate: number;
+    carbohydrates: number;
     sugar: number;
     protein: number;
     name: string;

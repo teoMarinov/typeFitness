@@ -1,4 +1,4 @@
-import { foodDetails } from "./Nutrition";
+import { foodDetails } from "./NutritionMenu";
 import { Box, Center, Heading, Text, VStack } from "@chakra-ui/react";
 import { useState } from "react";
 import DeleteModal from "../Modals/DeleteModal";

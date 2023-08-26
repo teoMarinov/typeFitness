@@ -1,5 +1,5 @@
-import { mealDetails } from "./Nutrition";
-import { Box, Center, Heading, Text, VStack } from "@chakra-ui/react";
+import { mealDetails } from "./NutritionMenu";
+import { Box, Center, HStack, Heading, Text, VStack } from "@chakra-ui/react";
 import { useState } from "react";
 import DeleteModal from "../Modals/DeleteModal";
 
@@ -27,6 +27,8 @@ export default function MealDetailBox({
     addSelectedName(meal[1].name);
     hidePlus(false);
   };
+
+  const [toggleDetailsType, setToggleDetailsType] = useState("foods");
 
   return (
     <Center
@@ -64,6 +66,36 @@ export default function MealDetailBox({
         opacity={toggleDetails ? "100" : "0"}
         transition="opacity 0.1s linear"
       >
+        <HStack pos={"relative"}>
+          <Box
+            w={"30px"}
+            h={"10px"}
+            bg={toggleDetailsType === "foods" ? "white" : "none"}
+            roundedLeft={"2xl"}
+            pos={"absolute"}
+            right={"130px"}
+            top={"9px"}
+            border="1px solid white"
+            onClick={(e) => {
+              e.stopPropagation();
+              setToggleDetailsType("foods");
+            }}
+          ></Box>
+          <Box
+            w={"30px"}
+            h={"10px"}
+            bg={toggleDetailsType === "foods" ? "none" : "white"}
+            roundedRight={"2xl"}
+            pos={"absolute"}
+            right={"100px"}
+            top={"9px"}
+            border="1px solid white"
+            onClick={(e) => {
+              e.stopPropagation();
+              setToggleDetailsType("macros");
+            }}
+          ></Box>
+        </HStack>
         <DeleteModal
           name={meal[1].name}
           path={`nutrition/${currentUser}/meals/${meal[0]}`}
@@ -91,12 +123,17 @@ export default function MealDetailBox({
         transition="opacity 0.1s linear"
         fontSize={"md"}
       >
-        {/* <Text>fats: {meal[1].fat} g</Text>
-        <Text>saturated fats: {meal[1].saturatedFat} g</Text>
-        <Text>carbohydrates: {meal[1].carbohydrate} g</Text>
-        <Text>sugar: {meal[1].sugar} g</Text>
-        <Text>protein: {meal[1].protein} g</Text> */}
-        {ingredients &&
+        {toggleDetailsType === "macros" && (
+          <>
+            <Text>fats: {meal[1].fat} g</Text>
+            <Text>saturated fats: {meal[1].saturatedFat} g</Text>
+            <Text>carbohydrates: {meal[1].carbohydrates} g</Text>
+            <Text>sugar: {meal[1].sugar} g</Text>
+            <Text>protein: {meal[1].protein} g</Text>
+          </>
+        )}
+        {toggleDetailsType === "foods" &&
+          ingredients &&
           ingredients.map((food: any) => (
             <>
               <Text>
