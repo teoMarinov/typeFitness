@@ -241,6 +241,7 @@ export default function NutritionMenu() {
         };
   
         addData(`nutrition/${currentUser}/meals`, mealProps);
+        setDisplayPlus(false);
       } else {
         throw new Error(
           `${type} is not valid command for handleSave Nutriotion 164`
@@ -316,7 +317,6 @@ export default function NutritionMenu() {
                   right={6}
                   onClick={() => {
                     handleSave("meals");
-                    setDisplayPlus(false);
                   }}
                 ></IconButton>
               ) : (
