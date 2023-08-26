@@ -272,6 +272,7 @@ export default function NutritionMenu() {
             <Box key={e[0]}>
               <MealDetailBox
                 meal={e}
+                ingredients={e[1].ingredients}
                 currentUser={currentUser}
                 addToSelected={setCurrentSelecetedFoods}
                 addSelectedName={setMealName}

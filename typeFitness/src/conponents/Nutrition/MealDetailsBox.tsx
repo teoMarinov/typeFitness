@@ -8,22 +8,24 @@ type propType = {
   currentUser: string;
   addToSelected: any;
   addSelectedName: any;
-  hidePlus: any
+  hidePlus: any;
+  ingredients: any;
 };
 
 export default function MealDetailBox({
   meal,
+  ingredients,
   currentUser,
   addToSelected,
   addSelectedName,
-  hidePlus
+  hidePlus,
 }: propType) {
   const [toggleDetails, setToggleDetails] = useState(false);
 
   const handleAddToSelected = () => {
     addToSelected(meal[1].ingredients);
-    addSelectedName(meal[1].name)
-    hidePlus(false)
+    addSelectedName(meal[1].name);
+    hidePlus(false);
   };
 
   return (
@@ -89,11 +91,19 @@ export default function MealDetailBox({
         transition="opacity 0.1s linear"
         fontSize={"md"}
       >
-        <Text>fats: {meal[1].fat} g</Text>
+        {/* <Text>fats: {meal[1].fat} g</Text>
         <Text>saturated fats: {meal[1].saturatedFat} g</Text>
         <Text>carbohydrates: {meal[1].carbohydrate} g</Text>
         <Text>sugar: {meal[1].sugar} g</Text>
-        <Text>protein: {meal[1].protein} g</Text>
+        <Text>protein: {meal[1].protein} g</Text> */}
+        {ingredients &&
+          ingredients.map((food: any) => (
+            <>
+              <Text>
+                {food[1].name}: {food[1].weight}g
+              </Text>
+            </>
+          ))}
       </VStack>
     </Center>
   );
