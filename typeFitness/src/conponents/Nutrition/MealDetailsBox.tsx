@@ -53,12 +53,30 @@ export default function MealDetailBox({
       boxShadow="0 0 8px 1px white"
       onClick={handleAddToSelected}
     >
-      <VStack
+      <HStack
         w={"full"}
         h={"100%"}
         textAlign={"center"}
         justifyContent={"center"}
-      ></VStack>
+        pos={"relative"}
+      >
+        <Box
+          h={"100%"}
+          w="50%"
+          onMouseEnter={() => setToggleDetailsType("foods")}
+          pos={"absolute"}
+          left={0}
+          roundedLeft={"xl"}
+        ></Box>
+        <Box
+          h={"100%"}
+          w="50%"
+          onMouseEnter={() => setToggleDetailsType("macros")}
+          pos={"absolute"}
+          right={0}
+          roundedRight={"xl"}
+        ></Box>
+      </HStack>
       <Box
         pos={"absolute"}
         top={1}
@@ -73,7 +91,7 @@ export default function MealDetailBox({
             bg={toggleDetailsType === "foods" ? "white" : "none"}
             roundedLeft={"2xl"}
             pos={"absolute"}
-            right={"130px"}
+            right={"127px"}
             top={"9px"}
             border="1px solid white"
             onClick={(e) => {
@@ -87,7 +105,7 @@ export default function MealDetailBox({
             bg={toggleDetailsType === "foods" ? "none" : "white"}
             roundedRight={"2xl"}
             pos={"absolute"}
-            right={"100px"}
+            right={"97px"}
             top={"9px"}
             border="1px solid white"
             onClick={(e) => {
