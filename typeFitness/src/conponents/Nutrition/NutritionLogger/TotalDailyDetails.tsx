@@ -57,7 +57,7 @@ export default function TotalDailyDetails({ data }: propType) {
   const [childrenListHeight, setChildrenListHeight] = useState(0);
 
   const listHeight = open
-    ? `${data[1].length * 96 + childrenListHeight}px`
+    ? `${data[1].length * 105 + childrenListHeight}px`
     : "0px";
 
   return (

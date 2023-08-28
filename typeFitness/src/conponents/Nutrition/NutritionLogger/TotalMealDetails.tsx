@@ -1,6 +1,14 @@
 import React from "react";
 import { foodDetails } from "../NutritionMenu";
-import { Center, Text, Grid, HStack, VStack, GridItem } from "@chakra-ui/react";
+import {
+  Center,
+  Text,
+  Grid,
+  HStack,
+  VStack,
+  GridItem,
+  Flex,
+} from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 
@@ -104,31 +112,35 @@ export default function TotalMealDetails({
           onClick={handleChangeHeight}
           paddingX={"30px"}
         >
-          <Grid
-            w={"800px"}
-            templateColumns="repeat(7, 1fr)"
-            templateRows="repeat(2, 1fr)"
-            justifyContent={"space-around"}
-            textAlign={"center"}
-          >
-            <GridItem rowSpan={2}>
-              <Text mr={"15px"} mt={"12px"}>
-                {data.name}:
-              </Text>
-            </GridItem>
-            <Text>Calories</Text>
-            <Text>Fat</Text>
-            <Text>Saturated fat</Text>
-            <Text>Carbohydrates</Text>
-            <Text>Sugar</Text>
-            <Text>Protein</Text>
-            <Text>{totalCals}</Text>
-            <Text>{totalFat}</Text>
-            <Text>{totalSaturatedFat}</Text>
-            <Text>{totalCarbohydrates}</Text>
-            <Text>{totalSugar}</Text>
-            <Text>{totalProtein}</Text>
-          </Grid>
+          <Flex w={"800px"} justifyContent={"space-around"}>
+            <Center>
+              <Text mr={"15px"}>{data.name}:</Text>
+            </Center>
+            <VStack>
+              <Text>Calories</Text>
+              <Text>{totalCals} kcal</Text>
+            </VStack>
+            <VStack>
+              <Text>fat</Text>
+              <Text>{totalFat} g</Text>
+            </VStack>
+            <VStack>
+              <Text>Saturated fat</Text>
+              <Text>{totalSaturatedFat} g</Text>
+            </VStack>
+            <VStack>
+              <Text>Carbohydrates</Text>
+              <Text>{totalCarbohydrates} g</Text>
+            </VStack>
+            <VStack>
+              <Text>Sugar</Text>
+              <Text>{totalSugar} g</Text>
+            </VStack>
+            <VStack>
+              <Text>Protein</Text>
+              <Text>{totalProtein} g</Text>
+            </VStack>
+          </Flex>
           {open ? (
             <ChevronUpIcon mb={"2px"} boxSize={6} />
           ) : (
