@@ -54,8 +54,8 @@ export default function TotalDailyDetails({ data }: propType) {
 
   const [open, setOpen] = useState(false);
 
-  const listHeight = open ? `${data[1].length} * 20px` : "0px";
-
+  const listHeight = open ? `${data[1].length * 96}px` : "0px";
+    
   return (
     <>
       <Center>
