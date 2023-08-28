@@ -47,7 +47,7 @@ export default function TotalDailyDetails({ data }: propType) {
   const totalProtein = data[1]
     .reduce((acc: number, meal: mealDetails) => {
       acc += Number(meal.protein);
-      console.log(acc, meal.protein)
+      console.log(acc, meal.protein);
       return acc;
     }, 0)
     .toFixed(1);
@@ -55,7 +55,7 @@ export default function TotalDailyDetails({ data }: propType) {
   const [open, setOpen] = useState(false);
 
   const listHeight = open ? `${data[1].length * 96}px` : "0px";
-    
+
   return (
     <>
       <Center>
@@ -96,7 +96,12 @@ export default function TotalDailyDetails({ data }: propType) {
           )}
         </HStack>
       </Center>
-      <VStack h={listHeight} overflow={"hidden"} transition="height 0.2s ease">
+      <VStack
+        h={listHeight}
+        overflow={"hidden"}
+        mt={"10px"}
+        transition="height 0.2s ease"
+      >
         {data[1].map((meal: any) => (
           <TotalMealDetails data={meal} />
         ))}
