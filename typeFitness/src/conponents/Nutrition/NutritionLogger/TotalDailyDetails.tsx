@@ -52,12 +52,13 @@ export default function TotalDailyDetails({ data }: propType) {
   return (
     <>
       <Center
-        bg="rgba(40, 40, 40, 0.9)"
+        bg="rgba(100, 100, 100, 0.9)"
         m={"10px"}
-        pl={"20px"}
         py={"10px"}
         rounded={"lg"}
         textColor={"white"}
+        fontSize={"lg"}
+
       >
         <Text mr={"15px"}>{data[0]}:</Text>
         <Grid
@@ -66,12 +67,12 @@ export default function TotalDailyDetails({ data }: propType) {
           w={"900px"}
           textAlign={"center"}
         >
-          <Text>calories</Text>
-          <Text>fat</Text>
-          <Text>saturated fat</Text>
-          <Text>carbohydrates</Text>
-          <Text>sugar</Text>
-          <Text>protein</Text>
+          <Text>Calories</Text>
+          <Text>Fat</Text>
+          <Text>Saturated fat</Text>
+          <Text>Carbohydrates</Text>
+          <Text>Sugar</Text>
+          <Text>Protein</Text>
           <Text>{totalCals}</Text>
           <Text>{totalFat}</Text>
           <Text>{totalSaturatedFat}</Text>

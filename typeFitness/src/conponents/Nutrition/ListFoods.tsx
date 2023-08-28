@@ -12,6 +12,7 @@ import { useState } from "react";
 
 type propType = {
   children: any;
+  numberOfElems: number;
   setSearchInput: any;
   currentToggle: string;
   setCurrentToggle: (newToggle: string) => void;
@@ -19,13 +20,15 @@ type propType = {
 
 export default function ListFoods({
   children,
+  numberOfElems,
   setSearchInput,
   currentToggle,
   setCurrentToggle,
 }: propType) {
   const [open, setOpen] = useState(false);
+
   const menuH = open
-    ? `${90 + Math.ceil(children.length / 5) * 370}px`
+    ? `${90 + Math.ceil((numberOfElems + 1) / 5 ) * 370}px`
     : "60px";
   const handleToggleList = () => {
     if (open) {
@@ -37,6 +40,8 @@ export default function ListFoods({
       setOpen(true);
     }
   };
+
+console.log()
 
   return (
     <>
@@ -54,7 +59,7 @@ export default function ListFoods({
         mt={"90px"}
         ml={"7.5%"}
         mb={"50px"}
-        transition="height 0.2s ease"
+        transition="height .2s ease"
         textAlign="center"
         overflow={"hidden"}
       >
@@ -67,7 +72,7 @@ export default function ListFoods({
             <HStack mr={"245px"} pos={"absolute"}>
               <Button
                 mt={"10px"}
-                roundedRight={'none'}
+                roundedRight={"none"}
                 bg={currentToggle == "foods" ? "#292929" : "none"}
                 textColor={"white"}
                 pos={"absolute"}
@@ -77,12 +82,12 @@ export default function ListFoods({
                   setCurrentToggle("foods");
                 }}
                 _hover={{ bg: "#292929" }}
-                >
+              >
                 foods
               </Button>
               <Button
                 mt={"10px"}
-                roundedLeft={'none'}
+                roundedLeft={"none"}
                 bg={currentToggle == "meals" ? "#292929" : "none"}
                 textColor={"white"}
                 pos={"absolute"}
