@@ -1,7 +1,8 @@
-import { Center, Text, Grid, VStack } from "@chakra-ui/react";
-import { mealDetails } from "../NutritionMenu";
+import { Center, Text, Grid, VStack, HStack } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { useState } from "react";
+import { mealDetails } from "../NutritionMenu";
+import TotalMealDetails from "./TotalMealDetails";
 
 type propType = {
   data: [string, mealDetails[]];
@@ -46,6 +47,7 @@ export default function TotalDailyDetails({ data }: propType) {
   const totalProtein = data[1]
     .reduce((acc: number, meal: mealDetails) => {
       acc += Number(meal.protein);
+      console.log(acc, meal.protein)
       return acc;
     }, 0)
     .toFixed(1);
@@ -56,44 +58,47 @@ export default function TotalDailyDetails({ data }: propType) {
 
   return (
     <>
-      <Center
-        bg="rgba(100, 100, 100, 0.9)"
-        m={"10px"}
-        py={"10px"}
-        rounded={"lg"}
-        textColor={"white"}
-        fontSize={"lg"}
-        onClick={() => setOpen(!open)}
-      >
-        <Text mr={"15px"}>{data[0]}:</Text>
-        <Grid
-          templateColumns="repeat(6, 1fr)"
-          justifyContent={"space-around"}
-          w={"900px"}
-          textAlign={"center"}
+      <Center>
+        <HStack
+          bg="rgba(100, 100, 100, 0.9)"
+          m={"10px"}
+          py={"10px"}
+          rounded={"lg"}
+          textColor={"white"}
+          fontSize={"lg"}
+          onClick={() => setOpen(!open)}
+          paddingX={"30px"}
         >
-          <Text>Calories</Text>
-          <Text>Fat</Text>
-          <Text>Saturated fat</Text>
-          <Text>Carbohydrates</Text>
-          <Text>Sugar</Text>
-          <Text>Protein</Text>
-          <Text>{totalCals}</Text>
-          <Text>{totalFat}</Text>
-          <Text>{totalSaturatedFat}</Text>
-          <Text>{totalCarbohydrates}</Text>
-          <Text>{totalSugar}</Text>
-          <Text>{totalProtein}</Text>
-        </Grid>
-        {open ? (
-          <ChevronUpIcon mb={"2px"} boxSize={6} />
-        ) : (
-          <ChevronDownIcon mb={"2px"} boxSize={6} />
-        )}
+          <Text mr={"15px"}>{data[0]}:</Text>
+          <Grid
+            w={"900px"}
+            templateColumns="repeat(6, 1fr)"
+            justifyContent={"space-around"}
+            textAlign={"center"}
+          >
+            <Text>Calories</Text>
+            <Text>Fat</Text>
+            <Text>Saturated fat</Text>
+            <Text>Carbohydrates</Text>
+            <Text>Sugar</Text>
+            <Text>Protein</Text>
+            <Text>{totalCals}</Text>
+            <Text>{totalFat}</Text>
+            <Text>{totalSaturatedFat}</Text>
+            <Text>{totalCarbohydrates}</Text>
+            <Text>{totalSugar}</Text>
+            <Text>{totalProtein}</Text>
+          </Grid>
+          {open ? (
+            <ChevronUpIcon mb={"2px"} boxSize={6} />
+          ) : (
+            <ChevronDownIcon mb={"2px"} boxSize={6} />
+          )}
+        </HStack>
       </Center>
       <VStack h={listHeight} overflow={"hidden"} transition="height 0.2s ease">
         {data[1].map((meal: any) => (
-          <Text textColor={"white"}>{meal.name}</Text>
+          <TotalMealDetails data={meal} />
         ))}
       </VStack>
     </>
