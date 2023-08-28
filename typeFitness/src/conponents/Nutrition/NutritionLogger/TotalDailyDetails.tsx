@@ -1,6 +1,7 @@
-import { Center, SimpleGrid, Text, VStack } from "@chakra-ui/react";
+import { Center, Text, Grid, VStack } from "@chakra-ui/react";
 import { mealDetails } from "../NutritionMenu";
-import { Box, Flex, Grid, GridItem } from "@chakra-ui/react";
+import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
+import { useState } from "react";
 
 type propType = {
   data: [string, mealDetails[]];
@@ -49,6 +50,10 @@ export default function TotalDailyDetails({ data }: propType) {
     }, 0)
     .toFixed(1);
 
+  const [open, setOpen] = useState(false);
+
+  const listHeight = open ? `${data[1].length} * 20px` : "0px";
+
   return (
     <>
       <Center
@@ -58,7 +63,7 @@ export default function TotalDailyDetails({ data }: propType) {
         rounded={"lg"}
         textColor={"white"}
         fontSize={"lg"}
-
+        onClick={() => setOpen(!open)}
       >
         <Text mr={"15px"}>{data[0]}:</Text>
         <Grid
@@ -80,7 +85,17 @@ export default function TotalDailyDetails({ data }: propType) {
           <Text>{totalSugar}</Text>
           <Text>{totalProtein}</Text>
         </Grid>
+        {open ? (
+          <ChevronUpIcon mb={"2px"} boxSize={6} />
+        ) : (
+          <ChevronDownIcon mb={"2px"} boxSize={6} />
+        )}
       </Center>
+      <VStack h={listHeight} overflow={"hidden"} transition="height 0.2s ease">
+        {data[1].map((meal: any) => (
+          <Text textColor={"white"}>{meal.name}</Text>
+        ))}
+      </VStack>
     </>
   );
 }
