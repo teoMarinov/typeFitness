@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { useState } from "react";
+import TotalFoodDetails from "./TotalFoodDetails";
 
 type dataType = {
   calories: number;
@@ -81,7 +82,7 @@ export default function TotalMealDetails({
 
   const [listHeight, setListHeight] = useState<string>("0px");
 
-  const childrenHeight = data.ingredients.length * 96;
+  const childrenHeight = data.ingredients.length * 93;
 
   const openList = () => {
     setListHeight(`${childrenHeight}px`);
@@ -103,8 +104,8 @@ export default function TotalMealDetails({
     <>
       <Center>
         <HStack
-          bg="rgba(100, 100, 100, 0.9)"
-          m={"5px"}
+          bg="rgba(50, 50, 50, 0.9)"
+          m={"2px"}
           py={"10px"}
           rounded={"lg"}
           textColor={"white"}
@@ -114,7 +115,7 @@ export default function TotalMealDetails({
         >
           <Flex w={"800px"} justifyContent={"space-around"}>
             <Center>
-              <Text mr={"15px"}>{data.name}:</Text>
+              <Text mr={"15px"}>{data.name} :</Text>
             </Center>
             <VStack>
               <Text>Calories</Text>
@@ -150,7 +151,7 @@ export default function TotalMealDetails({
       </Center>
       <VStack h={listHeight} overflow={"hidden"} transition="height 0.2s ease">
         {data.ingredients.map((food: foodDetails) => (
-          <Text textColor={"white"}>{food.name}</Text>
+          <TotalFoodDetails data={food} />
         ))}
       </VStack>
     </>

@@ -57,14 +57,14 @@ export default function TotalDailyDetails({ data }: propType) {
   const [childrenListHeight, setChildrenListHeight] = useState(0);
 
   const listHeight = open
-    ? `${data[1].length * 105 + childrenListHeight}px`
+    ? `${data[1].length * 101.5 + childrenListHeight}px`
     : "0px";
 
   return (
     <>
       <Center>
         <HStack
-          bg="rgba(100, 100, 100, 0.9)"
+          bg="rgba(70, 70, 70, 0.9)"
           m={"10px"}
           py={"10px"}
           rounded={"lg"}
@@ -73,7 +73,7 @@ export default function TotalDailyDetails({ data }: propType) {
           onClick={() => setOpen(!open)}
           paddingX={"30px"}
         >
-          <Text mr={"15px"}>{data[0]}:</Text>
+          <Text mr={"15px"}>{data[0]} :</Text>
           <Flex w={"900px"} justifyContent={"space-around"}>
             <VStack>
               <Text>Calories</Text>
