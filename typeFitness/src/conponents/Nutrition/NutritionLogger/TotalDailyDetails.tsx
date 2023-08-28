@@ -1,4 +1,4 @@
-import { Center, Text, Grid, VStack, HStack } from "@chakra-ui/react";
+import { Center, Text, Grid, VStack, HStack, Flex } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 import { mealDetails } from "../NutritionMenu";
@@ -74,25 +74,32 @@ export default function TotalDailyDetails({ data }: propType) {
           paddingX={"30px"}
         >
           <Text mr={"15px"}>{data[0]}:</Text>
-          <Grid
-            w={"900px"}
-            templateColumns="repeat(6, 1fr)"
-            justifyContent={"space-around"}
-            textAlign={"center"}
-          >
-            <Text>Calories</Text>
-            <Text>Fat</Text>
-            <Text>Saturated fat</Text>
-            <Text>Carbohydrates</Text>
-            <Text>Sugar</Text>
-            <Text>Protein</Text>
-            <Text>{totalCals}</Text>
-            <Text>{totalFat}</Text>
-            <Text>{totalSaturatedFat}</Text>
-            <Text>{totalCarbohydrates}</Text>
-            <Text>{totalSugar}</Text>
-            <Text>{totalProtein}</Text>
-          </Grid>
+          <Flex w={"900px"} justifyContent={"space-around"}>
+            <VStack>
+              <Text>Calories</Text>
+              <Text>{totalCals} kcal</Text>
+            </VStack>
+            <VStack>
+              <Text>fat</Text>
+              <Text>{totalFat} g</Text>
+            </VStack>
+            <VStack>
+              <Text>Saturated fat</Text>
+              <Text>{totalSaturatedFat} g</Text>
+            </VStack>
+            <VStack>
+              <Text>Carbohydrates</Text>
+              <Text>{totalCarbohydrates} g</Text>
+            </VStack>
+            <VStack>
+              <Text>Sugar</Text>
+              <Text>{totalSugar} g</Text>
+            </VStack>
+            <VStack>
+              <Text>Protein</Text>
+              <Text>{totalProtein} g</Text>
+            </VStack>
+          </Flex>
           {open ? (
             <ChevronUpIcon mb={"2px"} boxSize={6} />
           ) : (
