@@ -5,7 +5,7 @@ import { useEffect, useState, useContext } from "react";
 import NutritionHeader from "./NutritionHeader";
 import NutritionMenu from "./NutritionMenu";
 import NutritionDietPlanner from "./NutritionDietPlanner";
-import NutritionLogger from "./NutritionLogger";
+import NutritionLogger from "./NutritionLogger/NutritionLogger";
 import { AuthContext } from "../../context/AuthContext";
 import readData from "../../utils/readData";
 
