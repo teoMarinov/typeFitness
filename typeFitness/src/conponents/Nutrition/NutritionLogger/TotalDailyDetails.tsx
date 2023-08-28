@@ -54,7 +54,11 @@ export default function TotalDailyDetails({ data }: propType) {
 
   const [open, setOpen] = useState(false);
 
-  const listHeight = open ? `${data[1].length * 96}px` : "0px";
+  const [childrenListHeight, setChildrenListHeight] = useState(0);
+
+  const listHeight = open
+    ? `${data[1].length * 96 + childrenListHeight}px`
+    : "0px";
 
   return (
     <>
@@ -103,7 +107,11 @@ export default function TotalDailyDetails({ data }: propType) {
         transition="height 0.2s ease"
       >
         {data[1].map((meal: any) => (
-          <TotalMealDetails data={meal} />
+          <TotalMealDetails
+            data={meal}
+            childrenListHeight={childrenListHeight}
+            setChildrenListHeight={setChildrenListHeight}
+          />
         ))}
       </VStack>
     </>

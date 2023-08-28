@@ -1,30 +1,34 @@
 import React from "react";
-import {  foodDetails } from "../NutritionMenu";
+import { foodDetails } from "../NutritionMenu";
 import { Center, Text, Grid, HStack, VStack, GridItem } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 
-
 type dataType = {
-    calories: number;
-    fat: number;
-    saturatedFat: number;
-    carbohydrates: number;
-    sugar: number;
-    protein: number;
-    name: string;
-    date: string;
-    ingredients: foodDetails[]
-}
-
-type propType = {
-  data: dataType
+  calories: number;
+  fat: number;
+  saturatedFat: number;
+  carbohydrates: number;
+  sugar: number;
+  protein: number;
+  name: string;
+  date: string;
+  ingredients: foodDetails[];
 };
 
-export default function TotalMealDetails({ data }: propType) {
+type propType = {
+  data: dataType;
+  setChildrenListHeight: (height: number) => void;
+  childrenListHeight: number;
+};
+
+export default function TotalMealDetails({
+  data,
+  childrenListHeight,
+  setChildrenListHeight,
+}: propType) {
   const totalCals = data.ingredients
     .reduce((acc: number, meal: foodDetails) => {
-      console.log(meal);
       acc += Number(meal.calories);
       return acc;
     }, 0)
@@ -67,7 +71,25 @@ export default function TotalMealDetails({ data }: propType) {
 
   const [open, setOpen] = useState(false);
 
-  const listHeight = open ? `${data.ingredients.length} * 20px` : "0px";
+  const [listHeight, setListHeight] = useState<string>("0px");
+
+  const childrenHeight = data.ingredients.length * 96;
+
+  const openList = () => {
+    setListHeight(`${childrenHeight}px`);
+    setChildrenListHeight(childrenListHeight + childrenHeight);
+  };
+
+  const closeList = () => {
+    setListHeight("0px");
+    setChildrenListHeight(childrenListHeight - childrenHeight);
+  };
+
+  const handleChangeHeight = () => {
+    setOpen(!open);
+
+    open ? closeList() : openList();
+  };
 
   return (
     <>
@@ -79,7 +101,7 @@ export default function TotalMealDetails({ data }: propType) {
           rounded={"lg"}
           textColor={"white"}
           fontSize={"lg"}
-          onClick={() => setOpen(!open)}
+          onClick={handleChangeHeight}
           paddingX={"30px"}
         >
           <Grid
