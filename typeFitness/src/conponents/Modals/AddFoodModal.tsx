@@ -91,7 +91,7 @@ export default function AddFoodModal() {
   };
   return (
     <>
-      <Center>
+      <Center h="350px">
         <Button
           size={"md"}
           rounded={"xl"}
