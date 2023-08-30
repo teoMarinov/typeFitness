@@ -13,7 +13,7 @@ import {
 import SearchFromApi from "../Nutrition/NutritionMenu/SearchFromApi";
 import { useState, useReducer, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import AddCustom from "../Nutrition/AddCustom";
+import AddCustom from "../Nutrition/NutritionMenu/AddCustom";
 import addData from "../../utils/addData";
 
 export const ACTION = {
