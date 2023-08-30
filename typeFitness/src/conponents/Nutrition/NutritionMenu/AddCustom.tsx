@@ -10,7 +10,9 @@ import {
     HStack
 } from "@chakra-ui/react"
 import GridRow from "./GridRow"
-import { ACTION } from "../Modals/AddFoodModal"
+import { ACTION } from "../../Modals/AddFoodModal"
+
+import <ACTION
 
 type propTypes = {
     state: any
