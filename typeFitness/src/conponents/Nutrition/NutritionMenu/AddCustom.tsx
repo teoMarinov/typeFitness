@@ -12,7 +12,6 @@ import {
 import GridRow from "./GridRow"
 import { ACTION } from "../../Modals/AddFoodModal"
 
-import <ACTION
 
 type propTypes = {
     state: any
