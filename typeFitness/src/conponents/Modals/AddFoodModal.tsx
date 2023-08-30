@@ -10,7 +10,7 @@ import {
   useDisclosure,
   Text,
 } from "@chakra-ui/react";
-import SearchFromApi from "../Nutrition/SearchFromApi";
+import SearchFromApi from "../Nutrition/NutritionMenu/SearchFromApi";
 import { useState, useReducer, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import AddCustom from "../Nutrition/AddCustom";

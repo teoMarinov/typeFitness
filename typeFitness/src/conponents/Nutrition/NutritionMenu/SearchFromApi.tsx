@@ -11,8 +11,8 @@ import {
 } from "@chakra-ui/react"
 import GridRow from "./GridRow"
 import { useState, useEffect } from "react"
-import foodFetcher from "../../utils/foodFetcher"
-import { ACTION } from "../Modals/AddFoodModal"
+import foodFetcher from "../../../utils/foodFetcher"
+import { ACTION } from "../../Modals/AddFoodModal"
 
 type propTypes = {
     moveToAddCustom: any

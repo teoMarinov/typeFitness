@@ -9,7 +9,7 @@ import {
     Link,
     HStack
 } from "@chakra-ui/react"
-import GridRow from "./NutritionMenu/GridRow"
+import GridRow from "./GridRow"
 import { ACTION } from "../Modals/AddFoodModal"
 
 type propTypes = {
