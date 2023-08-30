@@ -30,7 +30,9 @@ export default function TotalFoodDetails({ data }: propType) {
         >
           <Flex w={"750px"} justifyContent={"space-around"}>
             <Center>
-              <Text mr={"15px"}>{data.name} :</Text>
+              <Text mr={"15px"}>
+                {data.name} : {data.weight} g
+              </Text>
             </Center>
             <VStack>
               <Text>Calories</Text>
