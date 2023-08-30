@@ -9,12 +9,12 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
-import AddFoodModal from "../Modals/AddFoodModal";
-import ListFoods from "./ListFoods";
+import AddFoodModal from "../../Modals/AddFoodModal";
+import ListFoods from "../ListFoods";
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import readData from "../../utils/readData";
-import addData from "../../utils/addData";
+import { AuthContext } from "../../../context/AuthContext";
+import readData from "../../../utils/readData";
+import addData from "../../../utils/addData";
 import FoodDetailBox from "./FoodDetailBox";
 import DisplaySelectedFoods from "./DisplaySelectedFoods";
 import DisplaySelectedFoodTopRow from "./DisplaySelectedFoodTopRow";

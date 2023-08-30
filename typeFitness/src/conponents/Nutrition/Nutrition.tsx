@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/react";
 import image from "../../images/Eliminating-Foul-Odors-in-restaurant-kitchen-scaled.jpeg";
 import { useEffect, useState, useContext } from "react";
 import NutritionHeader from "./NutritionHeader";
-import NutritionMenu from "./NutritionMenu";
+import NutritionMenu from "./NutritionMenu/NutritionMenu";
 import NutritionDietPlanner from "./NutritionDietPlanner";
 import NutritionLogger from "./NutritionLogger/NutritionLogger";
 import { AuthContext } from "../../context/AuthContext";

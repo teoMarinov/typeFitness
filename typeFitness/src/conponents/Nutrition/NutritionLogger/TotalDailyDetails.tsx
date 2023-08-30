@@ -1,7 +1,7 @@
 import { Center, Text, Grid, VStack, HStack, Flex } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { useState } from "react";
-import { mealDetails } from "../NutritionMenu";
+import { mealDetails } from "../NutritionMenu/NutritionMenu";
 import TotalMealDetails from "./TotalMealDetails";
 
 type propType = {

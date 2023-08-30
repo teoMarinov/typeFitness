@@ -1,5 +1,5 @@
 import React from "react";
-import { foodDetails } from "../NutritionMenu";
+import { foodDetails } from "../NutritionMenu/NutritionMenu";
 import {
   Center,
   Text,

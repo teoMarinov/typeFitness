@@ -1,7 +1,7 @@
 import { mealDetails } from "./NutritionMenu";
 import { Box, Center, HStack, Heading, Text, VStack } from "@chakra-ui/react";
 import { useState } from "react";
-import DeleteModal from "../Modals/DeleteModal";
+import DeleteModal from "../../Modals/DeleteModal";
 
 type propType = {
   meal: [string, mealDetails];

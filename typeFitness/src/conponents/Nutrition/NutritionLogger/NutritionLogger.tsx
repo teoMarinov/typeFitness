@@ -1,5 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
-import { mealDetails } from "../NutritionMenu";
+import { mealDetails } from "../NutritionMenu/NutritionMenu";
 import TotalDailyDetails from "./TotalDailyDetails";
 
 type propType = {

@@ -8,7 +8,7 @@ import {
     Text,
     VStack
 } from "@chakra-ui/react"
-import SelecetedFoodRow from "./SelecetedFoodRow"
+import SelecetedFoodRow from "../SelecetedFoodRow"
 
 export type weightsType = {
     [key:string]: string
