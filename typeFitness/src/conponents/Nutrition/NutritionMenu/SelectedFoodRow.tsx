@@ -1,4 +1,4 @@
-import { foodDetails } from "./Nutrition";
+import { foodDetails } from "../Nutrition";
 import {
   Center,
   Grid,
@@ -19,7 +19,7 @@ type propType = {
   changeFoodWeight: any;
 };
 
-export default function SelecetedFoodRow({
+export default function SelectedFoodRow({
   currentFood,
   removeFood,
   changeFoodWeight,

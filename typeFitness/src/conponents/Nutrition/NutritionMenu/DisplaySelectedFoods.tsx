@@ -8,7 +8,7 @@ import {
     Text,
     VStack
 } from "@chakra-ui/react"
-import SelecetedFoodRow from "../SelecetedFoodRow"
+import SelectedFoodRow from "./SelectedFoodRow"
 
 export type weightsType = {
     [key:string]: string
@@ -27,7 +27,7 @@ export default function DisplaySelectedFoods({  selectedFoods, removeFood, chang
         <>
             {selectedFoods.map((currenFood: string & foodDetails) => (
                 <VStack key={currenFood[0]}>
-                    <SelecetedFoodRow currentFood={currenFood} removeFood={removeFood} changeFoodWeight={changeFoodWeight}/>
+                    <SelectedFoodRow currentFood={currenFood} removeFood={removeFood} changeFoodWeight={changeFoodWeight}/>
                 </VStack>
             ))}
         </>
