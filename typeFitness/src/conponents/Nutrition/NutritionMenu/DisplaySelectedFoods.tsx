@@ -1,11 +1,5 @@
-import { foodDetails } from "./Nutrition"
+import { foodDetails } from "./NutritionMenu"
 import {
-    Center,
-    Grid,
-    GridItem,
-    Box,
-    Input,
-    Text,
     VStack
 } from "@chakra-ui/react"
 import SelectedFoodRow from "./SelectedFoodRow"

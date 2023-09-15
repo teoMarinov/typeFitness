@@ -15,7 +15,18 @@ export default function Nutrition() {
   const context = useContext(AuthContext);
   const currentUser = context.userData?.handle;
 
-  const [loggedData, setLoggedData] = useState({});
+  const [loggedData, setLoggedData] = useState([]);
+
+  const todayFullDate = new Date().toString().split(" ");
+  const month = todayFullDate[1];
+  const day = todayFullDate[2];
+  const year = todayFullDate[3];
+
+  const today = `${month}/${day}/${year}`
+  
+  const todayLog = loggedData.find((data:any) => {
+    if(data[0] === today) return data[1]
+  })
 
 
   useEffect(() => {
@@ -27,12 +38,12 @@ export default function Nutrition() {
       });
       const result = {};
       data.map((meal: any) => {
-        const split = meal[1].date.split(' ')
-        const date = `${split[1]}/${split[2]}/${split[3]}`
-        result[date]
-        ? result[date].push(meal[1])
-        : (result[date] = [meal[1]]);
-        
+        const wholeDate = meal[1].date.split(" ");
+        const month = wholeDate[1];
+        const day = wholeDate[2];
+        const year = wholeDate[3];
+        const date = `${month}/${day}/${year}`;
+        result[date] ? result[date].push(meal[1]) : (result[date] = [meal[1]]);
       });
       setLoggedData(Object.entries(result));
     });
@@ -70,10 +81,12 @@ export default function Nutrition() {
         }}
       >
         <NutritionHeader changeMenu={setSelectedMenu}></NutritionHeader>
-        {selectedMenu === "menu" && <NutritionMenu></NutritionMenu>}
-        {selectedMenu === "logger" && <NutritionLogger data={loggedData}></NutritionLogger>}
+        {selectedMenu === "menu" && <NutritionMenu todayLoggs={todayLog}/>}
+        {selectedMenu === "logger" && (
+          <NutritionLogger data={loggedData}></NutritionLogger>
+        )}
         {selectedMenu === "planner" && (
-          <NutritionDietPlanner></NutritionDietPlanner>
+          <NutritionDietPlanner/>
         )}
       </Box>
     </Box>

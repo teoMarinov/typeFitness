@@ -47,7 +47,6 @@ export default function TotalDailyDetails({ data }: propType) {
   const totalProtein = data[1]
     .reduce((acc: number, meal: mealDetails) => {
       acc += Number(meal.protein);
-      console.log(acc, meal.protein);
       return acc;
     }, 0)
     .toFixed(1);

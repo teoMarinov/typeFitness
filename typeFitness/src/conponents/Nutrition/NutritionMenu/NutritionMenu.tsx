@@ -20,6 +20,8 @@ import DisplaySelectedFoods from "./DisplaySelectedFoods";
 import DisplaySelectedFoodTopRow from "./DisplaySelectedFoodTopRow";
 import DisplaySelectedFoodBotRow from "./DisplaySelectedFoodBotRow";
 import MealDetailBox from "./MealDetailsBox";
+import TodayDietMenu from "../TodayDietMenu/TodayDietMenu";
+import DailyMacros from "./DailyMacros";
 
 export type foodDetails = {
   calories: number;
@@ -59,52 +61,52 @@ export type mealDetails = {
 
 type mealType = [string, mealDetails][];
 
-export default function NutritionMenu() {
+export default function NutritionMenu({ todayLoggs }: any) {
   const [data, setData] = useState<dataType>([]);
   const [mealData, setMealData] = useState<mealType>([]);
   const [displayData, setDisplayData] = useState<dataType | mealType>([]);
   const [searchInput, setSearchInput] = useState("");
-  const [currentSelectedFoods, setCurrentSelecetedFoods] = useState([]);
+  const [currentSelectedFoods, setCurrentSelecetedFoods] = useState<any>([]);
   const [mealName, setMealName] = useState("");
   const [currentToggle, setCurrentToggle] = useState("foods");
   const [displayPlus, setDisplayPlus] = useState(true);
 
   const totalCalories = currentSelectedFoods
-    .reduce((acc, food: string & macroType[]) => {
+    .reduce((acc: number, food: string & macroType[]) => {
       acc += (food[1].calories * food[1].weight) / 100;
       acc.toFixed(1);
       return acc;
     }, 0)
     .toFixed(1);
   const totalFat = currentSelectedFoods
-    .reduce((acc, food: string & macroType[]) => {
+    .reduce((acc: number, food: string & macroType[]) => {
       acc += (food[1].fat * food[1].weight) / 100;
       acc.toFixed(1);
       return acc;
     }, 0)
     .toFixed(1);
   const totalSaturatedFat = currentSelectedFoods
-    .reduce((acc, food: string & macroType[]) => {
+    .reduce((acc: number, food: string & macroType[]) => {
       acc += (food[1].saturatedFat * food[1].weight) / 100;
       acc.toFixed(1);
       return acc;
     }, 0)
     .toFixed(1);
   const totalCarbohydrates = currentSelectedFoods
-    .reduce((acc, food: string & macroType[]) => {
+    .reduce((acc: number, food: string & macroType[]) => {
       acc += (food[1].carbohydrate * food[1].weight) / 100;
       acc.toFixed(1);
       return acc;
     }, 0)
     .toFixed(1);
   const totalSugar = currentSelectedFoods
-    .reduce((acc, food: string & macroType[]) => {
+    .reduce((acc: number, food: string & macroType[]) => {
       acc += (food[1].sugar * food[1].weight) / 100;
       return acc;
     }, 0)
     .toFixed(1);
   const totalProtein = currentSelectedFoods
-    .reduce((acc, food: string & macroType[]) => {
+    .reduce((acc: number, food: string & macroType[]) => {
       acc += (food[1].protein * food[1].weight) / 100;
       acc.toFixed(1);
       return acc;
@@ -192,6 +194,11 @@ export default function NutritionMenu() {
     );
 
     setCurrentSelecetedFoods(editedArr);
+  };
+
+  const handleChoseFromMenu = (meal: [string, mealDetails], name: string) => {
+    setCurrentSelecetedFoods(meal);
+    setMealName(name);
   };
 
   const changeFoodWeight = (id: string, newVal: number) => {
@@ -283,6 +290,7 @@ export default function NutritionMenu() {
           ))
         )}
       </ListFoods>
+      <TodayDietMenu chooseMeal={handleChoseFromMenu} />
       {currentSelectedFoods.length > 0 && (
         <Center>
           <VStack bg={"rgba(0,0,0, 0.6)"} rounded={"md"}>
@@ -335,6 +343,7 @@ export default function NutritionMenu() {
           </VStack>
         </Center>
       )}
+      <DailyMacros todayLoggs={todayLoggs} />
     </>
   );
 }

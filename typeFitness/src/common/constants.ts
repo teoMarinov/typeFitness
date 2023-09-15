@@ -35,3 +35,13 @@ export const MIN_GOAL_TIME_PERIOD = 0;
 export const MIN_PASSWORD_LENGTH = 6;
 export const MIN_HANDLE_LENGTH = 2;
 export const MAX_HANDLE_LENGTH = 20;
+
+export const weekDays:any = {
+    Sun: "Sunday",
+    Mon: "Monday",
+    Tue: "Tuesday",
+    Wed: "Wednesday",
+    Thu: "Thursday",
+    Fri: "Friday",
+    Sat: "Saturday",
+};

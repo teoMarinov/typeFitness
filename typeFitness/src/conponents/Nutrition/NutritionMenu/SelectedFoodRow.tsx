@@ -1,4 +1,4 @@
-import { foodDetails } from "../Nutrition";
+import { foodDetails } from "./NutritionMenu";
 import {
   Center,
   Grid,
@@ -56,7 +56,7 @@ export default function SelectedFoodRow({
                 color="white"
                 border={"none"}
                 rounded={"none"}
-                borderBottom="2px solid rgba(195, 195, 195, 0.3)"
+                borderBottom="2px solid rgba(1195, 195, 195, 0.3)"
                 focusBorderColor="none"
                 value={currentFood[1].weight}
                 _hover={{}}

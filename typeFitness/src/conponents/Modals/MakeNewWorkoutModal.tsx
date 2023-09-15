@@ -121,7 +121,7 @@ export default function MakeNewWorkoutModal({ currentUser }: TypeProp) {
                     h='52vh'
                     width={'460px'}
                     textColor={'white'}
-                    bg="rgba(0, 0, 0, 0.9)"
+                    bg="rgba(20, 20, 20, 0.9)"
                     position={'relative'}
                 >
                     <ModalBody pb={6} >

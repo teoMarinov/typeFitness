@@ -101,7 +101,7 @@ export default function EditModal({
                     h='52vh'
                     width={'460px'}
                     textColor={'white'}
-                    bg="rgba(0, 0, 0, 0.9)"
+                    bg="rgba(20, 20, 20, 0.9)"
                     position={'relative'}
                 >
                     <ModalBody 
