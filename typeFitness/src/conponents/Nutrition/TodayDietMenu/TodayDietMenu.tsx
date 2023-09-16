@@ -22,7 +22,6 @@ export default function TodayDietMenu({ chooseMeal }: propType) {
     readData(
       `diet/${currentUser}/${weekDays[currentDayOfWeek]}`,
       (snapshot: Record<string, mealDetails>) => {
-        snapshot && console.log(snapshot);
         snapshot && setTodayMenu(snapshot);
       }
     );

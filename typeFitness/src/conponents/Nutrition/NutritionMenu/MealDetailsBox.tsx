@@ -60,22 +60,6 @@ export default function MealDetailBox({
         justifyContent={"center"}
         pos={"relative"}
       >
-        <Box
-          h={"100%"}
-          w="50%"
-          onMouseEnter={() => setToggleDetailsType("foods")}
-          pos={"absolute"}
-          left={0}
-          roundedLeft={"xl"}
-        ></Box>
-        <Box
-          h={"100%"}
-          w="50%"
-          onMouseEnter={() => setToggleDetailsType("macros")}
-          pos={"absolute"}
-          right={0}
-          roundedRight={"xl"}
-        ></Box>
       </HStack>
       <Box
         pos={"absolute"}

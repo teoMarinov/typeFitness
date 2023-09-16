@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Center, Flex, Grid, GridItem } from "@chakra-ui/react";
-import Login from "./conponents/Login/Login"
+import Login from "./conponents/Login/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -15,8 +15,8 @@ import { AuthContext } from "./context/AuthContext.js";
 import Signup from "./conponents/Signup/Signup.js";
 import Profile from "./conponents/Profile/Profile.js";
 import AuthenticatedRoute from "./hoc/AuthenticatedRoute.js";
-
-
+import ExerciseLogger from "./conponents/Workouts/ExerciseLogger.js";
+import WorkoutLogger from "./conponents/WorkoutLogger/WorkoutLogger.js";
 
 function App() {
   const [user]: any = useAuthState(auth);
@@ -54,45 +54,63 @@ function App() {
     <>
       <AuthContext.Provider value={{ ...appState, setUser: setAppState }}>
         <BrowserRouter>
-          <Grid templateColumns='repeat(50, 1fr)'>
+          <Grid templateColumns="repeat(50, 1fr)">
             <GridItem
-              as='aside'
+              as="aside"
               colSpan={1}
               bg="rgba(20, 20, 20, 0.81)"
-              _hover={{bg: "rgba(10, 10, 10, 0.85)"}}
-              minHeight={'100vh'}
+              _hover={{ bg: "rgba(10, 10, 10, 0.85)" }}
+              minHeight={"100vh"}
               boxShadow="3px 0 10px rgba(0, 0, 0, 0.5)"
               zIndex={10}
             >
               <NavBar />
             </GridItem>
-            <GridItem
-              colSpan={49}
-              minHeight={'100vh'}
-            >
+            <GridItem colSpan={49} minHeight={"100vh"}>
               <Center>
                 <Routes>
                   {user && (
                     <>
-                      <Route path="/" element={
-                        <AuthenticatedRoute>
-                          <Home />
-                        </AuthenticatedRoute>
-                      } />
-                      <Route path="/workouts" element={
-                        <AuthenticatedRoute>
-                          <Workouts />
-                        </AuthenticatedRoute>} />
-                      <Route path="/nutrition" element={
-                        <AuthenticatedRoute>
-                          <Nutrition />
-                        </AuthenticatedRoute>
-                      } />
-                      <Route path="/profile" element={
-                        <AuthenticatedRoute>
-                          <Profile />
-                        </AuthenticatedRoute>
-                      } />
+                      <Route
+                        path="/"
+                        element={
+                          <AuthenticatedRoute>
+                            <Home />
+                          </AuthenticatedRoute>
+                        }
+                      />
+                      <Route
+                        path="/workouts"
+                        element={
+                          <AuthenticatedRoute>
+                            <Workouts />
+                          </AuthenticatedRoute>
+                        }
+                      />
+                      <Route
+                        path="/logger"
+                        element={
+                          <AuthenticatedRoute>
+                            <WorkoutLogger />
+                          </AuthenticatedRoute>
+                        }
+                      />
+                      <Route
+                        path="/nutrition"
+                        element={
+                          <AuthenticatedRoute>
+                            <Nutrition />
+                          </AuthenticatedRoute>
+                        }
+                      />
+                      <Route
+                        path="/profile"
+                        element={
+                          <AuthenticatedRoute>
+                            <Profile />
+                          </AuthenticatedRoute>
+                        }
+                      />
                     </>
                   )}
                   {user === null && (
@@ -109,7 +127,7 @@ function App() {
         </BrowserRouter>
       </AuthContext.Provider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
