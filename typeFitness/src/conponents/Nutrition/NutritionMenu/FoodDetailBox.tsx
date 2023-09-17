@@ -38,7 +38,7 @@ export default function FoodDetailBox({
       textAlign="center"
       _hover={{
         cursor: "pointer",
-        bg: "rgba(0, 0, 0, 0.6)",
+        bg: "rgba(45, 45, 45, 0.6)",
       }}
       rounded={"xl"}
       boxShadow="0 0 8px 1px white"

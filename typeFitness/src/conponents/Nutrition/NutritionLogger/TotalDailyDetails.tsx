@@ -63,7 +63,7 @@ export default function TotalDailyDetails({ data }: propType) {
     <>
       <Center>
         <HStack
-          bg="rgba(70, 70, 70, 0.9)"
+          bg="rgba(20, 20, 20, 0.85)"
           m={"10px"}
           py={"10px"}
           rounded={"lg"}
@@ -71,6 +71,7 @@ export default function TotalDailyDetails({ data }: propType) {
           fontSize={"lg"}
           onClick={() => setOpen(!open)}
           paddingX={"30px"}
+          userSelect={'none'}
         >
           <Text mr={"15px"}>{data[0]} :</Text>
           <Flex w={"900px"} justifyContent={"space-around"}>

@@ -20,13 +20,14 @@ export default function TotalFoodDetails({ data }: propType) {
     <>
       <Center>
         <HStack
-          bg="rgba(40, 40, 40, 0.9)"
+          bg="rgba(35, 35, 35, 0.85)"
           m={"5px"}
           py={"10px"}
           rounded={"lg"}
           textColor={"white"}
           fontSize={"lg"}
           paddingX={"30px"}
+          userSelect={'none'}
         >
           <Flex w={"750px"} justifyContent={"space-around"}>
             <Center>

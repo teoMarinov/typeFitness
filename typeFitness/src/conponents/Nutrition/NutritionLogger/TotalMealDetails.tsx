@@ -104,7 +104,7 @@ export default function TotalMealDetails({
     <>
       <Center>
         <HStack
-          bg="rgba(50, 50, 50, 0.9)"
+          bg="rgba(30, 30, 30, 0.85)"
           m={"2px"}
           py={"10px"}
           rounded={"lg"}
@@ -112,6 +112,7 @@ export default function TotalMealDetails({
           fontSize={"lg"}
           onClick={handleChangeHeight}
           paddingX={"30px"}
+          userSelect={'none'}
         >
           <Flex w={"800px"} justifyContent={"space-around"}>
             <Center>

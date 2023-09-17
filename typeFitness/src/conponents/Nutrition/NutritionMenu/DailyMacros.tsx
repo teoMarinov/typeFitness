@@ -132,7 +132,7 @@ export default function DailyMacros({ todayLoggs }: propType) {
   return (
     <>
       <Center fontSize={"xl"} textColor="white">
-        <Box bg={"rgba(0,0,0, 0.6)"} p={"20px"} mt={"50px"} rounded={'lg'}>
+        <Box bg={"rgba(20, 20, 20, 0.85)"} p={"20px"} mt={"50px"} rounded={'lg'}>
           <VStack >
             <Text mr={"30px"} mb={"10px"} fontSize={'2xl'} fontWeight={'bold'}>
               Today's macros / Diet macros :{" "}

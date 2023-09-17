@@ -7,35 +7,8 @@ import image from "../../images/old-school-gym.jpg";
 import CalenderComp from "./CalenderComp";
 
 export default function WorkoutLogger() {
-  // const [exerciseData, setExerciseData] = useState<any>({});
-
-  // const context = useContext(AuthContext);
-  // const currentUser = context.userData?.handle;
-  // useEffect(() => {
-  //   readData(`finishedWorkouts/${currentUser}`, (snapshot: any) => {
-  //     const data = Object.values(snapshot);
-  //     // const sortedData = data.reduce((acc: any, exercise: any) => {
-  //     //   const wholeDate = exercise.date.split(" ");
-  //     //   const month = wholeDate[1];
-  //     //   const day = wholeDate[2];
-  //     //   const year = wholeDate[3];
-  //     //   const date = `${month}/${day}/${year}`;
-  //     //   acc[date] ? acc[date].push(exercise) : (acc[date] = [exercise]);
-  //     //   return acc;
-  //     // }, {});
-
-  //     const standardisedData = data.map((exercise: any) => {
-  //       exercise.start = exercise.date;
-  //       exercise.end = exercise.date;
-  //       exercise.title = exercise.name;
-  //       return exercise;
-  //     });
-  //     setExerciseData(standardisedData);
-  //   });
-  // }, [currentUser]);
-
   return (
-    <Box width="100%" height="100vh" userSelect={'none'}>
+    <Box width="100%" height="100vh" userSelect={"none"}>
       <Box
         width="100%"
         height="100%"
