@@ -4,31 +4,38 @@ import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import readData from "../../utils/readData";
 import image from "../../images/old-school-gym.jpg";
+import CalenderComp from "./CalenderComp";
 
 export default function WorkoutLogger() {
-  const [exerciseData, setExerciseData] = useState<any>({});
+  // const [exerciseData, setExerciseData] = useState<any>({});
 
-  const context = useContext(AuthContext);
-  const currentUser = context.userData?.handle;
-  useEffect(() => {
-    readData(`finishedWorkouts/${currentUser}`, (snapshot: any) => {
-      const data = Object.values(snapshot);
-      const sortedData = data.reduce((acc: any, exercise: any) => {
-        const wholeDate = exercise.date.split(" ");
-        const month = wholeDate[1];
-        const day = wholeDate[2];
-        const year = wholeDate[3];
-        const date = `${month}/${day}/${year}`;
-        exercise.date = date;
-        acc[date] ? acc[date].push(exercise) : (acc[date] = [exercise]);
-        return acc;
-      }, {});
-      setExerciseData(sortedData);
-    });
-  }, [currentUser]);
+  // const context = useContext(AuthContext);
+  // const currentUser = context.userData?.handle;
+  // useEffect(() => {
+  //   readData(`finishedWorkouts/${currentUser}`, (snapshot: any) => {
+  //     const data = Object.values(snapshot);
+  //     // const sortedData = data.reduce((acc: any, exercise: any) => {
+  //     //   const wholeDate = exercise.date.split(" ");
+  //     //   const month = wholeDate[1];
+  //     //   const day = wholeDate[2];
+  //     //   const year = wholeDate[3];
+  //     //   const date = `${month}/${day}/${year}`;
+  //     //   acc[date] ? acc[date].push(exercise) : (acc[date] = [exercise]);
+  //     //   return acc;
+  //     // }, {});
+
+  //     const standardisedData = data.map((exercise: any) => {
+  //       exercise.start = exercise.date;
+  //       exercise.end = exercise.date;
+  //       exercise.title = exercise.name;
+  //       return exercise;
+  //     });
+  //     setExerciseData(standardisedData);
+  //   });
+  // }, [currentUser]);
 
   return (
-    <Box width="100%" height="100vh" textColor={"white"}>
+    <Box width="100%" height="100vh" userSelect={'none'}>
       <Box
         width="100%"
         height="100%"
@@ -40,14 +47,13 @@ export default function WorkoutLogger() {
         backgroundPosition="center"
         zIndex="-1"
       />
-      <Center height="17vh">
+      <Center height="15vh">
         <Heading
           p={4}
           size={"3xl"}
           rounded={"xl"}
           textColor={"white"}
           fontWeight={"bold"}
-          // bg="rgba(10, 10, 10, 0.3)"
           style={{
             backdropFilter: "blur(2px)",
             letterSpacing: "0.15em",
@@ -56,6 +62,7 @@ export default function WorkoutLogger() {
           Wokrout logs
         </Heading>
       </Center>
+      <CalenderComp />
     </Box>
   );
 }

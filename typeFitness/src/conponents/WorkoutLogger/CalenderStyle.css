@@ -1,0 +1,32 @@
+.rbc-day-bg.rbc-off-range-bg {
+  background-color: rgba(50, 50, 50, 0.6);
+}
+.rbc-day-bg {
+  background-color: rgba(0, 0, 10, 0.9);
+}
+.rbc-calendar {
+  color: white;
+}
+.rbc-btn-group button {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+}
+.rbc-event-content {
+  text-align: center;
+  padding: 2px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.rbc-date-cell {
+  margin-bottom: 5px;
+}
+.rbc-button-link {
+  cursor: default;
+  color: white;
+}
+.rbc-toolbar-label {
+  font-size: 25px;
+  font-weight: bold;
+  margin-right: 210px;
+  margin-bottom: 10px;
+}
