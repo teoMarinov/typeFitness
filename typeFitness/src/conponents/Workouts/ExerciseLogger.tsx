@@ -30,7 +30,7 @@ export default function ExerciseLogger({
 }: propTypes) {
   const exerciseId = Object.keys(loggedData).length;
   const [exerciseLoggs, setExerciseLoggs] = useState([{ failure: false }]);
-  const lineH = exercise.name.length > 35 ? 64 : 40;
+  const lineH = exercise.name.length > 37 ? 64 : 40;
   const lineIncrease = 38;
 
   const updateLoggedData = (newLog: logType[]) => {
@@ -41,7 +41,7 @@ export default function ExerciseLogger({
       };
       setLoggedData(changedLog);
     }
-    const thisId = loggedData[exercise.name].id;
+    const thisId = loggedData[exercise.name] && loggedData[exercise.name].id;
     const changedLog = {
       ...loggedData,
       [exercise.name]: { id: thisId, logs: newLog },

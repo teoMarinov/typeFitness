@@ -31,7 +31,9 @@
   margin-bottom: 10px;
 }
 
-.rbc-event
-{
-  background: #40a46c
+.rbc-event {
+  background: #40a46c;
+}
+.rbc-event.rbc-selected {
+  background: #40a46c;
 }
