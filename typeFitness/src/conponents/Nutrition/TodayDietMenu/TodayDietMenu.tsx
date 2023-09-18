@@ -32,7 +32,7 @@ export default function TodayDietMenu({ chooseMeal }: propType) {
       <Box
         top={"205px"}
         zIndex={"999"}
-        bg={"rgba(10,10,10,0.97)"}
+        bg={"rgba(0,0,0,0.97)"}
         width={"50px"}
         h={"80px"}
         roundedLeft={"xl"}
@@ -52,13 +52,13 @@ export default function TodayDietMenu({ chooseMeal }: propType) {
       <Box
         top={"205px"}
         zIndex={"999"}
-        bg={"rgba(10,10,10,0.97)"}
+        bg={"rgba(0,0,0,0.97)"}
         h={"600px"}
         width={open ? "600px" : "0px"}
         pos={"absolute"}
         right={"0px"}
         transition="width 0.2s ease"
-        overflow={"auto"}
+        overflow={"hidden"}
       >
         <Text
           color={"white"}
