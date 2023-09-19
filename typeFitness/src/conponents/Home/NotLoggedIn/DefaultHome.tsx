@@ -37,9 +37,9 @@ export default function DefaultHome() {
           textAlign={"center"}
           mt={"40px"}
         >
-          To use the following features please{" "}
+          To use the following features please
           <NavLink to={"sign-up"}>
-            <Link textColor={"blue.400"}>sign up</Link>!
+            <Link textColor={"blue.400"}> sign up</Link>!
           </NavLink>
         </Text>
         <Center w="full" mt="35px">

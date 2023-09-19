@@ -65,7 +65,9 @@ function App() {
                 boxShadow="3px 0 10px rgba(0, 0, 0, 0.5)"
                 zIndex={10}
               >
-                <NavBar />
+                <NavBar
+                  username={appState.userData && appState.userData.handle}
+                />
               </GridItem>
             )}
             <GridItem colSpan={49} minHeight={"100vh"}>
