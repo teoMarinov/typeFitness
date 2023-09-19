@@ -21,19 +21,33 @@
   margin-bottom: 5px;
 }
 .rbc-button-link {
-  cursor: default;
+  /* cursor: default; */
+  margin-bottom: 5px;
   color: white;
 }
 .rbc-toolbar-label {
   font-size: 25px;
   font-weight: bold;
-  margin-right: 210px;
+  margin-right: 212px;
   margin-bottom: 10px;
 }
 
 .rbc-event {
   background: #40a46c;
+  margin: 4px;
+  width: 210px;
+  margin-left: 15px;
 }
 .rbc-event.rbc-selected {
   background: #40a46c;
+  margin: 4px;
+  width: 210px;
+  margin-left: 15px;
+}
+.rbc-events-container {
+  background-color: rgba(10, 10, 20, 0.8);
+
+}
+.rbc-time-content {
+  background-color: rgba(10, 10, 20, 0.8);
 }

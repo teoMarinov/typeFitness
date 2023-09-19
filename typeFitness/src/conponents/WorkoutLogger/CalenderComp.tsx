@@ -54,12 +54,12 @@ export default function CalenderComp() {
   return (
     <>
       <Center textColor={"gray.950"}>
-        <Box h={"790px"} w={'95%'}>
+        <Box h={"790px"} w={"95%"}>
           {Array.isArray(exerciseData) && (
             <Calendar
               localizer={localizer}
               events={exerciseData}
-              views={["month"]}
+              views={["month", "day"]}
               defaultView="month"
               onSelectEvent={handleEventSelect}
             />

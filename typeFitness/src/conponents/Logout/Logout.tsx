@@ -16,7 +16,7 @@ const Logout = () => {
             user: null,
             userData: null
         });
-        navigate("/log-in")
+        navigate("/")
     }
     return (
         <Button
