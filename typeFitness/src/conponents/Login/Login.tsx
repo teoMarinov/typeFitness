@@ -79,7 +79,7 @@ const Login = () => {
         zIndex="-1"
       />
       <AbsoluteCenter onKeyDown={handleKeyDown}>
-        <Box bg={"rgba(0,0,0,0.65)"} px={"40px"} py={"135px"} rounded={"xl"}>
+        <Box bg={"rgba(0,0,0,0.65)"} px={"40px"} py={"129px"} rounded={"xl"}>
           <Center>
             <Text fontSize={40} color={"white"}>
               Log In
@@ -112,7 +112,7 @@ const Login = () => {
             </Button>{" "}
             <br />
           </Center>
-          <Center mt={"10px"} textColor="white">
+          <Center mt={"20px"} textColor="white">
             <Text mr="6px">Don't have an account?</Text>
 
             <Link as={RouterLink} to="/sign-up" color="blue.400">
