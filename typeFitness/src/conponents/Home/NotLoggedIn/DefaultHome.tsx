@@ -38,7 +38,9 @@ export default function DefaultHome() {
           mt={"40px"}
         >
           To use the following features please{" "}
-          <Link textColor={"#2277FF"}>sign up</Link>!
+          <NavLink to={"sign-up"}>
+            <Link textColor={"blue.400"}>sign up</Link>!
+          </NavLink>
         </Text>
         <Center w="full" mt="35px">
           <SimpleGrid columns={2} spacing={10}>

@@ -119,7 +119,7 @@ function App() {
                     <>
                       <Route path="log-in" element={<Login />} />
                       <Route path="sign-up" element={<Signup />} />
-                      <Route path="*" element={<Signup />} />
+                      <Route path="*" element={<Login />} />
                       <Route path="/" element={<DefaultHome />} />
                     </>
                   )}
