@@ -105,7 +105,9 @@ export default function TodayDietMenu({ chooseMeal }: propType) {
                     bg={"rgba(10,10,10,0.8)"}
                     _hover={{
                       cursor: "pointer",
+                      transform: "translateY(-5px)",
                     }}
+                    transition="transform 0.2s ease"
                     w={"490px"}
                     userSelect={"none"}
                     p={"15px"}

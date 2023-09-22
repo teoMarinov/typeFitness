@@ -7,7 +7,7 @@ type propType = {
 export default function NutritionHeader({ changeMenu }: propType) {
   return (
     <Flex
-      w={"full"}
+      w={"100%"}
       p={1.5}
       py={"10px"}
       bg="rgba(20, 20, 20, 0.81)"

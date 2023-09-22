@@ -78,7 +78,7 @@ export default function ListFoods({
                 e.stopPropagation();
                 setCurrentToggle("foods");
               }}
-              _hover={{ bg: "rgb(200,200,200)" }}
+              _hover={{ bg: "rgb(230,230,230)", textColor: "black" }}
             >
               foods
             </Button>
@@ -93,7 +93,7 @@ export default function ListFoods({
                 e.stopPropagation();
                 setCurrentToggle("meals");
               }}
-              _hover={{ bg: "rgb(200,200,200)" }}
+              _hover={{ bg: "rgb(230,230,230)", textColor: "black" }}
             >
               meals
             </Button>
