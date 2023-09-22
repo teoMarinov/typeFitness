@@ -7,17 +7,14 @@ import { mealDetails } from "../NutritionMenu/NutritionMenu";
 import {
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
   Box,
-  SimpleGrid,
   Text,
   Button,
   useDisclosure,
-  Flex,
   VStack,
 } from "@chakra-ui/react";
 

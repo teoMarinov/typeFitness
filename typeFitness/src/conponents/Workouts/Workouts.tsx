@@ -2,9 +2,9 @@
 import { Box, Center, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import readData from "../../utils/readData";
 import ListWorkouts from "./ListWorkouts";
 import image from "../../images/Te-Rapa-28.jpg";
-import readData from "../../utils/readData";
 import MakeNewWorkoutModal from "../Modals/MakeNewWorkoutModal";
 
 interface Exercise {

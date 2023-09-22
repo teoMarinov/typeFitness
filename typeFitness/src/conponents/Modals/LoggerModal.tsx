@@ -59,7 +59,7 @@ export default function LoggerModal({
       });
       return acc;
     }, {});
-    console.log(exercises);
+  
     const workoutData: workoutDataType = {
       name: workout.name,
       date: new Date().toString(),
@@ -116,7 +116,7 @@ export default function LoggerModal({
               _hover={{ bg: "rgb(15,15,15)" }}
               textColor={"white"}
               onClick={handleFinishWorkout}
-              // onClick={() => console.log(loggedData)}
+
               pos={"absolute"}
               rounded={0}
               bottom={0}

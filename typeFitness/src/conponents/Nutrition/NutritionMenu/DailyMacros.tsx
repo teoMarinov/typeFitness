@@ -3,7 +3,6 @@ import {
   Box,
   Center,
   HStack,
-  SimpleGrid,
   Text,
   VStack,
 } from "@chakra-ui/react";

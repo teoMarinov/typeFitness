@@ -22,7 +22,7 @@ export default function DailyMenu({ name }: propType) {
     readData(
       `diet/${currentUser}/${name}`,
       (snapshot: Record<string, mealDetails>) => {
-        snapshot && console.log(snapshot);
+
         snapshot && setTodayMenu(snapshot);
       }
     );

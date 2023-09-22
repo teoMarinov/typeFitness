@@ -47,7 +47,7 @@ export default function SearchFromApi({ moveToAddCustom, state, dispatch }: prop
                 dispatch({ type: ACTION.CHANGE_CARBOHYDRATE, payload: (snapshot[0].carbohydrates_total_g) })
                 dispatch({ type: ACTION.CHANGE_SUGAR, payload: (snapshot[0].sugar_g) })
                 dispatch({ type: ACTION.CHANGE_PROTEIN, payload: (snapshot[0].protein_g) })
-                console.log(typeof snapshot[0].calories)
+
             })
             .then(() => {
                 setLoading(false)
