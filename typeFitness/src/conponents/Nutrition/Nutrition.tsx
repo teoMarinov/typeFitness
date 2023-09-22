@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box } from "@chakra-ui/react";
+import { Box, Spacer } from "@chakra-ui/react";
 import image from "../../images/Eliminating-Foul-Odors-in-restaurant-kitchen-scaled.jpeg";
 import { useEffect, useState, useContext } from "react";
 import NutritionHeader from "./NutritionHeader";
@@ -22,12 +22,11 @@ export default function Nutrition() {
   const day = todayFullDate[2];
   const year = todayFullDate[3];
 
-  const today = `${month}/${day}/${year}`
-  
-  const todayLog = loggedData.find((data:any) => {
-    if(data[0] === today) return data[1]
-  })
+  const today = `${month}/${day}/${year}`;
 
+  const todayLog = loggedData.find((data: any) => {
+    if (data[0] === today) return data[1];
+  });
 
   useEffect(() => {
     readData(`nutrition/${currentUser}/finishedMeals`, (snapshot: any) => {
@@ -61,12 +60,6 @@ export default function Nutrition() {
         backgroundSize="cover"
         backgroundImage={image}
         backgroundPosition="center"
-        css={{
-          "&::-webkit-scrollbar": {
-            width: "6px",
-            backgroundColor: "transparent",
-          },
-        }}
       />
 
       <Box
@@ -75,19 +68,24 @@ export default function Nutrition() {
         overflowY="scroll"
         css={{
           "&::-webkit-scrollbar": {
-            width: "6px",
-            backgroundColor: "transparent",
+            width: "10px",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "rgba(150, 160, 170, 0.9)",
+            borderRadius: "8px",
+          },
+          "&::-webkit-scrollbar-thumb:hover": {
+            backgroundColor: "rgba(107, 114, 128, 0.9)",
           },
         }}
       >
         <NutritionHeader changeMenu={setSelectedMenu}></NutritionHeader>
-        {selectedMenu === "menu" && <NutritionMenu todayLoggs={todayLog}/>}
+        {selectedMenu === "menu" && <NutritionMenu todayLoggs={todayLog} />}
         {selectedMenu === "logger" && (
           <NutritionLogger data={loggedData}></NutritionLogger>
         )}
-        {selectedMenu === "planner" && (
-          <NutritionDietPlanner/>
-        )}
+        {selectedMenu === "planner" && <NutritionDietPlanner />}
+        <Spacer h={"45px"} />
       </Box>
     </Box>
   );

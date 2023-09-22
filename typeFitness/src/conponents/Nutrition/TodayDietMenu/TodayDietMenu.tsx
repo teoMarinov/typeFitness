@@ -77,8 +77,7 @@ export default function TodayDietMenu({ chooseMeal }: propType) {
           css={{
             "&::-webkit-scrollbar": {
               width: "0px",
-              height: "0px",
-              background: "transparent",
+              height: "0xp",
             },
           }}
         >
@@ -91,15 +90,92 @@ export default function TodayDietMenu({ chooseMeal }: propType) {
             overflowY={"scroll"}
             css={{
               "&::-webkit-scrollbar": {
-                width: "0px",
-                height: "0px",
-                background: "transparent",
+                width: "10px",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                backgroundColor: "rgba(150, 160, 170, 0.9)",
+                borderRadius: "8px",
+              },
+              "&::-webkit-scrollbar-thumb:hover": {
+                backgroundColor: "rgba(107, 114, 128, 0.9)",
               },
             }}
           >
             <VStack>
               {todayMenu.map((food: [string, mealDetails]) => (
                 <>
+                  <Box
+                    bg={"rgba(10,10,10,0.8)"}
+                    _hover={{
+                      cursor: "pointer",
+                    }}
+                    w={"490px"}
+                    userSelect={"none"}
+                    p={"15px"}
+                    rounded={"lg"}
+                    onClick={() => {
+                      chooseMeal(food[1].ingredients, food[1].name);
+                      onClose();
+                    }}
+                    m={"3px"}
+                  >
+                    <Text
+                      color={"white"}
+                      textAlign={"center"}
+                      fontSize={"2xl"}
+                      mb={"5px"}
+                    >
+                      {food[1].name}
+                    </Text>
+                    <Text
+                      style={{ wordSpacing: "5px" }}
+                      color={"white"}
+                      textAlign={"center"}
+                      fontSize={"xs"}
+                      mb={"5px"}
+                    >
+                      calories:{food[1].calories}kcal fat:{food[1].fat}g sat
+                      fat:{food[1].saturatedFat}g carbs:
+                      {food[1].carbohydrates}g sugar:{food[1].sugar}g protein:
+                      {food[1].protein}g
+                    </Text>
+                  </Box>
+                  <Box
+                    bg={"rgba(10,10,10,0.8)"}
+                    _hover={{
+                      cursor: "pointer",
+                    }}
+                    w={"490px"}
+                    userSelect={"none"}
+                    p={"15px"}
+                    rounded={"lg"}
+                    onClick={() => {
+                      chooseMeal(food[1].ingredients, food[1].name);
+                      onClose();
+                    }}
+                    m={"3px"}
+                  >
+                    <Text
+                      color={"white"}
+                      textAlign={"center"}
+                      fontSize={"2xl"}
+                      mb={"5px"}
+                    >
+                      {food[1].name}
+                    </Text>
+                    <Text
+                      style={{ wordSpacing: "5px" }}
+                      color={"white"}
+                      textAlign={"center"}
+                      fontSize={"xs"}
+                      mb={"5px"}
+                    >
+                      calories:{food[1].calories}kcal fat:{food[1].fat}g sat
+                      fat:{food[1].saturatedFat}g carbs:
+                      {food[1].carbohydrates}g sugar:{food[1].sugar}g protein:
+                      {food[1].protein}g
+                    </Text>
+                  </Box>
                   <Box
                     bg={"rgba(10,10,10,0.8)"}
                     _hover={{
