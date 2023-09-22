@@ -2,7 +2,7 @@ import { AiFillHome } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { Box } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
-import { color } from "framer-motion";
+
 
 export default function GoToHomeButton() {
   return (
@@ -11,7 +11,7 @@ export default function GoToHomeButton() {
     >
       <NavLink to={"/"}>
         <Box pos={"fixed"} top={5} left={6}>
-          <AiFillHome />
+          <AiFillHome className="icon" />
         </Box>
       </NavLink>
     </IconContext.Provider>

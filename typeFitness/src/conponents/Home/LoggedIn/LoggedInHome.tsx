@@ -1,5 +1,4 @@
-import { useReducer } from "react";
-import { Text, Button, Input, Box, SimpleGrid, Center } from "@chakra-ui/react";
+import { Text, Heading, Input, Box, Flex, Center } from "@chakra-ui/react";
 import image from "../../../images/exercise-weights-iron-dumbbell-with-extra-plates.jpg";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/AuthContext";
@@ -23,6 +22,8 @@ type Exercise = {
 
 export default function LoggedInHome() {
   const [data, setData] = useState<ExerciseData>([]);
+  const [filteredData, setFilteredData] = useState<ExerciseData>([]);
+  const [searchInput, setSearchInput] = useState<string>("");
   const context = useContext(AuthContext);
   const currentUser = context.userData?.handle;
 
@@ -30,13 +31,38 @@ export default function LoggedInHome() {
     readData(`exerciseLogs/${currentUser}`, (snapshot: any) => {
       const result: ExerciseData = Object.entries(snapshot);
       setData(result);
+      setFilteredData(result);
     });
   }, [currentUser]);
 
+  useEffect(() => {
+    const updatedData = data.filter((exercise: CompleteExerciseRecord) => {
+      const normalizedInput = searchInput.toLowerCase();
+      return exercise[0].toLowerCase().includes(normalizedInput);
+    });
+    setFilteredData(updatedData);
+  }, [data, searchInput]);
 
   return (
     <>
-      <Box width="100%" height="100vh" userSelect={"none"}>
+      <Box
+        width="100%"
+        overflowY={"scroll"}
+        css={{
+          "&::-webkit-scrollbar": {
+            width: "10px",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "rgb(25, 25, 25)",
+            borderRadius: "8px",
+          },
+          "&::-webkit-scrollbar-thumb:hover": {
+            backgroundColor: "rgb(40, 40, 40)",
+          },
+        }}
+        height="100vh"
+        userSelect={"none"}
+      >
         <Box
           width="100%"
           height="100%"
@@ -48,17 +74,30 @@ export default function LoggedInHome() {
           backgroundPosition="center"
           zIndex="-1"
         />
-        <SimpleGrid
-          columns={4}
-          justifyContent={"space-around"}
-          spacing={"15px"}
-          p={"15px"}
+        <Heading
+          color="white"
+          size={"4xl"}
+          w={"full"}
+          textAlign={"center"}
+          mt={"30px"}
         >
-          {Array.isArray(data) &&
-            data.map((exerciseData: CompleteExerciseRecord) => (
-              <ExerciseDataDetails />
+          {currentUser}, welcome back!
+        </Heading>
+        <Center>
+          <Input
+            mt={"50px"}
+            mb={"30px"}
+            w={"80%"}
+            onChange={(e) => setSearchInput(e.target.value)}
+            textColor={"white"}
+          />
+        </Center>
+        <Flex p={"15px"} wrap={"wrap"}>
+          {Array.isArray(filteredData) &&
+            filteredData.map((exerciseData: CompleteExerciseRecord) => (
+              <ExerciseDataDetails data={exerciseData} />
             ))}
-        </SimpleGrid>
+        </Flex>
       </Box>
     </>
   );

@@ -55,7 +55,7 @@ export default function BasicStatistics() {
             borderRadius: "8px",
           },
           "&::-webkit-scrollbar-thumb:hover": {
-            backgroundColor: "rgba(107, 114, 128, 0.9)", 
+            backgroundColor: "rgba(107, 114, 128, 0.9)",
           },
         }}
       >

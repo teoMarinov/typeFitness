@@ -70,30 +70,30 @@ export default function ListFoods({
             <Button
               mt={"10px"}
               roundedRight={"none"}
-              bg={currentToggle == "meals" ? "#292929" : "rgb(10,10,10)"}
-              textColor={"white"}
+              bg={currentToggle == "meals" ? "rgb(10,10,10)" : "white"}
+              textColor={currentToggle == "meals" ? "white" : "rgb(10,10,10)"}
               pos={"absolute"}
               left={"-368px"}
               onClick={(e) => {
                 e.stopPropagation();
                 setCurrentToggle("foods");
               }}
-              _hover={{ bg: "rgb(0,0,0)" }}
+              _hover={{ bg: "rgb(200,200,200)" }}
             >
               foods
             </Button>
             <Button
               mt={"10px"}
               roundedLeft={"none"}
-              bg={currentToggle == "foods" ? "#292929" : "rgb(10,10,10)"}
-              textColor={"white"}
+              bg={currentToggle == "foods" ? "rgb(10,10,10)" : "white"}
+              textColor={currentToggle == "foods" ? "white" : "black"}
               pos={"absolute"}
               left={"-295px"}
               onClick={(e) => {
                 e.stopPropagation();
                 setCurrentToggle("meals");
               }}
-              _hover={{ bg: "rgb(0,0,0)" }}
+              _hover={{ bg: "rgb(200,200,200)" }}
             >
               meals
             </Button>
