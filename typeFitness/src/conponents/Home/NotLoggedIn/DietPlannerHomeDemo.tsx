@@ -9,6 +9,7 @@ export default function DietPlannerHomeDemo() {
       backgroundPosition="center"
       height="330px"
       w={"630px"}
+      rounded={"xl"}
       _hover={{
         transform: "translateY(-15px)",
       }}

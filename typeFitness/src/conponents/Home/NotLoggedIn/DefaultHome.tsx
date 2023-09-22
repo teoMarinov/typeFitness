@@ -39,7 +39,11 @@ export default function DefaultHome() {
         >
           To use the following features please
           <NavLink to={"sign-up"}>
-            <Link textColor={"blue.400"}> sign up</Link>!
+            <Link textColor={"blue.400"}> sign up</Link>
+          </NavLink>{" "}
+          /{" "}
+          <NavLink to={"log-in"}>
+            <Link textColor={"blue.400"}> log in</Link>!
           </NavLink>
         </Text>
         <Center w="full" mt="35px">

@@ -24,6 +24,7 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { registerUser } from "../../service/auth-service";
 import image from "../../images/HD-Fitness-Backgrounds-For-Desktop.jpg";
+import GoToHomeButton from "../GoToHomeButton/GoToHomeButton.tsx";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -143,6 +144,7 @@ const Signup = () => {
         backgroundPosition="center"
         zIndex="-1"
       />
+      <GoToHomeButton />
       <AbsoluteCenter
         textColor={"white"}
         onKeyDown={handleKeyDown}

@@ -5,6 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { loginUser } from "../../service/auth-service";
 import image from "../../images/HD-Fitness-Backgrounds-For-Desktop.jpg";
 import { Link as RouterLink } from "react-router-dom";
+import GoToHomeButton from "../GoToHomeButton/GoToHomeButton";
 import {
   AbsoluteCenter,
   Center,
@@ -78,6 +79,7 @@ const Login = () => {
         backgroundPosition="center"
         zIndex="-1"
       />
+      <GoToHomeButton />
       <AbsoluteCenter onKeyDown={handleKeyDown}>
         <Box bg={"rgba(0,0,0,0.65)"} px={"40px"} py={"129px"} rounded={"xl"}>
           <Center>

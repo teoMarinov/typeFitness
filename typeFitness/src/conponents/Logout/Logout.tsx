@@ -22,12 +22,12 @@ const Logout = () => {
       <Center pos="relative">
         <Button
           colorScheme={"green"}
+          textColor={"white"}
+          bg={"none"}
           onClick={onLogout}
           pos={"absolute"}
-          left={"-4px"}
-          bottom="-10px"
-          w={"125px"}
-          rounded={"none"}
+          left={"14px"}
+          bottom="-15px"
         >
           Log out
         </Button>

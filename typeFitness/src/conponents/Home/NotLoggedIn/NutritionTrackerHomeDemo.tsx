@@ -8,7 +8,8 @@ export default function NutritionTrackerHomeDemo() {
       backgroundSize="cover"
       backgroundPosition="center"
       height="330px"
-      w={"630px"}
+        rounded={"xl"}
+        w={"630px"}
       _hover={{
         transform: "translateY(-15px)",
       }}

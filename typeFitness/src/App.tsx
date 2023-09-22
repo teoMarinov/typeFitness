@@ -8,7 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./config/firebase.config.js";
 import getUserData from "./service/user-service.js";
 import NavBar from "./conponents/NavBar/NavBar.js";
-import LoggedInHome from "./conponents/Home/LoggedInHome.js";
+import LoggedInHome from "./conponents/Home/LoggedIn/LoggedInHome.js";
 import Workouts from "./conponents/Workouts/Workouts.js";
 import Nutrition from "./conponents/Nutrition/Nutrition.js";
 import { AuthContext } from "./context/AuthContext.js";
@@ -60,7 +60,6 @@ function App() {
                 as="aside"
                 colSpan={1}
                 bg="rgba(20, 20, 20, 0.81)"
-                _hover={{ bg: "rgba(10, 10, 10, 0.85)" }}
                 minHeight={"100vh"}
                 boxShadow="3px 0 10px rgba(0, 0, 0, 0.5)"
                 zIndex={10}
