@@ -45,11 +45,11 @@ export default function BasicStatistics() {
       />
       <Box
         height="100%"
-        overflowY="scroll"
+        overflow="scroll"
         css={{
           "&::-webkit-scrollbar": {
-            width: "6px",
-            backgroundColor: "transparent",
+            width: "0px",
+            height: "0px",
           },
         }}
       >
