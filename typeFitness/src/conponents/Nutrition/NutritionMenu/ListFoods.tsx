@@ -70,30 +70,30 @@ export default function ListFoods({
             <Button
               mt={"10px"}
               roundedRight={"none"}
-              bg={currentToggle == "foods" ? "#292929" : "rgb(10,10,10)"}
+              bg={currentToggle == "meals" ? "#292929" : "rgb(10,10,10)"}
               textColor={"white"}
               pos={"absolute"}
-              left={"-268px"}
+              left={"-368px"}
               onClick={(e) => {
                 e.stopPropagation();
                 setCurrentToggle("foods");
               }}
-              _hover={{ bg: "#292929" }}
+              _hover={{ bg: "rgb(0,0,0)" }}
             >
               foods
             </Button>
             <Button
               mt={"10px"}
               roundedLeft={"none"}
-              bg={currentToggle == "meals" ? "#292929" : "rgb(10,10,10)"}
+              bg={currentToggle == "foods" ? "#292929" : "rgb(10,10,10)"}
               textColor={"white"}
               pos={"absolute"}
-              left={"-195px"}
+              left={"-295px"}
               onClick={(e) => {
                 e.stopPropagation();
                 setCurrentToggle("meals");
               }}
-              _hover={{ bg: "#292929" }}
+              _hover={{ bg: "rgb(0,0,0)" }}
             >
               meals
             </Button>
@@ -109,10 +109,15 @@ export default function ListFoods({
           </Text>
         </Center>
         <Input
-          w={"400px"}
+          w={"600px"}
           mt={"30px"}
-          left={"530px"}
+          left={"430px"}
           pos={"absolute"}
+          placeholder={
+            currentToggle == "foods"
+              ? "search saved foods"
+              : "search saved meals"
+          }
           transition="opacity 0.1s linear"
           onClick={(e) => e.stopPropagation()}
           onChange={(e) => setSearchInput(e.target.value)}
