@@ -83,6 +83,14 @@ function App() {
                         }
                       />
                       <Route
+                        path="*"
+                        element={
+                          <AuthenticatedRoute>
+                            <LoggedInHome />
+                          </AuthenticatedRoute>
+                        }
+                      />
+                      <Route
                         path="/workouts"
                         element={
                           <AuthenticatedRoute>
