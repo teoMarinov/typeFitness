@@ -1,9 +1,25 @@
 import { weekDays } from "../../../common/constants";
-import { Box, SimpleGrid, Text } from "@chakra-ui/react";
+import React from "react";
 import { useContext, useEffect, useState } from "react";
 import readData from "../../../utils/readData";
 import { AuthContext } from "../../../context/AuthContext";
 import { mealDetails } from "../NutritionMenu/NutritionMenu";
+import {
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  Box,
+  SimpleGrid,
+  Text,
+  Button,
+  useDisclosure,
+  Flex,
+  VStack,
+} from "@chakra-ui/react";
 
 type propType = {
   chooseMeal: any;
@@ -12,6 +28,8 @@ type propType = {
 export default function TodayDietMenu({ chooseMeal }: propType) {
   const [todayMenu, setTodayMenu] = useState([]);
   const [open, setOpen] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef();
 
   const context = useContext(AuthContext);
   const currentUser = context.userData?.handle;
@@ -29,67 +47,101 @@ export default function TodayDietMenu({ chooseMeal }: propType) {
 
   return (
     <>
-      <Box
-        top={"205px"}
-        zIndex={"999"}
-        bg={"rgba(0,0,0,0.97)"}
-        width={"50px"}
-        h={"80px"}
-        roundedLeft={"xl"}
-        pos={"absolute"}
-        right={open ? "600px" : "0px"}
+      <Button
+        onClick={onOpen}
+        pos={"fixed"}
+        right={0}
+        h={"400px"}
+        w={"55px"}
+        textColor={"white"}
+        colorScheme="blackAlpha"
+        bg={"rgba(10,10,10,0.8)"}
         _hover={{
-          cursor: "pointer",
+          bg: "rgba(25,25,25,0.8)",
         }}
-        userSelect={"none"}
-        onClick={() => setOpen(!open)}
-        transition="right 0.2s ease"
-      >
-        <Text color={"white"} fontSize={"5xl"} ml={"10px"}>
-          {open ? ">" : "<"}
-        </Text>
-      </Box>
-      <Box
-        top={"205px"}
-        zIndex={"999"}
-        bg={"rgba(0,0,0,0.97)"}
-        h={"600px"}
-        width={open ? "600px" : "0px"}
-        pos={"absolute"}
-        right={"0px"}
-        transition="width 0.2s ease"
-        overflow={"hidden"}
       >
         <Text
-          color={"white"}
-          pt={"10px"}
-          fontSize={"3xl"}
-          textAlign={"center"}
-          w={"550px"}
+          fontSize={"40px"}
+          fontWeight={"light"}
+          letterSpacing={"5px"}
+          transform="rotate(-90deg)"
         >
-          TODAY'S MENU
+          Today's menu
         </Text>
-        <SimpleGrid columns={2} spacing={5} p={5} mt={"10px"}>
-          {todayMenu.map((food: [string, mealDetails]) => (
-            <>
-              <Box
-                bg={"gray.900"}
-                _hover={{
-                  cursor: "pointer",
-                }}
-                userSelect={"none"}
-                p={"25px"}
-                rounded={"lg"}
-                onClick={() => chooseMeal(food[1].ingredients, food[1].name)}
-              >
-                <Text color={"white"} textAlign={"center"} fontSize={"xl"}>
-                  {food[1].name}
-                </Text>
-              </Box>
-            </>
-          ))}
-        </SimpleGrid>
-      </Box>
+      </Button>
+      <Drawer isOpen={isOpen} placement="right" onClose={onClose} size={"md"}>
+        <DrawerOverlay />
+        <DrawerContent
+          bg={"rgba(30,30,30,0.8)"}
+          overflowY={"scroll"}
+          css={{
+            "&::-webkit-scrollbar": {
+              width: "0px",
+              height: "0px",
+              background: "transparent",
+            },
+          }}
+        >
+          <DrawerCloseButton color={"white"} size={"lg"} mt={"13px"} />
+          <DrawerHeader textAlign={"center"} textColor={"white"} my={"10px"}>
+            Today's diet
+          </DrawerHeader>
+
+          <DrawerBody
+            overflowY={"scroll"}
+            css={{
+              "&::-webkit-scrollbar": {
+                width: "0px",
+                height: "0px",
+                background: "transparent",
+              },
+            }}
+          >
+            <VStack>
+              {todayMenu.map((food: [string, mealDetails]) => (
+                <>
+                  <Box
+                    bg={"rgba(10,10,10,0.8)"}
+                    _hover={{
+                      cursor: "pointer",
+                    }}
+                    w={"490px"}
+                    userSelect={"none"}
+                    p={"15px"}
+                    rounded={"lg"}
+                    onClick={() => {
+                      chooseMeal(food[1].ingredients, food[1].name);
+                      onClose();
+                    }}
+                    m={"3px"}
+                  >
+                    <Text
+                      color={"white"}
+                      textAlign={"center"}
+                      fontSize={"2xl"}
+                      mb={"5px"}
+                    >
+                      {food[1].name}
+                    </Text>
+                    <Text
+                      style={{ wordSpacing: "5px" }}
+                      color={"white"}
+                      textAlign={"center"}
+                      fontSize={"xs"}
+                      mb={"5px"}
+                    >
+                      calories:{food[1].calories}kcal fat:{food[1].fat}g sat
+                      fat:{food[1].saturatedFat}g carbs:
+                      {food[1].carbohydrates}g sugar:{food[1].sugar}g protein:
+                      {food[1].protein}g
+                    </Text>
+                  </Box>
+                </>
+              ))}
+            </VStack>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
     </>
   );
 }
