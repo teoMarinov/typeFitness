@@ -9,7 +9,7 @@ type ExerciseData = CompleteExerciseRecord[];
 
 export type CompleteExerciseRecord = [string, DailyExerciseRecord];
 
-type DailyExerciseRecord = {
+export type DailyExerciseRecord = {
   date: string;
   exercises: Exercise[];
 };

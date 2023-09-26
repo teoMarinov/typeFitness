@@ -1,6 +1,7 @@
 import { Center, Text } from "@chakra-ui/react";
 import { CompleteExerciseRecord } from "./LoggedInHome";
 import { useState } from "react";
+import ExerciseDataModal from "../../Modals/ExerciseDataModal";
 
 type propType = {
   data: CompleteExerciseRecord;
@@ -27,6 +28,7 @@ export default function ExerciseDataDetails({ data }: propType) {
         <Text fontSize={"30px"} color={"white"} textAlign={"center"}>
           {data[0]}
         </Text>
+        <ExerciseDataModal initalData={data} />
       </Center>
     </Center>
   );
