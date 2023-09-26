@@ -1,4 +1,5 @@
-import { Center, Text, Grid, VStack, HStack, Flex } from "@chakra-ui/react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Center, Text, VStack, HStack, Flex } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 import { mealDetails } from "../NutritionMenu/NutritionMenu";
@@ -71,7 +72,7 @@ export default function TotalDailyDetails({ data }: propType) {
           fontSize={"lg"}
           onClick={() => setOpen(!open)}
           paddingX={"30px"}
-          userSelect={'none'}
+          userSelect={"none"}
         >
           <Text mr={"15px"}>{data[0]} :</Text>
           <Flex w={"900px"} justifyContent={"space-around"}>

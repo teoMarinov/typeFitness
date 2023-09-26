@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, Center, Flex, Grid, GridItem } from "@chakra-ui/react";
+import { Center, Grid, GridItem } from "@chakra-ui/react";
 import Login from "./conponents/Login/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -21,7 +21,7 @@ import DefaultHome from "./conponents/Home/NotLoggedIn/DefaultHome.js";
 function App() {
   const [user]: any = useAuthState(auth);
 
-  const [appState, setAppState] = useState({
+  const [appState, setAppState] = useState<any>({
     user,
     userData: null,
   });

@@ -1,4 +1,6 @@
-import { Box, Button, Center, HStack, Text } from "@chakra-ui/react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Box, HStack, Text } from "@chakra-ui/react";
 import { useEffect, useState, useContext } from "react";
 import AddMenuItemsModal from "../../Modals/AddMenuItemsModal";
 import { mealDetails } from "../NutritionMenu/NutritionMenu";
@@ -12,65 +14,64 @@ type propType = {
 };
 
 export default function DailyMenu({ name }: propType) {
-  const [todayMenu, setTodayMenu] = useState<[string, mealDetails][]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [todayMenu, setTodayMenu] = useState<[string, mealDetails][] | any>([]);
   const [open, setOpen] = useState(false);
 
-  const context = useContext(AuthContext);
+  const context: any = useContext(AuthContext);
   const currentUser = context.userData?.handle;
 
   useEffect(() => {
     readData(
       `diet/${currentUser}/${name}`,
       (snapshot: Record<string, mealDetails>) => {
-
         snapshot && setTodayMenu(snapshot);
       }
     );
   }, [currentUser]);
 
   const totalCals = todayMenu
-    .reduce((acc, meal: [string, mealDetails]) => {
+    .reduce((acc: number, meal: [string, mealDetails]) => {
       acc += Number(meal[1].calories);
       return acc;
     }, 0)
     .toFixed(1);
 
   const totalCarbs = todayMenu
-    .reduce((acc, meal: [string, mealDetails]) => {
+    .reduce((acc: number, meal: [string, mealDetails]) => {
       acc += Number(meal[1].carbohydrates);
       return acc;
     }, 0)
     .toFixed(1);
 
   const totalSugar = todayMenu
-    .reduce((acc, meal: [string, mealDetails]) => {
+    .reduce((acc: number, meal: [string, mealDetails]) => {
       acc += Number(meal[1].sugar);
       return acc;
     }, 0)
     .toFixed(1);
 
   const totalFat = todayMenu
-    .reduce((acc, meal: [string, mealDetails]) => {
+    .reduce((acc: number, meal: [string, mealDetails]) => {
       acc += Number(meal[1].fat);
       return acc;
     }, 0)
     .toFixed(1);
 
   const totalSaturatedFat = todayMenu
-    .reduce((acc, meal: [string, mealDetails]) => {
+    .reduce((acc: number, meal: [string, mealDetails]) => {
       acc += Number(meal[1].saturatedFat);
       return acc;
     }, 0)
     .toFixed(1);
 
   const totalProtein = todayMenu
-    .reduce((acc, meal: [string, mealDetails]) => {
+    .reduce((acc: number, meal: [string, mealDetails]) => {
       acc += Number(meal[1].protein);
       return acc;
     }, 0)
     .toFixed(1);
 
-  
   const addToMenu = (meal: [string, mealDetails]) => {
     const updatedMenu: [string, mealDetails][] = [...todayMenu];
     updatedMenu.push(meal);
@@ -118,11 +119,11 @@ export default function DailyMenu({ name }: propType) {
         <Text mr={"30px"}>Saturated fat: {totalSaturatedFat} g</Text>
         <Text mr={"30px"}>Protein: {totalProtein} g</Text>
       </HStack>
-      {todayMenu.map((menuItem, index) => (
+      {todayMenu.map((menuItem: any, index: number) => (
         <MenuItem data={menuItem} index={index} remove={removeFromMenu} />
       ))}
 
-        <AddMenuItemsModal addToDiet={addToMenu} />
+      <AddMenuItemsModal addToDiet={addToMenu} />
     </Box>
   );
 }

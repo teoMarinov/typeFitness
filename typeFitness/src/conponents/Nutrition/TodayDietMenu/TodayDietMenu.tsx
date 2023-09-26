@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { weekDays } from "../../../common/constants";
-import React from "react";
 import { useContext, useEffect, useState } from "react";
 import readData from "../../../utils/readData";
 import { AuthContext } from "../../../context/AuthContext";
@@ -23,12 +24,10 @@ type propType = {
 };
 
 export default function TodayDietMenu({ chooseMeal }: propType) {
-  const [todayMenu, setTodayMenu] = useState([]);
-  const [open, setOpen] = useState(false);
+  const [todayMenu, setTodayMenu] = useState<any>([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef();
 
-  const context = useContext(AuthContext);
+  const context:any = useContext(AuthContext);
   const currentUser = context.userData?.handle;
 
   const currentDayOfWeek = new Date().toString().split(" ")[0];

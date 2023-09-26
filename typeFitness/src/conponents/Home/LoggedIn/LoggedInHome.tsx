@@ -1,4 +1,5 @@
-import { Text, Heading, Input, Box, Flex, Center } from "@chakra-ui/react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Heading, Input, Box, Flex, Center } from "@chakra-ui/react";
 import image from "../../../images/exercise-weights-iron-dumbbell-with-extra-plates.jpg";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/AuthContext";
@@ -24,7 +25,7 @@ export default function LoggedInHome() {
   const [data, setData] = useState<ExerciseData>([]);
   const [filteredData, setFilteredData] = useState<ExerciseData>([]);
   const [searchInput, setSearchInput] = useState<string>("");
-  const context = useContext(AuthContext);
+  const context:any = useContext(AuthContext);
   const currentUser = context.userData?.handle;
 
   useEffect(() => {

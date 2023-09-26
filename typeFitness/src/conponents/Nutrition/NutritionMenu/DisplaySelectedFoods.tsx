@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { foodDetails } from "./NutritionMenu"
 import {
     VStack

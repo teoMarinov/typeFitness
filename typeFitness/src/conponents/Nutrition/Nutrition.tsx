@@ -12,10 +12,10 @@ import readData from "../../utils/readData";
 export default function Nutrition() {
   const [selectedMenu, setSelectedMenu] = useState("menu");
 
-  const context = useContext(AuthContext);
+  const context: any = useContext(AuthContext);
   const currentUser = context.userData?.handle;
 
-  const [loggedData, setLoggedData] = useState([]);
+  const [loggedData, setLoggedData] = useState<any>([]);
 
   const todayFullDate = new Date().toString().split(" ");
   const month = todayFullDate[1];
@@ -30,12 +30,12 @@ export default function Nutrition() {
 
   useEffect(() => {
     readData(`nutrition/${currentUser}/finishedMeals`, (snapshot: any) => {
-      const data: any = Object.entries(snapshot).sort((a, b) => {
+      const data: any = Object.entries(snapshot).sort((a: any, b: any) => {
         const dateA: Date = new Date(a[1].date);
         const dateB = new Date(b[1].date);
         return dateA.getTime() - dateB.getTime();
       });
-      const result = {};
+      const result: any = {};
       data.map((meal: any) => {
         const wholeDate = meal[1].date.split(" ");
         const month = wholeDate[1];

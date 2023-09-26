@@ -1,12 +1,9 @@
-import React from "react";
 import { foodDetails } from "../NutritionMenu/NutritionMenu";
 import {
   Center,
   Text,
-  Grid,
   HStack,
   VStack,
-  GridItem,
   Flex,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";

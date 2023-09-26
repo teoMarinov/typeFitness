@@ -1,10 +1,10 @@
-import { mealDetails } from "./NutritionMenu";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Center, HStack, Heading, Text, VStack } from "@chakra-ui/react";
 import { useState } from "react";
 import DeleteModal from "../../Modals/DeleteModal";
 
 type propType = {
-  meal: [string, mealDetails];
+  meal: any
   currentUser: string;
   addToSelected: any;
   addSelectedName: any;

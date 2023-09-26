@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Flex, Button } from "@chakra-ui/react";
 
 type propType = {

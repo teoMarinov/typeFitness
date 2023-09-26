@@ -14,7 +14,6 @@ import {
   ModalBody,
   ModalCloseButton,
   Heading,
-  Text,
   Center,
 } from "@chakra-ui/react";
 import ExerciseDetailsRow from "./ExerciseDetailsRow";
@@ -29,7 +28,7 @@ export default function CalenderComp() {
   const [exerciseData, setExerciseData] = useState<any>([]);
   const [currentlySelected, setCurrentlySelected] = useState("");
 
-  const context = useContext(AuthContext);
+  const context:any = useContext(AuthContext);
   const currentUser = context.userData?.handle;
 
   useEffect(() => {

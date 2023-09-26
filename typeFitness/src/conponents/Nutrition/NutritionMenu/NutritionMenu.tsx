@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Box,
@@ -122,7 +123,7 @@ export default function NutritionMenu({ todayLoggs }: any) {
     totalProtein,
   };
 
-  const context = useContext(AuthContext);
+  const context: any = useContext(AuthContext);
   const currentUser = context.userData?.handle;
 
   useEffect(() => {
@@ -172,7 +173,7 @@ export default function NutritionMenu({ todayLoggs }: any) {
   }, [currentUser, data, searchInput]);
 
   const handleAddToSelected = (food: [string, foodDetails]) => {
-    if (currentSelectedFoods.some((item) => item[0] === food[0])) {
+    if (currentSelectedFoods.some((item: any) => item[0] === food[0])) {
       return alert(`${food[1].name} has already been added`);
     }
     const newFood: any = [...currentSelectedFoods, food];
@@ -276,7 +277,7 @@ export default function NutritionMenu({ todayLoggs }: any) {
             <AddFoodModal />
           </>
         ) : (
-          displayData.map((e) => (
+          displayData.map((e:any) => (
             <Box key={e[0]}>
               <MealDetailBox
                 meal={e}

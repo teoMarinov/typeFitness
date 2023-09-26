@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TypeExercise } from "../Workouts/ListWorkouts";
 import {
   Box,
@@ -13,11 +14,10 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import ExerciseLogger from "../Workouts/ExerciseLogger";
-import { logType } from "../Workouts/ExerciseLogger";
 import addData from "../../utils/addData";
 
 type propTypes = {
-  workout: TypeExercise[] | string;
+  workout: any
   currentUser: string;
   unfocus: any;
 };

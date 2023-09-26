@@ -1,4 +1,5 @@
-import { Text, Box, Center, VStack, HStack } from "@chakra-ui/react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Text, Center, VStack, HStack } from "@chakra-ui/react";
 
 type setsType = {
   failure: boolean;

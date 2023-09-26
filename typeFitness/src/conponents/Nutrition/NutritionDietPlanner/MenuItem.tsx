@@ -1,4 +1,5 @@
-import { Box, Center, HStack, IconButton, Text } from "@chakra-ui/react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {  Center, HStack, IconButton, Text } from "@chakra-ui/react";
 
 import { mealDetails } from "../NutritionMenu/NutritionMenu";
 import { DeleteIcon } from "@chakra-ui/icons";

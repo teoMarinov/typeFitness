@@ -1,9 +1,7 @@
-import { Box, Center, Heading, useSafeLayoutEffect } from "@chakra-ui/react";
+import { Box, Center, Heading,  } from "@chakra-ui/react";
 import image from "../../../images/Te-Rapa-28.jpg";
-import { useState } from "react";
 
 export default function WorkoutsHomeDemo() {
-  const [hovered, setHovered] = useState(false);
   return (
     <Box
       bgImage={image}

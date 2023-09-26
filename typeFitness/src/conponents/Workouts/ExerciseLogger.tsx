@@ -49,9 +49,9 @@ export default function ExerciseLogger({
     setLoggedData(changedLog);
   };
 
-  const handleInput = (key: string, value: string, index: string) => {
+  const handleInput = (key: string, value: string, index: number) => {
     const lastIndex = exerciseLoggs.length - 1;
-    const updatedLoggs = [...exerciseLoggs];
+    const updatedLoggs: any = [...exerciseLoggs];
 
     updatedLoggs[index] = {
       ...updatedLoggs[index],

@@ -1,6 +1,5 @@
 import { Center, Text } from "@chakra-ui/react";
 import { CompleteExerciseRecord } from "./LoggedInHome";
-import { useState } from "react";
 import ExerciseDataModal from "../../Modals/ExerciseDataModal";
 
 type propType = {

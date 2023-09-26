@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { loginUser } from "../../service/auth-service";
 import image from "../../images/HD-Fitness-Backgrounds-For-Desktop.jpg";
@@ -20,7 +19,6 @@ import {
 const Login = () => {
   const [error, setError] = useState("");
 
-  const navitage = useNavigate();
   const [form, setForm] = useState({
     handle: "",
     password: "",

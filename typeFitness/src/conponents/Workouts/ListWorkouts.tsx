@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Center, Heading, Text, VStack } from "@chakra-ui/react"
 
 import DeleteModal from "../Modals/DeleteModal"
@@ -18,15 +19,11 @@ export type TypeExercise = {
   sets: string;
 }
 
-type TypeWorkout = {
-  name: string;
-  exercises: TypeExercise[];
-}
 
 
 export default function ListWorkouts({ workout, user }: WorkoutType) {
 
-  const workoutData: TypeWorkout = workout[1]
+  const workoutData: any = workout[1]
   const [toggleDetails, setToggleDetails] = useState(false)
 
   return (

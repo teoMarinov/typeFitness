@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const apiKey = 'cXTmSF6TELNDG3inGzn4Pw==iGyp237bLqmLjgpe';
 
 export const MIN_USERNAME_LENGTH = 2;
@@ -36,7 +37,7 @@ export const MIN_PASSWORD_LENGTH = 6;
 export const MIN_HANDLE_LENGTH = 2;
 export const MAX_HANDLE_LENGTH = 20;
 
-export const weekDays:any = {
+export const weekDays: any = {
     Sun: "Sunday",
     Mon: "Monday",
     Tue: "Tuesday",
@@ -45,3 +46,15 @@ export const weekDays:any = {
     Fri: "Friday",
     Sat: "Saturday",
 };
+
+export
+    const ACTION = {
+        CHANGE_NAME: "change name",
+        CHANGE_CALORIES: "change calories",
+        CHANGE_FAT: "change fat",
+        CHANGE_SATURATED_FAT: "change saturated fat",
+        CHANGE_CARBOHYDRATE: "change carbohydrate",
+        CHANGE_SUGAR: "change sugar",
+        CHANGE_PROTEIN: "change protein",
+        RESET_STATE: "reset state",
+    };

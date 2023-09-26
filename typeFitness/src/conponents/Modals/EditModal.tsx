@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TypeExercise } from "../Workouts/ListWorkouts.tsx";
 import {
   Modal,
@@ -39,7 +40,7 @@ export default function EditModal({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [editedVals, setEditedVals] = useState(workout);
   const [newName, setNewName] = useState(name);
-  const [indexesToDelete, setIndexesToDelete] = useState([]);
+  const [indexesToDelete, setIndexesToDelete] = useState<any>([]);
 
   const handleChange = (index: number, key: string, newVal: string) => {
     const updatedExercise = { ...editedVals[index], [key]: newVal };

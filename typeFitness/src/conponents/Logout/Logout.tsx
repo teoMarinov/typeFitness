@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Center } from "@chakra-ui/react";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext.ts";
@@ -6,7 +7,7 @@ import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 const Logout = () => {
-  const { user, setUser } = useContext(AuthContext);
+  const { setUser } = useContext<any>(AuthContext);
   const navigate = useNavigate();
 
   const onLogout = () => {

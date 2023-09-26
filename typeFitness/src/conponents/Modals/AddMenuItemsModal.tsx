@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Modal,
   ModalOverlay,
@@ -16,7 +17,7 @@ import readData from "../../utils/readData";
 import { foodDetails } from "../Nutrition/NutritionMenu/NutritionMenu";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { mealDetails } from "../NutritionMenu/NutritionMenu";
+import { mealDetails } from "../Nutrition/NutritionMenu/NutritionMenu";
 
 type propType = {
   addToDiet: any;
@@ -30,7 +31,7 @@ export default function AddMenuItemsModal({ addToDiet }: propType) {
     addToDiet(meal);
   };
 
-  const context = useContext(AuthContext);
+  const context:any = useContext(AuthContext);
   const currentUser = context.userData?.handle;
 
   const [mealData, setMealData] = useState([]);

@@ -1,16 +1,9 @@
 
 import {
-  Center,
   Grid,
   GridItem,
-  Box,
-  Input,
-  Text,
-  Button,
-  IconButton,
-  HStack
+   Text,
 } from "@chakra-ui/react"
-import { DeleteIcon } from "@chakra-ui/icons"
 
 type macroType = {
   totalCalories: string

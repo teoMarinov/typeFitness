@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
     Modal,
     ModalOverlay,
@@ -10,8 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { DeleteIcon } from "@chakra-ui/icons"
 import editData from "../../utils/editData"
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+
 type PropType = {
     name: string;
     path: string
@@ -22,8 +22,7 @@ export default function DeleteModal({ name, path, unfocus }: PropType) {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const context = useContext(AuthContext)
-    const currentUser = context.userData?.handle
+
 
     const handleAcceptDelete = () => {
         editData(path, null)

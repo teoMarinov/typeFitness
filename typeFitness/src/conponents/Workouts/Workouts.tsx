@@ -18,14 +18,14 @@ export interface Workout {
 }
 
 export default function BasicStatistics() {
-  const [allWorkouts, setAllWorkouts] = useState([]);
+  const [allWorkouts, setAllWorkouts] = useState<any>([]);
 
-  const context = useContext(AuthContext);
+  const context: any = useContext(AuthContext);
   const currentUser = context.userData?.handle;
 
   useEffect(() => {
     readData(`workouts/${currentUser}`, (snapshot: any) => {
-      const result: (string & Workout)[] = Object.entries(snapshot);
+      const result: any = Object.entries(snapshot);
       setAllWorkouts(result);
     });
   }, [currentUser]);

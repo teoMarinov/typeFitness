@@ -1,11 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { weekDays } from "../../../common/constants";
-import {
-  Box,
-  Center,
-  HStack,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Center, HStack, Text, VStack } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
 import readData from "../../../utils/readData";
 import { AuthContext } from "../../../context/AuthContext";
@@ -16,9 +12,9 @@ type propType = {
 };
 
 export default function DailyMacros({ todayLoggs }: propType) {
-  const [todayMenu, setTodayMenu] = useState([]);
+  const [todayMenu, setTodayMenu] = useState<any>([]);
 
-  const context = useContext(AuthContext);
+  const context: any = useContext(AuthContext);
   const currentUser = context.userData?.handle;
 
   const currentDayOfWeek = new Date().toString().split(" ")[0];
@@ -33,42 +29,42 @@ export default function DailyMacros({ todayLoggs }: propType) {
   }, [currentUser]);
 
   const totalDietCals = todayMenu
-    .reduce((acc, meal: [string, mealDetails]) => {
+    .reduce((acc:number, meal: [string, mealDetails]) => {
       acc += Number(meal[1].calories);
       return acc;
     }, 0)
     .toFixed(1);
 
   const totalDietCarbs = todayMenu
-    .reduce((acc, meal: [string, mealDetails]) => {
+    .reduce((acc:number, meal: [string, mealDetails]) => {
       acc += Number(meal[1].carbohydrates);
       return acc;
     }, 0)
     .toFixed(1);
 
   const totalDietSugar = todayMenu
-    .reduce((acc, meal: [string, mealDetails]) => {
+    .reduce((acc:number, meal: [string, mealDetails]) => {
       acc += Number(meal[1].sugar);
       return acc;
     }, 0)
     .toFixed(1);
 
   const totalDietFat = todayMenu
-    .reduce((acc, meal: [string, mealDetails]) => {
+    .reduce((acc:number, meal: [string, mealDetails]) => {
       acc += Number(meal[1].fat);
       return acc;
     }, 0)
     .toFixed(1);
 
   const totalDietSaturatedFat = todayMenu
-    .reduce((acc, meal: [string, mealDetails]) => {
+    .reduce((acc:number, meal: [string, mealDetails]) => {
       acc += Number(meal[1].saturatedFat);
       return acc;
     }, 0)
     .toFixed(1);
 
   const totalDietProtein = todayMenu
-    .reduce((acc, meal: [string, mealDetails]) => {
+    .reduce((acc:number, meal: [string, mealDetails]) => {
       acc += Number(meal[1].protein);
       return acc;
     }, 0)
@@ -131,9 +127,14 @@ export default function DailyMacros({ todayLoggs }: propType) {
   return (
     <>
       <Center fontSize={"xl"} textColor="white">
-        <Box bg={"rgba(20, 20, 20, 0.85)"} p={"20px"} mt={"50px"} rounded={'lg'}>
-          <VStack >
-            <Text mr={"30px"} mb={"10px"} fontSize={'2xl'} fontWeight={'bold'}>
+        <Box
+          bg={"rgba(20, 20, 20, 0.85)"}
+          p={"20px"}
+          mt={"50px"}
+          rounded={"lg"}
+        >
+          <VStack>
+            <Text mr={"30px"} mb={"10px"} fontSize={"2xl"} fontWeight={"bold"}>
               Today's macros / Diet macros :{" "}
             </Text>
             <HStack>

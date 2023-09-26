@@ -6,20 +6,15 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
-  PopoverHeader,
   PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
-  PopoverAnchor,
   Button,
 } from "@chakra-ui/react";
-import { CgProfile } from "react-icons/cg";
 import ListItems from "./ListItems";
 import Logout from "../Logout/Logout";
 
 type propType = {
-  username: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  username: any
 };
 
 const NavBar = ({ username }: propType) => {

@@ -5,12 +5,9 @@ import {
     Center,
     Input,
     Text,
-    Spinner,
-    Link,
-    HStack
 } from "@chakra-ui/react"
 import GridRow from "./GridRow"
-import { ACTION } from "../../Modals/AddFoodModal"
+import { ACTION } from "../../../common/constants"
 
 
 type propTypes = {

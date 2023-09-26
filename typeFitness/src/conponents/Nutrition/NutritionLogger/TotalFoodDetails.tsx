@@ -2,14 +2,10 @@ import { foodDetails } from "../NutritionMenu/NutritionMenu";
 import {
   Center,
   Text,
-  Grid,
   HStack,
   VStack,
-  GridItem,
   Flex,
 } from "@chakra-ui/react";
-import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
-import { useState } from "react";
 
 type propType = {
   data: foodDetails;

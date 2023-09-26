@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Text, Box, Heading, Center } from "@chakra-ui/react";
-import { useState, useEffect, useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import readData from "../../utils/readData";
+import { Box, Heading, Center } from "@chakra-ui/react";
 import image from "../../images/old-school-gym.jpg";
 import CalenderComp from "./CalenderComp";
 

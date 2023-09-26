@@ -1,8 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
-  Center,
   Grid,
   GridItem,
-  Box,
   Input,
   Text,
   HStack,

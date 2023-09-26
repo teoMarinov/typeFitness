@@ -1,12 +1,11 @@
-import { foodDetails } from "./NutritionMenu";
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Center,
   Grid,
   GridItem,
-  Box,
   Input,
   Text,
-  Button,
   IconButton,
   HStack,
 } from "@chakra-ui/react";
@@ -14,7 +13,7 @@ import { useState, useEffect } from "react";
 import { DeleteIcon } from "@chakra-ui/icons";
 
 type propType = {
-  currentFood: (string & foodDetails)[];
+  currentFood: any;
   removeFood: any;
   changeFoodWeight: any;
 };

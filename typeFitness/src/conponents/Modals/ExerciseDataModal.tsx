@@ -1,16 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Modal,
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
   Box,
-  Button,
   useDisclosure,
   Checkbox,
-  useSafeLayoutEffect,
   HStack,
   Center,
 } from "@chakra-ui/react";
@@ -25,7 +23,6 @@ import {
 } from "recharts";
 import {
   CompleteExerciseRecord,
-  DailyExerciseRecord,
 } from "../Home/LoggedIn/LoggedInHome";
 import { useState } from "react";
 

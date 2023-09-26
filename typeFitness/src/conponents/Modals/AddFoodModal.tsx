@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Modal,
   ModalOverlay,
@@ -15,17 +16,7 @@ import { useState, useReducer, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import AddCustom from "../Nutrition/NutritionMenu/AddCustom";
 import addData from "../../utils/addData";
-
-export const ACTION = {
-  CHANGE_NAME: "change name",
-  CHANGE_CALORIES: "change calories",
-  CHANGE_FAT: "change fat",
-  CHANGE_SATURATED_FAT: "change saturated fat",
-  CHANGE_CARBOHYDRATE: "change carbohydrate",
-  CHANGE_SUGAR: "change sugar",
-  CHANGE_PROTEIN: "change protein",
-  RESET_STATE: "reset state",
-};
+import { ACTION } from "../../common/constants";
 
 const initialState = {
   name: "",
@@ -59,7 +50,7 @@ const reducer = (state: any, action: any) => {
 };
 
 export default function AddFoodModal() {
-  const context = useContext(AuthContext);
+  const context: any = useContext(AuthContext);
   const currentUser = context.userData?.handle;
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -166,11 +157,7 @@ export default function AddFoodModal() {
           </ModalHeader>
           <ModalBody>
             {selected === "search" ? (
-              <SearchFromApi
-                moveToAddCustom={() => setSeleceted("add custom")}
-                state={state}
-                dispatch={dispatch}
-              />
+              <SearchFromApi state={state} dispatch={dispatch} />
             ) : (
               <AddCustom state={state} dispatch={dispatch} />
             )}
