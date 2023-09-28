@@ -65,7 +65,6 @@ export default function ExerciseDataModal({ initalData }: propType) {
       return acc;
     }, []);
 
-  console.log(data);
 
   return (
     <>
