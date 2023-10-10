@@ -21,9 +21,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import {
-  CompleteExerciseRecord,
-} from "../Home/LoggedIn/LoggedInHome";
+import { CompleteExerciseRecord } from "../Progress/Progress";
 import { useState } from "react";
 
 type propType = {
