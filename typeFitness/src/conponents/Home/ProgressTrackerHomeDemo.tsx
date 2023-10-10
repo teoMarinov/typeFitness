@@ -1,5 +1,5 @@
 import { Box, Heading, Center } from "@chakra-ui/react";
-import image from "../../images/Eliminating-Foul-Odors-in-restaurant-kitchen-scaled.jpeg";
+import image from "../../images/exercise-weights-iron-dumbbell-with-extra-plates.jpg";
 
 export default function ProgressTrackerHomeDemo() {
   return (

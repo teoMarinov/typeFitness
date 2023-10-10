@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Spacer } from "@chakra-ui/react";
-import image from "../../images/Eliminating-Foul-Odors-in-restaurant-kitchen-scaled.jpeg";
+import image from "../../images/kitchen-image.jpeg";
 import { useEffect, useState, useContext } from "react";
 import NutritionHeader from "./NutritionHeader";
 import NutritionMenu from "./NutritionMenu/NutritionMenu";
