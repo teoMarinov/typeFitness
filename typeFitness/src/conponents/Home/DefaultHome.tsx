@@ -1,5 +1,5 @@
 import { Text, Box, Heading, Link, SimpleGrid, Center } from "@chakra-ui/react";
-import image from "../../../images/HD-Fitness-Backgrounds-For-Desktop.jpg";
+import image from "../../images/HD-Fitness-Backgrounds-For-Desktop.jpg";
 import { NavLink } from "react-router-dom";
 import WorkoutsHomeDemo from "./WorkoutsHomeDemo";
 import LoggerHomeDemo from "./LoggerHomeDemo";

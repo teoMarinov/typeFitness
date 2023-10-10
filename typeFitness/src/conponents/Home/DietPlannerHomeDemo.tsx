@@ -1,5 +1,5 @@
 import { Box, Heading, Center } from "@chakra-ui/react";
-import image from "../../../images/5bd35dee2f759-wallpaper-preview.jpg";
+import image from "../../images/5bd35dee2f759-wallpaper-preview.jpg";
 
 export default function DietPlannerHomeDemo() {
   return (

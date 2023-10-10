@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Heading, Input, Box, Flex, Center } from "@chakra-ui/react";
-import image from "../../../images/exercise-weights-iron-dumbbell-with-extra-plates.jpg";
+import image from "../../images/exercise-weights-iron-dumbbell-with-extra-plates.jpg";
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../../context/AuthContext";
-import readData from "../../../utils/readData";
+import { AuthContext } from "../../context/AuthContext";
+import readData from "../../utils/readData";
 import ExerciseDataDetails from "./ExerciseDataDetails";
 
 type ExerciseData = CompleteExerciseRecord[];
@@ -21,7 +21,7 @@ type Exercise = {
   weight: string;
 };
 
-export default function LoggedInHome() {
+export default function Progress() {
   const [data, setData] = useState<ExerciseData>([]);
   const [filteredData, setFilteredData] = useState<ExerciseData>([]);
   const [searchInput, setSearchInput] = useState<string>("");
@@ -89,6 +89,7 @@ export default function LoggedInHome() {
             mt={"50px"}
             mb={"30px"}
             w={"80%"}
+            placeholder="Seach exerice by name"
             onChange={(e) => setSearchInput(e.target.value)}
             textColor={"white"}
           />

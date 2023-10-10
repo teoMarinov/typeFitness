@@ -1,15 +1,15 @@
-import { Box, Heading, Center } from "@chakra-ui/react";
-import image from "../../../images/Eliminating-Foul-Odors-in-restaurant-kitchen-scaled.jpeg";
+import { Box, Center, Heading,  } from "@chakra-ui/react";
+import image from "../../images/Te-Rapa-28.jpg";
 
-export default function NutritionTrackerHomeDemo() {
+export default function WorkoutsHomeDemo() {
   return (
     <Box
       bgImage={image}
       backgroundSize="cover"
       backgroundPosition="center"
       height="330px"
-        rounded={"xl"}
-        w={"630px"}
+      w="630px"
+      rounded={"xl"}
       _hover={{
         transform: "translateY(-15px)",
       }}
@@ -25,7 +25,7 @@ export default function NutritionTrackerHomeDemo() {
         }}
       >
         <Center height="full">
-          <Heading color={"white"}>Track your food</Heading>
+          <Heading color={"white"}>Record your workouts</Heading>
         </Center>
       </Box>
     </Box>

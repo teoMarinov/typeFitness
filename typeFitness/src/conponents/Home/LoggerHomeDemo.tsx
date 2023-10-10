@@ -1,5 +1,5 @@
 import { Box, Heading, Center } from "@chakra-ui/react";
-import image from "../../../images/old-school-gym.jpg";
+import image from "../../images/old-school-gym.jpg";
 
 export default function LoggerHomeDemo() {
   return (

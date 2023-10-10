@@ -23,9 +23,9 @@ const NavBar = ({ username }: propType) => {
       <Center minHeight={"5vh"}>
         <List color="whit1e" spacing={"10%"} w={"100px"} m={6}>
           <Box pos={"fixed"}>
-            <ListItems pathTo="/" icon={null} text="Home" />
             <ListItems pathTo="/workouts" icon={null} text="Workouts" />
             <ListItems pathTo="/logger" icon={null} text="Logger" />
+            <ListItems pathTo="/progress" icon={null} text="Progress" />
             <ListItems pathTo="/nutrition" icon={null} text="Nutrition" />
             <Box h="70vh"></Box>
             <>

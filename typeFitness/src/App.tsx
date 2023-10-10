@@ -8,7 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./config/firebase.config.js";
 import getUserData from "./service/user-service.js";
 import NavBar from "./conponents/NavBar/NavBar.js";
-import LoggedInHome from "./conponents/Home/LoggedIn/LoggedInHome.js";
+import Progress from "./conponents/Progress/Progress.js";
 import Workouts from "./conponents/Workouts/Workouts.js";
 import Nutrition from "./conponents/Nutrition/Nutrition.js";
 import { AuthContext } from "./context/AuthContext.js";
@@ -16,7 +16,7 @@ import Signup from "./conponents/Signup/Signup.js";
 import Profile from "./conponents/Profile/Profile.js";
 import AuthenticatedRoute from "./hoc/AuthenticatedRoute.js";
 import WorkoutLogger from "./conponents/WorkoutLogger/WorkoutLogger.js";
-import DefaultHome from "./conponents/Home/NotLoggedIn/DefaultHome.js";
+import DefaultHome from "./conponents/Home/DefaultHome.js";
 
 function App() {
   const [user]: any = useAuthState(auth);
@@ -78,7 +78,7 @@ function App() {
                         path="/"
                         element={
                           <AuthenticatedRoute>
-                            <LoggedInHome />
+                            <Workouts />
                           </AuthenticatedRoute>
                         }
                       />
@@ -86,7 +86,7 @@ function App() {
                         path="*"
                         element={
                           <AuthenticatedRoute>
-                            <LoggedInHome />
+                            <Workouts />
                           </AuthenticatedRoute>
                         }
                       />
@@ -103,6 +103,14 @@ function App() {
                         element={
                           <AuthenticatedRoute>
                             <WorkoutLogger />
+                          </AuthenticatedRoute>
+                        }
+                      />
+                      <Route
+                        path="/progress"
+                        element={
+                          <AuthenticatedRoute>
+                            <Progress />
                           </AuthenticatedRoute>
                         }
                       />
