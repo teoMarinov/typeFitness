@@ -24,7 +24,7 @@ export default function LoggerHomeDemo() {
         }}
       >
         <Center height="full">
-          <Heading color={"white"}>Track your progress</Heading>
+          <Heading color={"white"}>Track your workouts</Heading>
         </Center>
       </Box>
     </Box>

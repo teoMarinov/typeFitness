@@ -3,7 +3,7 @@ import image from "../../images/HD-Fitness-Backgrounds-For-Desktop.jpg";
 import { NavLink } from "react-router-dom";
 import WorkoutsHomeDemo from "./WorkoutsHomeDemo";
 import LoggerHomeDemo from "./LoggerHomeDemo";
-import NutritionTrackerHomeDemo from "./NutritionTrackerHomeDemo";
+import ProgressTrackerHomeDemo from "./ProgressTrackerHomeDemo";
 import DietPlannerHomeDemo from "./DietPlannerHomeDemo";
 
 export default function DefaultHome() {
@@ -54,11 +54,11 @@ export default function DefaultHome() {
             <NavLink to={"/logger"}>
               <LoggerHomeDemo />
             </NavLink>
-            <NavLink to={"/nutrition"}>
-              <DietPlannerHomeDemo />
+            <NavLink to={"/progress"}>
+              <ProgressTrackerHomeDemo />
             </NavLink>
             <NavLink to={"/nutrition"}>
-              <NutritionTrackerHomeDemo />
+              <DietPlannerHomeDemo />
             </NavLink>
           </SimpleGrid>
         </Center>

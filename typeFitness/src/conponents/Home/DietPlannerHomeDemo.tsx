@@ -25,7 +25,7 @@ export default function DietPlannerHomeDemo() {
         }}
       >
         <Center height="full">
-          <Heading color={"white"}>Set up a diet</Heading>
+          <Heading color={"white"}>Track your diet</Heading>
         </Center>
       </Box>
     </Box>
