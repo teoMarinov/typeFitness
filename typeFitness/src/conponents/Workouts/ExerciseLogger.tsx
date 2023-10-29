@@ -4,13 +4,14 @@ import { TypeExercise } from "./ListWorkouts";
 import { Text, Input, HStack, VStack, IconButton } from "@chakra-ui/react";
 import { useState } from "react";
 import { NotAllowedIcon } from "@chakra-ui/icons";
+import { loggedDataType } from "../Modals/LoggerModal";
 
 type propTypes = {
   exercise: TypeExercise;
-  loggedData: any;
-  setLoggedData: any;
+  loggedData: loggedDataType;
+  setLoggedData: (_: any) => void;
   currentlyOpen: number | string;
-  setCurrentlyOpen: any;
+  setCurrentlyOpen: (_: number | string) => void;
   exerciseIndex: number;
 };
 
@@ -41,10 +42,10 @@ export default function ExerciseLogger({
       };
       setLoggedData(changedLog);
     }
-    const thisId = loggedData[exercise.name] && loggedData[exercise.name].id;
+    
     const changedLog = {
       ...loggedData,
-      [exercise.name]: { id: thisId, logs: newLog },
+      [exercise.name]: {logs: newLog },
     };
     setLoggedData(changedLog);
   };
@@ -73,10 +74,10 @@ export default function ExerciseLogger({
 
   const toggleCurrentlyOpen = () =>
     currentlyOpen === exerciseIndex
-      ? setCurrentlyOpen("")
+      ? setCurrentlyOpen('')
       : setCurrentlyOpen(exerciseIndex);
 
-  const handleToggleFailure = (index: any) => {
+  const handleToggleFailure = (index: number) => {
     const updatedStatus = [...exerciseLoggs];
     updatedStatus[index] = {
       ...updatedStatus[index],
@@ -84,10 +85,10 @@ export default function ExerciseLogger({
     };
     setExerciseLoggs(updatedStatus);
 
-    const thisId = loggedData[exercise.name].id;
+    
     setLoggedData({
       ...loggedData,
-      [exercise.name]: { id: thisId, logs: updatedStatus },
+      [exercise.name]: {  logs: updatedStatus },
     });
   };
 

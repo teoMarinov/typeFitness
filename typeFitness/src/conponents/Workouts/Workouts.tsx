@@ -17,15 +17,23 @@ export interface Workout {
   exercises: Exercise[];
 }
 
+export type WorkoutArrType = [string, Workout];
+
+type AllWorkoutsType = WorkoutArrType[]
+
+type SnapshotType = {
+  [id: string] : Workout
+}
+
 export default function BasicStatistics() {
-  const [allWorkouts, setAllWorkouts] = useState<any>([]);
+  const [allWorkouts, setAllWorkouts] = useState<AllWorkoutsType>([]);
 
   const context: any = useContext(AuthContext);
   const currentUser = context.userData?.handle;
 
   useEffect(() => {
-    readData(`workouts/${currentUser}`, (snapshot: any) => {
-      const result: any = Object.entries(snapshot);
+    readData(`workouts/${currentUser}`, (snapshot: SnapshotType) => {
+      const result: AllWorkoutsType = Object.entries(snapshot);
       setAllWorkouts(result);
     });
   }, [currentUser]);
@@ -76,7 +84,7 @@ export default function BasicStatistics() {
           </Heading>
         </Center>
         <SimpleGrid columns={{ base: 1, md: 3 }} p={5} spacing={5}>
-          {allWorkouts.map((workout: string & Workout) => (
+          {allWorkouts.map((workout: WorkoutArrType) => (
             <Center key={workout[0]} h="60vh">
               <ListWorkouts workout={workout} user={currentUser} />
             </Center>

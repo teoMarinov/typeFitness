@@ -3,13 +3,13 @@ import { Box, Center, Heading, Text, VStack } from "@chakra-ui/react"
 
 import DeleteModal from "../Modals/DeleteModal"
 import EditModal from "../Modals/EditModal"
-import { Workout } from "./Workouts"
 import { useState } from "react"
 import LoggerModal from "../Modals/LoggerModal"
+import { WorkoutArrType } from "./Workouts"
 
 
 type WorkoutType = {
-  workout: string & Workout
+  workout: WorkoutArrType
   user: string
 }
 

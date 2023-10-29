@@ -15,17 +15,35 @@ import {
 import { useState } from "react";
 import ExerciseLogger from "../Workouts/ExerciseLogger";
 import addData from "../../utils/addData";
+import { Workout } from "../Workouts/Workouts";
 
 type propTypes = {
-  workout: any
+  workout: Workout;
   currentUser: string;
-  unfocus: any;
+  unfocus: (_: boolean) => void;
 };
 
 type workoutDataType = {
   name: string;
   date: string;
-  exercises: any;
+  exercises: exericiseType
+};
+
+type logsType = {
+  failure: boolean;
+  reps: string;
+  weight: string;
+};
+
+type exericiseType = {[key: string] : logsType}
+
+
+type exerciseLogType = {
+  logs: logsType;
+};
+
+export type loggedDataType = {
+  [key: string]: exerciseLogType;
 };
 
 export default function LoggerModal({
@@ -34,8 +52,8 @@ export default function LoggerModal({
   unfocus,
 }: propTypes) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [loggedData, setLoggedData] = useState({});
-  const [currentlyOpen, setCurrentlyOpen] = useState("");
+  const [loggedData, setLoggedData] = useState<loggedDataType>({});
+  const [currentlyOpen, setCurrentlyOpen] = useState<number | string>("");
 
   const handleClose = () => {
     setLoggedData({});
@@ -45,21 +63,25 @@ export default function LoggerModal({
   };
 
   const handleFinishWorkout = () => {
-    const test = Object.entries(loggedData);
-    const exercises = test.reduce((acc: any, currentExercise: any) => {
-      const exerciseName = currentExercise[0];
-      const filteredLogs = currentExercise[1].logs.filter(
-        (i: any) => i.reps && i.weight
-      );
-      if (filteredLogs.length === 0) return acc;
-      acc[exerciseName] = filteredLogs;
-      addData(`exerciseLogs/${currentUser}/${exerciseName}`, {
-        date: new Date().toString(),
-        exercises: filteredLogs,
-      });
-      return acc;
-    }, {});
-  
+    const data = Object.entries(loggedData);
+    const exercises: exericiseType = data.reduce(
+      (acc: exericiseType, currentExercise: any) => {
+        const exerciseName = currentExercise[0];
+        const filteredLogs = currentExercise[1].logs.filter(
+          (i: logsType) => i.reps && i.weight
+        );
+        if (filteredLogs.length === 0) return acc;
+        acc[exerciseName] = filteredLogs;
+        addData(`exerciseLogs/${currentUser}/${exerciseName}`, {
+          date: new Date().toString(),
+          exercises: filteredLogs,
+        });
+        return acc;
+      },
+      {}
+    );
+
+
     const workoutData: workoutDataType = {
       name: workout.name,
       date: new Date().toString(),
@@ -67,7 +89,7 @@ export default function LoggerModal({
     };
     addData(`finishedWorkouts/${currentUser}`, workoutData);
 
-    handleClose()
+    handleClose();
   };
 
   return workout.exercises ? (
@@ -116,7 +138,6 @@ export default function LoggerModal({
               _hover={{ bg: "rgb(15,15,15)" }}
               textColor={"white"}
               onClick={handleFinishWorkout}
-
               pos={"absolute"}
               rounded={0}
               bottom={0}
