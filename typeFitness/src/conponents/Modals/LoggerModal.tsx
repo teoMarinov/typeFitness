@@ -31,16 +31,19 @@ type workoutDataType = {
 
 type logsType = {
   failure: boolean;
-  reps: string;
-  weight: string;
+  reps?: string;
+  weight?: string;
 };
 
 type exericiseType = {[key: string] : logsType}
 
 
+
 type exerciseLogType = {
-  logs: logsType;
+  logs: logsType
 };
+
+
 
 export type loggedDataType = {
   [key: string]: exerciseLogType;
@@ -66,6 +69,7 @@ export default function LoggerModal({
     const data = Object.entries(loggedData);
     const exercises: exericiseType = data.reduce(
       (acc: exericiseType, currentExercise: any) => {
+        console.log(currentExercise)
         const exerciseName = currentExercise[0];
         const filteredLogs = currentExercise[1].logs.filter(
           (i: logsType) => i.reps && i.weight

@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./config/firebase.config.js";
-import getUserData from "./service/user-service.js";
+import setUserData from "./service/user-service.js";
 import NavBar from "./conponents/NavBar/NavBar.js";
 import Progress from "./conponents/Progress/Progress.js";
 import Workouts from "./conponents/Workouts/Workouts.js";
@@ -17,6 +17,9 @@ import Profile from "./conponents/Profile/Profile.js";
 import AuthenticatedRoute from "./hoc/AuthenticatedRoute.js";
 import WorkoutLogger from "./conponents/WorkoutLogger/WorkoutLogger.js";
 import DefaultHome from "./conponents/Home/DefaultHome.js";
+
+
+
 
 function App() {
   const [user]: any = useAuthState(auth);
@@ -33,7 +36,7 @@ function App() {
   useEffect(() => {
     if (user === null) return;
 
-    getUserData(user.uid)
+    setUserData(user.uid)
       .then((snapshot) => {
         if (!snapshot.exists()) {
           throw new Error("The app is not working currently!");

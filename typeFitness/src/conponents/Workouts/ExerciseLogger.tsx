@@ -29,7 +29,6 @@ export default function ExerciseLogger({
   setCurrentlyOpen,
   exerciseIndex,
 }: propTypes) {
-  const exerciseId = Object.keys(loggedData).length;
   const [exerciseLoggs, setExerciseLoggs] = useState([{ failure: false }]);
   const lineH = exercise.name.length > 37 ? 64 : 40;
   const lineIncrease = 38;
@@ -38,14 +37,14 @@ export default function ExerciseLogger({
     if (!loggedData[exercise.name]) {
       const changedLog = {
         ...loggedData,
-        [exercise.name]: { id: exerciseId, logs: newLog },
+        [exercise.name]: { logs: newLog },
       };
       setLoggedData(changedLog);
     }
-    
+
     const changedLog = {
       ...loggedData,
-      [exercise.name]: {logs: newLog },
+      [exercise.name]: { logs: newLog },
     };
     setLoggedData(changedLog);
   };
@@ -74,7 +73,7 @@ export default function ExerciseLogger({
 
   const toggleCurrentlyOpen = () =>
     currentlyOpen === exerciseIndex
-      ? setCurrentlyOpen('')
+      ? setCurrentlyOpen("")
       : setCurrentlyOpen(exerciseIndex);
 
   const handleToggleFailure = (index: number) => {
@@ -85,10 +84,9 @@ export default function ExerciseLogger({
     };
     setExerciseLoggs(updatedStatus);
 
-    
     setLoggedData({
       ...loggedData,
-      [exercise.name]: {  logs: updatedStatus },
+      [exercise.name]: { logs: updatedStatus },
     });
   };
 
@@ -116,7 +114,7 @@ export default function ExerciseLogger({
         >
           {exercise.name} - {exercise.sets} x {exercise.reps}
         </Text>
-        {exerciseLoggs.map((data: any, index: any) => (
+        {exerciseLoggs.map((data: any, index: number) => (
           <HStack key={index}>
             <Input
               p={0}
