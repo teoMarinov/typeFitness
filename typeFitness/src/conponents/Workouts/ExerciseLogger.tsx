@@ -42,9 +42,12 @@ export default function ExerciseLogger({
       setLoggedData(changedLog);
     }
 
+    const thisId = Object.keys(loggedData).length
+    
+
     const changedLog = {
       ...loggedData,
-      [exercise.name]: { logs: newLog },
+      [exercise.name]: {id: thisId, logs: newLog },
     };
     setLoggedData(changedLog);
   };
@@ -84,9 +87,11 @@ export default function ExerciseLogger({
     };
     setExerciseLoggs(updatedStatus);
 
+    const thisId = loggedData[exercise.name].id
+
     setLoggedData({
       ...loggedData,
-      [exercise.name]: { logs: updatedStatus },
+      [exercise.name]: {id:thisId, logs: updatedStatus },
     });
   };
 

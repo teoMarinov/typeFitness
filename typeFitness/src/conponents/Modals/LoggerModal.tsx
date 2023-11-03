@@ -26,7 +26,7 @@ type propTypes = {
 type workoutDataType = {
   name: string;
   date: string;
-  exercises: exericiseType
+  exercises: exericiseType;
 };
 
 type logsType = {
@@ -35,15 +35,12 @@ type logsType = {
   weight?: string;
 };
 
-type exericiseType = {[key: string] : logsType}
-
-
+type exericiseType = {[key: string]: exerciseLogType };
 
 type exerciseLogType = {
-  logs: logsType
+  id: number | string;
+  logs: logsType;
 };
-
-
 
 export type loggedDataType = {
   [key: string]: exerciseLogType;
@@ -65,17 +62,17 @@ export default function LoggerModal({
     onClose();
   };
 
+
   const handleFinishWorkout = () => {
     const data = Object.entries(loggedData);
     const exercises: exericiseType = data.reduce(
       (acc: exericiseType, currentExercise: any) => {
-        console.log(currentExercise)
         const exerciseName = currentExercise[0];
         const filteredLogs = currentExercise[1].logs.filter(
           (i: logsType) => i.reps && i.weight
         );
         if (filteredLogs.length === 0) return acc;
-        acc[exerciseName] = filteredLogs;
+        acc[exerciseName] = { id: currentExercise[1].id, logs: filteredLogs };
         addData(`exerciseLogs/${currentUser}/${exerciseName}`, {
           date: new Date().toString(),
           exercises: filteredLogs,
@@ -85,15 +82,14 @@ export default function LoggerModal({
       {}
     );
 
-
     const workoutData: workoutDataType = {
       name: workout.name,
       date: new Date().toString(),
       exercises,
     };
     addData(`finishedWorkouts/${currentUser}`, workoutData);
-
-    handleClose();
+console.log(exercises)
+    // handleClose();
   };
 
   return workout.exercises ? (
