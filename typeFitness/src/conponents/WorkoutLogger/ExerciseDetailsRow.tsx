@@ -7,8 +7,13 @@ type setsType = {
   weight: string;
 };
 
+type exerciseType = {
+  id: string,
+  logs: setsType[]
+}
+
 type propType = {
-  exercise: [string, setsType[]];
+  exercise: [string, exerciseType];
   currentIndex: number;
   currentlySelected: number | string;
   setCurrentlySelected: any;
@@ -21,10 +26,10 @@ export default function ExerciseDetailsRow({
   setCurrentlySelected,
 }: propType) {
   const averageReps = (
-    exercise[1].reduce((acc: number, set: setsType) => {
+    exercise[1].logs.reduce((acc: number, set: setsType) => {
       acc += Number(set.reps);
       return acc;
-    }, 0) / exercise[1].length
+    }, 0) / exercise[1].logs.length
   ).toFixed();
 
 
@@ -40,7 +45,7 @@ export default function ExerciseDetailsRow({
         <VStack
           height={
             currentlySelected === currentIndex
-              ? `${exercise[1].length * 32 + 54}px`
+              ? `${exercise[1].logs.length * 32 + 54}px`
               : "54px"
           }
           overflow="hidden"
@@ -54,9 +59,9 @@ export default function ExerciseDetailsRow({
             rounded={"md"}
             onClick={handleSelect}
           >
-            {exercise[0]} - {exercise[1].length} x {averageReps}
+            {exercise[0]} - {exercise[1].logs.length} x {averageReps}
           </Text>
-          {exercise[1].map((set: setsType) => (
+          {exercise[1].logs.map((set: setsType) => (
             <HStack textAlign={"left"} w={"full"} ml={"310px"}>
               <Text>
                 {set.reps} x {set.weight} kg

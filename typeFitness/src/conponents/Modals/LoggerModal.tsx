@@ -88,8 +88,7 @@ export default function LoggerModal({
       exercises,
     };
     addData(`finishedWorkouts/${currentUser}`, workoutData);
-console.log(exercises)
-    // handleClose();
+    handleClose();
   };
 
   return workout.exercises ? (

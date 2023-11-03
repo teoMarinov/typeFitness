@@ -21,6 +21,7 @@ import "./CalenderStyle.css";
 
 const localizer = momentLocalizer(moment);
 
+
 export default function CalenderComp() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedEventTitle, setSelectedEventTitle] = useState("");
@@ -28,7 +29,7 @@ export default function CalenderComp() {
   const [exerciseData, setExerciseData] = useState<any>([]);
   const [currentlySelected, setCurrentlySelected] = useState("");
 
-  const context:any = useContext(AuthContext);
+  const context: any = useContext(AuthContext);
   const currentUser = context.userData?.handle;
 
   useEffect(() => {
@@ -45,8 +46,12 @@ export default function CalenderComp() {
   }, [currentUser]);
 
   const handleEventSelect = (event: any) => {
+    const exerciseList = Object.entries(event.exercises).sort(
+      (a: any, b: any) => a[1].id - b[1].id
+    );
+
     setSelectedEventTitle(event.title);
-    setSelectedEventData(Object.entries(event.exercises));
+    setSelectedEventData(exerciseList);
     setIsModalOpen(true);
   };
 
