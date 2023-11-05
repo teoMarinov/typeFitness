@@ -13,7 +13,6 @@ import Workouts from "./conponents/Workouts/Workouts.js";
 import Nutrition from "./conponents/Nutrition/Nutrition.js";
 import { AuthContext } from "./context/AuthContext.js";
 import Signup from "./conponents/Signup/Signup.js";
-import Profile from "./conponents/Profile/Profile.js";
 import AuthenticatedRoute from "./hoc/AuthenticatedRoute.js";
 import WorkoutLogger from "./conponents/WorkoutLogger/WorkoutLogger.js";
 import DefaultHome from "./conponents/Home/DefaultHome.js";
@@ -122,14 +121,6 @@ function App() {
                         element={
                           <AuthenticatedRoute>
                             <Nutrition />
-                          </AuthenticatedRoute>
-                        }
-                      />
-                      <Route
-                        path="/profile"
-                        element={
-                          <AuthenticatedRoute>
-                            <Profile />
                           </AuthenticatedRoute>
                         }
                       />
