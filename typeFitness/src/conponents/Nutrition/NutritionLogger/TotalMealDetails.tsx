@@ -79,7 +79,7 @@ export default function TotalMealDetails({
 
   const [listHeight, setListHeight] = useState<string>("0px");
 
-  const childrenHeight = data.ingredients.length * 93;
+  const childrenHeight = data.ingredients.length * 116;
 
   const openList = () => {
     setListHeight(`${childrenHeight}px`);
