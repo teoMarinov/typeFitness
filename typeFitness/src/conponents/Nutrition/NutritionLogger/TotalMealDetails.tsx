@@ -1,11 +1,5 @@
 import { foodDetails } from "../NutritionMenu/NutritionMenu";
-import {
-  Center,
-  Text,
-  HStack,
-  VStack,
-  Flex,
-} from "@chakra-ui/react";
+import { Center, Text, HStack, VStack, Flex } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 import TotalFoodDetails from "./TotalFoodDetails";
@@ -35,42 +29,42 @@ export default function TotalMealDetails({
 }: propType) {
   const totalCals = data.ingredients
     .reduce((acc: number, meal: foodDetails) => {
-      acc += Number(meal.calories);
+      acc += (Number(meal.calories) * meal.weight) / 100;
       return acc;
     }, 0)
     .toFixed(1);
 
   const totalFat = data.ingredients
     .reduce((acc: number, meal: foodDetails) => {
-      acc += Number(meal.fat);
+      acc += (Number(meal.fat) * meal.weight) / 100;
       return acc;
     }, 0)
     .toFixed(1);
 
   const totalSaturatedFat = data.ingredients
     .reduce((acc: number, meal: foodDetails) => {
-      acc += Number(meal.saturatedFat);
+      acc += (Number(meal.saturatedFat) * meal.weight) / 100;
       return acc;
     }, 0)
     .toFixed(1);
 
   const totalCarbohydrates = data.ingredients
     .reduce((acc: number, meal: foodDetails) => {
-      acc += Number(meal.carbohydrate);
+      acc += (Number(meal.carbohydrate) * meal.weight) / 100;
       return acc;
     }, 0)
     .toFixed(1);
 
   const totalSugar = data.ingredients
     .reduce((acc: number, meal: foodDetails) => {
-      acc += Number(meal.sugar);
+      acc += (Number(meal.sugar) * meal.weight) / 100;
       return acc;
     }, 0)
     .toFixed(1);
 
   const totalProtein = data.ingredients
     .reduce((acc: number, meal: foodDetails) => {
-      acc += Number(meal.protein);
+      acc += (Number(meal.protein) * meal.weight) / 100;
       return acc;
     }, 0)
     .toFixed(1);
@@ -109,7 +103,7 @@ export default function TotalMealDetails({
           fontSize={"lg"}
           onClick={handleChangeHeight}
           paddingX={"30px"}
-          userSelect={'none'}
+          userSelect={"none"}
         >
           <Flex w={"800px"} justifyContent={"space-around"}>
             <Center>

@@ -12,6 +12,14 @@ type propType = {
 };
 
 export default function TotalFoodDetails({ data }: propType) {
+
+const calories = ((data.calories * data.weight)/100).toFixed(1)
+const fat = ((data.fat * data.weight)/100).toFixed(1)
+const saturatedFat = ((data.saturatedFat * data.weight)/100).toFixed(1)
+const carbohydrate = ((data.carbohydrate * data.weight)/100).toFixed(1)
+const sugar = ((data.sugar * data.weight)/100).toFixed(1)
+const protein = ((data.calories * data.weight)/100).toFixed(1)
+
   return (
     <>
       <Center>
@@ -33,27 +41,27 @@ export default function TotalFoodDetails({ data }: propType) {
             </Center>
             <VStack>
               <Text>Calories</Text>
-              <Text>{data.calories} kcal</Text>
+              <Text>{calories} kcal</Text>
             </VStack>
             <VStack>
               <Text>fat</Text>
-              <Text>{data.fat} g</Text>
+              <Text>{fat} g</Text>
             </VStack>
             <VStack>
               <Text>Saturated fat</Text>
-              <Text>{data.saturatedFat} g</Text>
+              <Text>{saturatedFat} g</Text>
             </VStack>
             <VStack>
               <Text>Carbohydrates</Text>
-              <Text>{data.carbohydrate} g</Text>
+              <Text>{carbohydrate} g</Text>
             </VStack>
             <VStack>
               <Text>Sugar</Text>
-              <Text>{data.sugar} g</Text>
+              <Text>{sugar} g</Text>
             </VStack>
             <VStack>
               <Text>Protein</Text>
-              <Text>{data.protein} g</Text>
+              <Text>{protein} g</Text>
             </VStack>
           </Flex>
         </HStack>
